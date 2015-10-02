@@ -1,7 +1,5 @@
 package Project;
 
-package Project;
-
 public class Enemy 
 {
 	int health;
