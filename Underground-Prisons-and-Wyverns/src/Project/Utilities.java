@@ -14,13 +14,4 @@ public class Utilities
 		return sum;
 	}
 	
-	public static void urMum()
-	{
-		//This is Jacob's method!
-	}
-	
-	public static int blahahahahah()
-	{
-	 //yay
-	}
 }
