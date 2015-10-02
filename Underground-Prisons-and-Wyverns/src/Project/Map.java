@@ -1,3 +1,5 @@
+package Project;
+
 import java.util.*;
 
 public class Map {
@@ -17,5 +19,8 @@ public class Map {
 				}
 			}
 		}
+	}
+	public void test(){
+		System.out.println("hi");
 	}
 }

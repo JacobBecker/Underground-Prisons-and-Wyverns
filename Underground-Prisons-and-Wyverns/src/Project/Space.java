@@ -1,3 +1,4 @@
+package Project;
 
 public class Space {
 	boolean visited = false;
@@ -21,5 +22,8 @@ public class Space {
 		{
 			adjacent[i+1] = rooms[i];
 		}
+	public void test(){
+		System.out.println("hi");
+	}
 	}
 }
