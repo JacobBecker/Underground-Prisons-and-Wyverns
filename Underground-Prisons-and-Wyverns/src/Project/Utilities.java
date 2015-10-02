@@ -18,4 +18,9 @@ public class Utilities
 	{
 		//This is Jacob's method!
 	}
+	
+	public static int blahahahahah()
+	{
+	 //yay
+	}
 }

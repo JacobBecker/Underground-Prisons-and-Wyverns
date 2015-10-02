@@ -1,3 +1,5 @@
+package Project;
+
 public class Enemy {
 int health;
 int strength;
