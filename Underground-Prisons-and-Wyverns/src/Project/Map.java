@@ -2,19 +2,26 @@ package Project;
 
 import java.util.*;
 
-public class Map {
+public class Map 
+{
 	ArrayList<Space> map;
-	public Map(){
+	public Map()
+	{
 		map = new ArrayList<Space>();
 	}
-	public void add_room(Space room){
+	public void add_room(Space room)
+	{
 		map.add(room);
 	}
-	public void show_map(){
-		for(Space x: map){
-			if(x.visited==true){
+	public void show_map()
+	{
+		for(Space x: map)
+		{
+			if(x.visited==true)
+			{
 				//display room
-				if(x.char_occupied==true){
+				if(x.char_occupied==true)
+				{
 					//display character icon
 				}
 			}
