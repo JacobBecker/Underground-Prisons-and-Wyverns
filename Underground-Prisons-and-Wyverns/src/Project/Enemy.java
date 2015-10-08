@@ -3,13 +3,15 @@ package Project;
 public class Enemy 
 {
 	int hp;
-	int strength;
+	int damage;
+	int defense;
 	String name;
-	public void setEnemy(String n, int h, int s)
+	public void setEnemy(String n, int h, int d, int de)
 	{
 		name = n;
-		health = h;
-		strength = s;
+		hp = h;
+		damage = d;
+		defense = de;
 	}
 public void test(){
 	System.out.println("hi");
