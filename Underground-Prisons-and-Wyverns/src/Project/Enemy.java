@@ -2,7 +2,7 @@ package Project;
 
 public class Enemy 
 {
-	int health;
+	int hp;
 	int strength;
 	String name;
 	public void setEnemy(String n, int h, int s)
@@ -13,5 +13,5 @@ public class Enemy
 	}
 public void test(){
 	System.out.println("hi");
-}
+	}
 }
