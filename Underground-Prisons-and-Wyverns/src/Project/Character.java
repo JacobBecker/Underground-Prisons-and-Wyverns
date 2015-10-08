@@ -36,27 +36,27 @@ public class Character
 	public int[] ScoreAssignment(int[] scoreValues, String ability, int position) 
 	{
 		int value = 0;
-		while (value != scoreValues[0] && value != scoreValues[1]) 
-		{
-			String strValue = "filler";
-			boolean isValueAnInt = false;
-			while (!isValueAnInt) 
+			while (value != scoreValues[0] && value != scoreValues[1]) 
 			{
-				isValueAnInt = true;
-				try {
-					value = Integer.parseInt(strValue);
-				} catch (java.lang.NumberFormatException e) {
-					strValue = JOptionPane.showInputDialog("What will be your " +
-														ability + " value? \n" +
-														scoreValues[0] + "\n" +
-														scoreValues[1] + "\n" +
-														"Please type just the number" + 
-														"correlating to the score \n" +
-														"and ignore any value of null");
-					isValueAnInt = false;
+				String strValue = "filler";
+				boolean isValueAnInt = false;
+				while (!isValueAnInt) 
+				{
+					isValueAnInt = true;
+					try {
+						value = Integer.parseInt(strValue);
+					} catch (java.lang.NumberFormatException e) {
+						strValue = JOptionPane.showInputDialog("What will be your " +
+										ability + " value? \n" +
+										scoreValues[0] + "\n" +
+										scoreValues[1] + "\n" +
+										"Please type just the number" + 
+										"correlating to the score \n" +
+										"and ignore any value of null");
+						isValueAnInt = false;
+					}
 				}
 			}
-		}
 		
 		int i;
 		for(i = 0; value != scoreValues[i]; i++)

@@ -4,13 +4,18 @@ package Project;
 
 import javax.swing.JOptionPane;
 
+import com.badlogic.gdx.Gdx;
+
 
 public class MainIThink 
 {
 	public static void main (String args[])	
 	{
-		Character OC = new Character();		
-		JOptionPane.showMessageDialog(null, OC.Name + "\n" + OC.Strength + "\n" + OC.Constitution);
+		
+		MyTextInputListener listener = new MyTextInputListener();
+		Gdx.input.getTextInput(listener, "Dialog Title", "Initial Textfield Value", "Word");
+		//Character OC = new Character();		
+		//JOptionPane.showMessageDialog(null, OC.Name + "\n" + OC.Strength + "\n" + OC.Constitution);
 	}
 }
 
