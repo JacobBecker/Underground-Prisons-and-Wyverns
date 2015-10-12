@@ -57,7 +57,7 @@ public class Character
 					}
 				}
 			}
-		
+				
 		int i;
 		for(i = 0; value != scoreValues[i]; i++)
 		{
