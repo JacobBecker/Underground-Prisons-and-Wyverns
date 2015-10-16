@@ -1,8 +1,12 @@
 package Project;
 
-public class GrayOoze 
+public class GrayOoze extends Enemy
 {
-	int hp = Utilities.rollDice(3, 8); 
-	int damage = Utilities.rollDice(2, 8); 
-	int defense = 8;
+	public GrayOoze()
+	{
+		hp = Utilities.rollDice(3, 8); 
+		damage = Utilities.rollDice(2, 8); 
+		defense = 8;
+		name = "GrayOoze";
+	}
 }

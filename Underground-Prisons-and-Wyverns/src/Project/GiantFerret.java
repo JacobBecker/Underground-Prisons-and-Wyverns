@@ -1,8 +1,12 @@
 package Project;
 
-public class GiantFerret
+public class GiantFerret extends Enemy
 {
-	int hp = Utilities.rollDice(2, 8); 
-	int damage = Utilities.rollDice(2, 4); 
-	int defense = 5;
+	public GiantFerret()
+	{
+		hp = Utilities.rollDice(2, 8); 
+		damage = Utilities.rollDice(2, 4); 
+		defense = 5;
+		name = "GiantFerret";
+	}
 }
