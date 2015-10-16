@@ -24,6 +24,8 @@ public class Tutorial_Game implements ApplicationListener {
 	int y_pos = 0;
 	int cam_pos_x = 0;
 	int cam_pos_y = 0;
+	int reset_cam_x = 0;
+	int reset_cam_y = 0;
 	ArrayList<Location> locs = new ArrayList<Location>();
 	public static OrthographicCamera cam;
 	
@@ -38,9 +40,9 @@ public class Tutorial_Game implements ApplicationListener {
 		for(int i=0; i<15; i++){
 			locs.add(new Location(i,0));
 		}
-		locs.add(new Location(1,1));
-		locs.add(new Location(1,2));
-		locs.add(new Location(1,3));
+		for(int i=0; i<12; i++){
+			locs.add(new Location(1,i));
+		}
 		locs.add(new Location(4,1));
 		
 		//secret places
@@ -48,7 +50,7 @@ public class Tutorial_Game implements ApplicationListener {
 		locs.add(new Location(3,2,true));
 		locs.add(new Location(4,2,true));
 		//Gdx.graphics.setContinuousRendering(false);
-		System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 	}
 	public void render(){
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -98,6 +100,14 @@ public class Tutorial_Game implements ApplicationListener {
 				{
 					x_pos--;
 				}
+				else
+				{
+					if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
+					{
+						reset_cam_x-=ROOM_WIDTH;
+						cam_pos_x-=ROOM_WIDTH;
+					}
+				}
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
 				x_pos--;
@@ -113,6 +123,14 @@ public class Tutorial_Game implements ApplicationListener {
 				if(!valid)
 				{
 					x_pos++;
+				}
+				else
+				{
+					if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
+					{
+						reset_cam_x+=ROOM_WIDTH;
+						cam_pos_x+=ROOM_WIDTH;
+					}
 				}
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
@@ -130,6 +148,14 @@ public class Tutorial_Game implements ApplicationListener {
 				{
 					y_pos--;
 				}
+				else
+				{
+					if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
+					{
+						reset_cam_y-=ROOM_HEIGHT;
+						cam_pos_y-=ROOM_HEIGHT;
+					}
+				}
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
 				y_pos--;
@@ -146,10 +172,20 @@ public class Tutorial_Game implements ApplicationListener {
 				{
 					y_pos++;
 				}
+				else
+				{
+					if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
+					{
+						reset_cam_y+=ROOM_HEIGHT;
+						cam_pos_y+=ROOM_HEIGHT;
+					}
+				}
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
 				cameraMode=true;
 				System.out.println("Camera Mode on");
+				//reset_cam_x = cam_pos_x;
+				//reset_cam_y = cam_pos_y;
 			}
 		}
 		else
@@ -189,6 +225,8 @@ public class Tutorial_Game implements ApplicationListener {
 			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
 				cameraMode=false;
 				System.out.println("Camera Mode off");
+				cam_pos_x = reset_cam_x;
+				cam_pos_y = reset_cam_y;
 			}
 		}
 	}
