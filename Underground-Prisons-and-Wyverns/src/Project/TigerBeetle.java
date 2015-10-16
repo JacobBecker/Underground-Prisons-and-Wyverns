@@ -1,8 +1,12 @@
 package Project;
 
-public class TigerBeetle 
+public class TigerBeetle extends Enemy
 {
-	int hp = Utilities.rollDice(2, 8); 
-	int damage = Utilities.rollDice(1, 6); 
-	int defense = 4;
+	public TigerBeetle()
+	{
+		hp = Utilities.rollDice(2, 8); 
+		damage = Utilities.rollDice(1, 6); 
+		defense = 4;
+		name = "TigerBeetle";
+	}
 }

@@ -1,8 +1,12 @@
 package Project;
 
-public class Bat 
+public class Bat extends Enemy 
 {
-	int hp = Utilities.rollDice(1, 8); 
-	int damage = Utilities.rollDice(0, 0); 
-	int defense = 6;
+	 public Bat()
+	 {
+		 hp = Utilities.rollDice(1, 8); 
+		 damage = Utilities.rollDice(0, 0); 
+		 defense = 6;
+		 name = "Bat";
+	 }
 }
