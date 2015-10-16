@@ -16,20 +16,26 @@ public class Tutorial_Game implements ApplicationListener {
 	public static int HEIGHT;
 	public static int ROOM_WIDTH = 50;
 	public static int ROOM_HEIGHT = 50;
+	public static int WORLD_WIDTH = 1000;//boundaries of world; for now, 2W
+	public static int WORLD_HEIGHT = 800;//for now, 2H
+	
+	boolean cameraMode = false;
 	int x_pos = 0;
 	int y_pos = 0;
+	int cam_pos_x = 0;
+	int cam_pos_y = 0;
 	ArrayList<Location> locs = new ArrayList<Location>();
 	public static OrthographicCamera cam;
 	
 	public void create(){
-		System.out.println("The frame was created successfully.");
+		//System.out.println("The frame was created successfully.");
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
 		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.translate(WIDTH/2, HEIGHT/2);
 		cam.update();
 		
-		for(int i=0; i<5; i++){
+		for(int i=0; i<15; i++){
 			locs.add(new Location(i,0));
 		}
 		locs.add(new Location(1,1));
@@ -42,6 +48,7 @@ public class Tutorial_Game implements ApplicationListener {
 		locs.add(new Location(3,2,true));
 		locs.add(new Location(4,2,true));
 		//Gdx.graphics.setContinuousRendering(false);
+		System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 	}
 	public void render(){
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -61,82 +68,127 @@ public class Tutorial_Game implements ApplicationListener {
 				else
 					sr.setColor(0,0,2,1);
 			}
-			sr.rect(ROOM_WIDTH*place.x,ROOM_HEIGHT*place.y,ROOM_WIDTH,ROOM_HEIGHT);
+			sr.rect(ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 		}
 		sr.setColor(1,0,0,1);
-		sr.circle(25+ROOM_WIDTH*x_pos, 25+ROOM_WIDTH*y_pos, 5);
+		sr.circle(25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y, 5);
 		sr.end();
 		
 		sr.begin(ShapeType.Line);
 		sr.setColor(0,0,0,1);
 		for(Location place:locs)
 		{
-			sr.rect(ROOM_WIDTH*place.x,ROOM_HEIGHT*place.y,ROOM_WIDTH,ROOM_HEIGHT);
+			sr.rect(ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 		}
 		sr.end();
-		
-		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
-			x_pos++;
-			boolean valid=false;
-			for(Location place:locs)
-			{
-				if((place.x==x_pos)&&(place.y==y_pos))
-				{
-					valid = true;
-					place.visited = true;
-				}
-			}
-			if(!valid)
-			{
-				x_pos--;
-			}
-		}
-		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
-			x_pos--;
-			boolean valid=false;
-			for(Location place:locs)
-			{
-				if((place.x==x_pos)&&(place.y==y_pos))
-				{
-					valid = true;
-					place.visited = true;
-				}
-			}
-			if(!valid)
-			{
+		if(!cameraMode)
+		{
+			if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
 				x_pos++;
-			}
-		}
-		if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-			y_pos++;
-			boolean valid=false;
-			for(Location place:locs)
-			{
-				if((place.x==x_pos)&&(place.y==y_pos))
+				boolean valid=false;
+				for(Location place:locs)
 				{
-					valid = true;
-					place.visited = true;
+					if((place.x==x_pos)&&(place.y==y_pos))
+					{
+						valid = true;
+						place.visited = true;
+					}
+				}
+				if(!valid)
+				{
+					x_pos--;
 				}
 			}
-			if(!valid)
-			{
-				y_pos--;
-			}
-		}
-		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-			y_pos--;
-			boolean valid=false;
-			for(Location place:locs)
-			{
-				if((place.x==x_pos)&&(place.y==y_pos))
+			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
+				x_pos--;
+				boolean valid=false;
+				for(Location place:locs)
 				{
-					valid = true;
-					place.visited = true;
+					if((place.x==x_pos)&&(place.y==y_pos))
+					{
+						valid = true;
+						place.visited = true;
+					}
+				}
+				if(!valid)
+				{
+					x_pos++;
 				}
 			}
-			if(!valid)
-			{
+			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
 				y_pos++;
+				boolean valid=false;
+				for(Location place:locs)
+				{
+					if((place.x==x_pos)&&(place.y==y_pos))
+					{
+						valid = true;
+						place.visited = true;
+					}
+				}
+				if(!valid)
+				{
+					y_pos--;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+				y_pos--;
+				boolean valid=false;
+				for(Location place:locs)
+				{
+					if((place.x==x_pos)&&(place.y==y_pos))
+					{
+						valid = true;
+						place.visited = true;
+					}
+				}
+				if(!valid)
+				{
+					y_pos++;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+				cameraMode=true;
+				System.out.println("Camera Mode on");
+			}
+		}
+		else
+		{
+			if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
+				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+				cam_pos_x -= ROOM_WIDTH;
+				if(cam_pos_x<=WIDTH-WORLD_WIDTH)
+				{
+					cam_pos_x = WIDTH-WORLD_WIDTH;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
+				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+				cam_pos_x += ROOM_WIDTH;
+				if(cam_pos_x>=0)
+				{
+					cam_pos_x = 0;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+				cam_pos_y -= ROOM_HEIGHT;
+				if(cam_pos_y<=HEIGHT-WORLD_HEIGHT)
+				{
+					cam_pos_y = HEIGHT-WORLD_HEIGHT;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+				cam_pos_y += ROOM_HEIGHT;
+				if(cam_pos_y>=0)
+				{
+					cam_pos_y = 0;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+				cameraMode=false;
+				System.out.println("Camera Mode off");
 			}
 		}
 	}
