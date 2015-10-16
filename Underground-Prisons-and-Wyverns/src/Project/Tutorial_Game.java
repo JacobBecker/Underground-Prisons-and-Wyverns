@@ -59,7 +59,11 @@ public class Tutorial_Game implements ApplicationListener {
 		sr.begin(ShapeType.Filled);
 		for(Location place:locs)
 		{
-			if(place.secret==false)
+			if(((Math.abs(place.x-x_pos)<=2)||(Math.abs(place.y-y_pos)<=2))&&(place.secret==false))
+			{
+				place.visited=true;
+			}
+			if((place.secret==false)&&(place.visited==true))
 			{
 				sr.setColor(1,1,0,1);
 			}
