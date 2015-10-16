@@ -18,7 +18,22 @@ public class Tutorial_Main {
 		
 		new LwjglApplication(new Tutorial_Game(), cfg);
 
-		MyTextInputListener listener = new MyTextInputListener();
-		Gdx.input.getTextInput(listener, "Dialog Title", "Test Text", null);
+		//MyTextInputListener listener = new MyTextInputListener();
+		//Gdx.input.getTextInput(listener, "Dialog Title", "Test Text", null);
+		//Text Input
+		
+		/*
+		Skin skin = new Skin();
+		
+		new Dialog("Some Dialog", skin, "dialog") {
+		    protected void result (Object object) {
+		        System.out.println("Chosen: " + object);
+		    }
+		}.text("Are you enjoying this demo?").button("Yes", true).button("No", false).key(Keys.ENTER, true)
+		    .key(Keys.ESCAPE, false).show(stage);
+		    */
+		//Struggling with skins
+
+		
 	}
 }
