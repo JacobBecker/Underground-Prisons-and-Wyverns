@@ -24,13 +24,6 @@ public class Tutorial_Main {
 		//Gdx.input.getTextInput(listener, "Dialog Title", "Test Text", null);
 		//Text Input
 		
-		
-		Skin skin = new Skin(Gdx.files.internal("/git/Underground-Prisons-and-Wyverns/Underground-Prisons-and-Wyverns/assets/uiskin.json"));
-
-		Stage stage = new Stage();
-		TextButton button = new TextButton("Click Me!", skin);
-		stage.addActor(button);
-
 		    
 		//Struggling with skins
 

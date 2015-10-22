@@ -9,8 +9,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class Tutorial_Game implements ApplicationListener {
+	
+	Stage stage;
+	TextButton button;
 	
 	public static int WIDTH;
 	public static int HEIGHT;
@@ -51,6 +59,22 @@ public class Tutorial_Game implements ApplicationListener {
 		locs.add(new Location(4,2,true));
 		//Gdx.graphics.setContinuousRendering(false);
 		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+		
+		//Scene2d Test
+		Skin skin = new Skin(Gdx.files.internal("assets/uiskin.json"));
+
+		stage = new Stage();
+		button = new TextButton("Click Me!", skin);
+		stage.addActor(button);
+		
+		button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                button.setText("Clicked!");
+            }
+        });
+
+		
 	}
 	public void render(){
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -229,6 +253,9 @@ public class Tutorial_Game implements ApplicationListener {
 				cam_pos_y = reset_cam_y;
 			}
 		}
+
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
 	}
 	public void resize(int width, int height){}
 	public void pause(){}
