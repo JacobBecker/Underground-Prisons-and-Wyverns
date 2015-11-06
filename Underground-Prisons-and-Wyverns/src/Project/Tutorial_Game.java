@@ -22,6 +22,7 @@ public class Tutorial_Game implements ApplicationListener {
 	boolean cameraMode = false;
 	int x_pos = 0;
 	int y_pos = 0;
+	int direction = 0;//0 = right, increasing counterclockwise
 	int cam_pos_x = 0;
 	int cam_pos_y = 0;
 	int reset_cam_x = 0;
@@ -78,6 +79,22 @@ public class Tutorial_Game implements ApplicationListener {
 		}
 		sr.setColor(1,0,0,1);
 		sr.circle(25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y, 5);
+		if(direction==0)
+		{
+			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
+		}
+		else if(direction==1)
+		{
+			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y+2*ROOM_HEIGHT/5);
+		}
+		else if(direction==2)
+		{
+			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
+		}
+		else
+		{
+			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y-2*ROOM_HEIGHT/5);
+		}
 		sr.end();
 		
 		sr.begin(ShapeType.Line);
@@ -91,6 +108,7 @@ public class Tutorial_Game implements ApplicationListener {
 		{
 			if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
 				x_pos++;
+				direction=0;
 				boolean valid=false;
 				for(Location place:locs)
 				{
@@ -115,6 +133,7 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
 				x_pos--;
+				direction=2;
 				boolean valid=false;
 				for(Location place:locs)
 				{
@@ -139,6 +158,7 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
 				y_pos++;
+				direction=1;
 				boolean valid=false;
 				for(Location place:locs)
 				{
@@ -163,6 +183,7 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
 				y_pos--;
+				direction=3;
 				boolean valid=false;
 				for(Location place:locs)
 				{
@@ -184,6 +205,16 @@ public class Tutorial_Game implements ApplicationListener {
 						cam_pos_y+=ROOM_HEIGHT;
 					}
 				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+				direction--;
+				if(direction<0)
+				{
+					direction = 3;
+				}
+			}
+			if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
+				direction = (direction+1)%4;
 			}
 			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
 				cameraMode=true;
@@ -233,6 +264,9 @@ public class Tutorial_Game implements ApplicationListener {
 				cam_pos_y = reset_cam_y;
 			}
 		}
+	}
+	public void attack(){
+		
 	}
 	public void resize(int width, int height){}
 	public void pause(){}
