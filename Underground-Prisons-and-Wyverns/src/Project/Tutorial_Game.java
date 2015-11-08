@@ -34,15 +34,15 @@ public class Tutorial_Game implements ApplicationListener {
 		//System.out.println("The frame was created successfully.");
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
-		cam = new OrthographicCamera(WIDTH, HEIGHT);
+		cam = new OrthographicCamera(WIDTH, HEIGHT);//setting the camera to look down at the entirety of the board's dimensions (at first) as seen in Tutorial_Main
 		cam.translate(WIDTH/2, HEIGHT/2);
 		cam.update();
-		
+		//It should be noted that the board's dimensions start at 0 for both x and y so the starting tile we see is at (0,0)
 		for(int i=0; i<15; i++){
-			locs.add(new Location(i,0));
+			locs.add(new Location(i,0));//Adding 14 yellow tiles going in the horizontal or x direction
 		}
 		for(int i=0; i<12; i++){
-			locs.add(new Location(1,i));
+			locs.add(new Location(1,i));//Adding 11 yellow tiles going in the y direction
 		}
 		locs.add(new Location(4,1));
 		
@@ -64,7 +64,7 @@ public class Tutorial_Game implements ApplicationListener {
 			{
 				place.visited=true;
 			}
-			if((place.secret==false)&&(place.visited==true))
+			if((place.secret==false)&&(place.visited==true))//if the place isn't secret and you've been there
 			{
 				sr.setColor(1,1,0,1);
 			}
