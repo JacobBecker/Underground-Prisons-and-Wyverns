@@ -14,9 +14,9 @@ import Project.Tutorial_Game;
 public class Tutorial_Main {
 	public static void main(String args[]){
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "Sample Title";
-		cfg.width = 500;
-		cfg.height = 400;
+		cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
+		cfg.width = 500;//width of the window in which the game is displayed
+		cfg.height = 400;//height--
 		
 		new LwjglApplication(new Tutorial_Game(), cfg);
 
@@ -26,7 +26,5 @@ public class Tutorial_Main {
 		
 		    
 		//Struggling with skins
-
-		
 	}
 }

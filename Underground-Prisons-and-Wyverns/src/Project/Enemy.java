@@ -6,6 +6,8 @@ public class Enemy
 	int damage;
 	int defense;
 	String name;
+	
+	/*
 	public void setEnemy(String n, int h, int d, int de)
 	{
 		name = n;
@@ -13,7 +15,6 @@ public class Enemy
 		damage = d;
 		defense = de;
 	}
-public void test(){
-	System.out.println("hi");
-	}
+	*/
+	
 }
