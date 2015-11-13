@@ -59,9 +59,14 @@ public class Tutorial_Game implements ApplicationListener {
 		locs.add(new Location(3,2,true));
 		locs.add(new Location(4,2,true));
 		//Gdx.graphics.setContinuousRendering(false);
+		
+		BaseScreen x = new BaseScreen();
+		x.render(30);
 		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 		
 		//Scene2d Test
+		
+		/*
 		Skin skin = new Skin(Gdx.files.internal("assets/uiskin.json"));
 
 		stage = new Stage();
@@ -73,8 +78,9 @@ public class Tutorial_Game implements ApplicationListener {
             public void clicked(InputEvent event, float x, float y) {
                 button.setText("Clicked!");
             }
+            
         });
-
+	*/
 		
 	}
 	public void render(){
@@ -293,8 +299,8 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 		}
 
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        //stage.draw();
 	}
 	public void attack(){
 		

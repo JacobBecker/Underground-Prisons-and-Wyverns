@@ -1,8 +1,7 @@
 package Project;
 
 import javax.swing.JOptionPane;
-
-import com.badlogic.gdx.Gdx;
+import javax.swing.ButtonGroup;
 
 public class Character 
 {
@@ -16,8 +15,10 @@ public class Character
 		Name = JOptionPane.showInputDialog("What is your name, adventurer?");
 		JOptionPane.showMessageDialog(null, "Now, you can choose your ability scores\n"
 										+ "Your Strength affects your damage with melee weapons\n"
-										+ "Your Constituation affects your Hit Points, or your health");
-		int[] scores = new int[2];
+										+ "Your Constituation affects your Hit Points, or your health"
+										+ "Your Armor affects how much damage you take");
+
+		int[] scores = new int[3];
 
 		for (int i = 0; i < scores.length; i++) 
 		{
@@ -29,12 +30,17 @@ public class Character
 			}
 		}
 		
+		JRadioButtonPopup.generate();
+		
+		/*
 		ScoreAssignment(scores, "strength", 0);
 		ScoreAssignment(scores, "Constitution", 1);
 		Strength = scores[0];
-		Constitution = scores[1];		
+		Constitution = scores[1];	
+		*/	
 	}
-
+	
+	/*
 	public int[] ScoreAssignment(int[] scoreValues, String ability, int position) 
 	{
 		int value = 0;
@@ -73,4 +79,5 @@ public class Character
 		
 		return scoreValues;		
 	}
+	*/
 }
