@@ -124,20 +124,22 @@ public class Tutorial_Game implements ApplicationListener {
 			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y-2*ROOM_HEIGHT/5);
 		}
 		sr.end();
-		/*
 		
-		//making monster circle probably
-		 * if(place.visited == false)
-		 * {
-		 * 		sr.setColor(0, 0, 0, 1);
-		 * }
-		 * else
-		 * {
-		 * 		sr.setColor(0,1,0,0);
-		 * 		sr.circle(25 + ROOM_WIDTH * 3 + cam_pos_x, 25 + ROOM_WIDTH * 2 + cam_pos_y, 5);
-		 * 		sr.end();
-		 * }
-		*/
+		sr.begin(ShapeType.Filled);
+		for(Location place:locs)
+			//I need to make it so that it will work in non-secret rooms, and change color right when the character circle arrives
+		{
+			if(place.visited == true)//if you've been in the block where monster is
+			{
+				sr.setColor(1, 0, 1, 0);//some sort of magenta color
+			}
+			else if(place.visited == false)//if you have not
+			{
+				sr.setColor(0, 0, 0, 1);//black color
+			}
+			sr.circle(25 + ROOM_WIDTH * 3 + cam_pos_x, 25 + ROOM_WIDTH * 2 + cam_pos_y, 5);//monster circle, right now in a secret room
+		}
+		sr.end();
 		
 		sr.begin(ShapeType.Line);
 		sr.setColor(0,0,0,1);
