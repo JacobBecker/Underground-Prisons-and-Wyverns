@@ -7,15 +7,18 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
 public class JRadioButtonPopup extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
-
-	public JRadioButtonPopup() {
+	static JRadioButton option1;
+	static JRadioButton option2;
+	static JRadioButton option3;
+	
+	public JRadioButtonPopup(int[] scores) {
 		super("Swing JRadioButton Demo");
-		
 
-		JRadioButton option1 = new JRadioButton("Linux");
-		JRadioButton option2 = new JRadioButton("Windows");
-		JRadioButton option3 = new JRadioButton("Macintosh");
+		option1 = new JRadioButton(Integer.toString(scores[0]));
+		option2 = new JRadioButton(Integer.toString(scores[1]));
+		option3 = new JRadioButton(Integer.toString(scores[2]));
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(option1);
@@ -31,13 +34,32 @@ public class JRadioButtonPopup extends JFrame {
 		pack();
 	}
 	
-	public static void generate() {
+	public static int generate(final int[] scores) {
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-			new JRadioButtonPopup().setVisible(true);
+			new JRadioButtonPopup(scores).setVisible(true);
 			}
 		});
+		
+		if(option1.isSelected())
+			{
+				return scores[0];
+			}
+		
+		else if(option2.isSelected())
+		{
+			return scores[2];
+		}
+		
+		else
+		{
+			return scores[3];
+		}
+		
+		}
+	
 	}
-}
+	

@@ -26,11 +26,13 @@ public class Character
 			while (scores[i] < 9) 
 			{
 				scores[i] = Utilities.rollDice(3, 6);
-				System.out.println(scores[i]);
 			}
 		}
 		
-		JRadioButtonPopup.generate();
+		
+		new RadioExample(scores);
+		int str = RadioExample.getValue();
+		System.out.println(str);
 		
 		/*
 		ScoreAssignment(scores, "strength", 0);
