@@ -132,7 +132,7 @@ public class Tutorial_Game implements ApplicationListener {
 					display_enemy = true;
 				}
 			}
-			Texture terrain = new Texture(Gdx.files.internal("terrain.png"));
+			Texture terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 			sb.draw(terrain, ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 			
 			if(display_enemy)//if there is an enemy in sight
@@ -157,7 +157,7 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 		}
 		sb.setColor(1,1,1,1);
-		Texture t = new Texture(Gdx.files.internal("character.png"));
+		Texture t = new Texture(Gdx.files.internal("assets/character.png"));
 		sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 		sb.end();
 		/*
@@ -386,7 +386,7 @@ public class Tutorial_Game implements ApplicationListener {
 		{
 			sb.begin();
 			sb.setColor(1,1,1,1);
-			Texture t = new Texture(Gdx.files.internal("melee.png"));
+			Texture t = new Texture(Gdx.files.internal("assets/melee.png"));
 			sb.draw(t, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			

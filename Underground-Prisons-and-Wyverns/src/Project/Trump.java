@@ -10,7 +10,7 @@ public class Trump extends Enemy {
 		damage = Utilities.rollDice(2, 6); 
 		defense = 3;
 		name = "Trump";
-		pic = "trump.png";
-		deadPic = "skull.png";
+		pic = "assets/trump.png";
+		deadPic = "assets/skull.png";
 	}
 }

@@ -10,7 +10,7 @@ public class Nook extends Enemy {
 		damage = Utilities.rollDice(2, 6); 
 		defense = 3;
 		name = "Nook";
-		pic = "nook.png";
-		deadPic = "roadkill.png";
+		pic = "assets/nook.png";
+		deadPic = "assets/roadkill.png";
 	}
 }
