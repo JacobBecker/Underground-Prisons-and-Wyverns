@@ -13,19 +13,27 @@ class RadioExample extends JFrame implements ActionListener
 	int value2;
 	int value3;
 	
-	RadioExample(int[] scores)
+	int value4;
+	int value5;
+	int value6;
+	
+	RadioExample(int[] preScores, int[] postScores)
 	{  
-			value1 = scores[0];
-			value2 = scores[1];
-			value3 = scores[2];
+			value1 = preScores[0];
+			value2 = preScores[1];
+			value3 = preScores[2];
 			
-			rb1=new JRadioButton(Integer.toString(scores[0]));  
+			value4 = postScores[0];
+			value5 = postScores[1];
+			value6 = postScores[2];
+			
+			rb1=new JRadioButton(Integer.toString(preScores[0]));  
 			rb1.setBounds(100,50,100,30);  
   
-			rb2=new JRadioButton(Integer.toString(scores[1]));  
+			rb2=new JRadioButton(Integer.toString(preScores[1]));  
 			rb2.setBounds(100,100,100,30);  
 			
-			rb3=new JRadioButton(Integer.toString(scores[2]));  
+			rb3=new JRadioButton(Integer.toString(preScores[2]));  
 			rb3.setBounds(100,150,100,30);
   
 			ButtonGroup bg=new ButtonGroup();  
@@ -44,18 +52,21 @@ class RadioExample extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{  
-		if(rb1.isSelected())
-		{  
-			value = value1;
-		}  
-		if(rb2.isSelected())
-		{  
-			value = value2;  
-		}  
-		if(rb3.isSelected())
-		{  
-			value = value3; 
-		} 
+		while(value != value1 && value != value2 && value != value2)
+		{
+			if(rb1.isSelected())
+			{  
+				value = value1;
+			}  
+			if(rb2.isSelected())
+			{  
+				value = value2;  
+			}  
+			if(rb3.isSelected())
+			{  
+				value = value3; 
+			} 
+		}
 		setVisible(false);
 	}  
 	
