@@ -11,16 +11,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import Project.Tutorial_Game;
 
-public class Tutorial_Main {
-	public static void main(String args[]){
-		
+public class Tutorial_Main 
+{
+	public static void main(String args[])
+	{
 		Character character = new Character();
 		
-		//LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		//cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
-		//cfg.width = 500;//width of the window in which the game is displayed
-		//cfg.height = 400;//height--
+		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+		cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
+		cfg.width = 500;//width of the window in which the game is displayed
+		cfg.height = 400;//height--
 		
-		//new LwjglApplication(new Tutorial_Game(), cfg);
+		new LwjglApplication(new Tutorial_Game(), cfg);
 	}
 }

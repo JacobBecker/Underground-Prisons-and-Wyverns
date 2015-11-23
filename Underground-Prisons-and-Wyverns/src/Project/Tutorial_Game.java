@@ -440,7 +440,8 @@ public class Tutorial_Game implements ApplicationListener {
         //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         //stage.draw();
 	}
-	public void attack(){
+	public void attack()
+	{
 		int attack_x = x_pos;
 		int attack_y= y_pos;
 		if(direction==0)
@@ -494,7 +495,8 @@ public class Tutorial_Game implements ApplicationListener {
 	public void resize(int width, int height){}
 	public void pause(){}
 	public void resume(){}
-	public void dispose(){
+	public void dispose()
+	{
 		System.out.println("You just closed the frame.");
 	}
 }
