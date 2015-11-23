@@ -1,5 +1,7 @@
 package Project;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Enemy 
 {
 	int start_x;
@@ -9,8 +11,8 @@ public class Enemy
 	int defense;
 	String name;
 	boolean isLiving = true;
-	String pic;
-	String deadPic;
+	Texture pic;
+	Texture deadPic;
 	/*
 	public void setEnemy(String n, int h, int d, int de)
 	{
