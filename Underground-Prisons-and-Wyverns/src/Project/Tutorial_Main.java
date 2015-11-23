@@ -14,7 +14,7 @@ import Project.Tutorial_Game;
 public class Tutorial_Main {
 	public static void main(String args[]){
 		
-		Character character = new Character();
+		//Character character = new Character();
 		
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
