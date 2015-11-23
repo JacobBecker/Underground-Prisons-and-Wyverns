@@ -26,26 +26,29 @@ public class Thief
 			System.out.println(preScores[i]);
 		}
 		int[] postScores = {0, 0, 0};
-		for(int j = 0; j < postScores.length; j++)//for each postScore (what user chooses)
+		JOptionPane.showMessageDialog(null, "What is your strength " + name + "?");
+		RadioExample x = new RadioExample (preScores, postScores);
+		while(postScores[0] == 0)
 		{
-			if(j == 0)//Strength
-			{
-				JOptionPane.showMessageDialog(null, "What is your strength " + name + "?");
-			}
-			if(j == 1)//Constitution
-			{
-				JOptionPane.showMessageDialog(null,  "What is your constitution " + name + "?");
-			}
-			if(j == 2)//Armor
-			{
-				JOptionPane.showMessageDialog(null, "What is your armor " + name + "?");
-			}
-			new RadioExample(preScores, postScores);
-			while(postScores[j] == 0)
-			{
-				postScores[j] = RadioExample.getValue();
-			}
+			postScores[0] = x.getValue();
 		}
-	}
-	
+		
+		JOptionPane.showMessageDialog(null, "What is your consitution " + name + "?");
+		RadioExample y = new RadioExample (preScores, postScores);
+		while(postScores[1] == 0)
+		{
+			postScores[1] = y.getValue();
+		}
+		
+		JOptionPane.showMessageDialog(null, "What is your armor " + name + "?");
+		RadioExample z = new RadioExample (preScores, postScores);
+		while(postScores[2] == 0)
+		{
+			postScores[2] = z.getValue();
+		}
+		
+		strength = postScores[0];
+		constitution = postScores[1];
+		armor = postScores[2];
+	}		
 }
