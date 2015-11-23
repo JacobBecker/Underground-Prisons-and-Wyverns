@@ -7,8 +7,10 @@ class RadioExample extends JFrame implements ActionListener
 {  
 	private static final long serialVersionUID = 1L;
 	JRadioButton rb1,rb2,rb3;  
-	JButton b;  
-	static int value;
+	JButton b; 
+	
+	int value = 0;
+	
 	int value1;
 	int value2;
 	int value3;
@@ -18,7 +20,7 @@ class RadioExample extends JFrame implements ActionListener
 	int value6;
 	
 	RadioExample(int[] preScores, int[] postScores)
-	{  
+	{  			
 			value1 = preScores[0];
 			value2 = preScores[1];
 			value3 = preScores[2];
@@ -52,26 +54,32 @@ class RadioExample extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{  
-		while(value != value4 && value != value5 && value != value6)
-		{
+		int tempValue = 0;
+				{
 			if(rb1.isSelected())
 			{  
-				value = value1;
+				tempValue = value1; 
 			}  
 			if(rb2.isSelected())
 			{  
-				value = value2;  
+				tempValue = value2; 
 			}  
 			if(rb3.isSelected())
 			{  
-				value = value3; 
+				tempValue = value3; 
 			} 
 		}
-		setVisible(false);
+		
+		if(tempValue != value4 && tempValue != value5 && tempValue != value6)
+		{
+			setVisible(false);
+			value = tempValue;
+		}	
 	}  
 	
-	public static int getValue()
+	public int getValue()
 	{
+		System.out.println(value);
 		return value;	
 	}
 }
