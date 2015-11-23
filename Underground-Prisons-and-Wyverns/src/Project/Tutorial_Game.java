@@ -42,9 +42,20 @@ public class Tutorial_Game implements ApplicationListener {
 	public static OrthographicCamera cam;
 	
 	SpriteBatch sb;
+	Texture terrain;
+	Texture t;
+	Texture right;
+	Texture up;
+	Texture left;
+	Texture down;
 	
 	public void create(){
 		sb = new SpriteBatch();
+		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
+		right = new Texture(Gdx.files.internal("assets/character0.png"));
+		up = new Texture(Gdx.files.internal("assets/character1.png"));
+		left = new Texture(Gdx.files.internal("assets/character2.png"));
+		down = new Texture(Gdx.files.internal("assets/character3.png"));
 		/*stage = new Stage();
 		Texture t = new Texture(Gdx.files.internal("character.jpg"));
 		Image img = new Image(t);
@@ -103,60 +114,7 @@ public class Tutorial_Game implements ApplicationListener {
 	}
 	public void render(){
 		//SpriteBatch sb = new SpriteBatch();
-		sb.begin();		
-		//ShapeRenderer sr = new ShapeRenderer();
-		for(Location place:locs)
-		{
-			boolean display_enemy = false;
-			if((Math.abs(place.x-x_pos)<=2)&&(Math.abs(place.y-y_pos)<=2)&&(place.secret==false))
-			{
-				place.visited=true;
-			}
-			if((place.secret==false)&&(place.visited==true))
-			{
-				sb.setColor(1,1,1,1);
-				display_enemy = true;
-			}
-			else
-			{
-				if(place.visited==false)
-				{
-					sb.setColor(0,0,0,1);
-				}
-				else
-				{
-					sb.setColor(0,0,2,1);
-					display_enemy = true;
-				}
-			}
-			Texture terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
-			sb.draw(terrain, ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
-			
-			if(display_enemy)//if there is an enemy in sight
-			{
-				for(Enemy e: enems)
-				{
-					if((e.start_x==place.x)&&(e.start_y==place.y))
-					{
-						Texture enemy_texture;
-						if(e.isLiving)//enemy is alive
-						{
-							enemy_texture = new Texture(Gdx.files.internal(e.pic));
-						}
-						else//enemy is dead
-						{
-							enemy_texture = new Texture(Gdx.files.internal(e.deadPic));
-						}
-						sb.setColor(1,1,1,1);
-						sb.draw(enemy_texture, ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
-					}
-				}
-			}
-		}
-		sb.setColor(1,1,1,1);
-		Texture t = new Texture(Gdx.files.internal("assets/character.png"));
-		sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
-		sb.end();
+		
 		/*
 		ShapeRenderer sr = new ShapeRenderer();
 		sr.begin();
@@ -215,7 +173,6 @@ public class Tutorial_Game implements ApplicationListener {
 						display_enemy = true;
 					}
 				}
-				Texture terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 				sb.draw(terrain, ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 			
 				if(display_enemy)//if there is an enemy in sight
@@ -224,24 +181,22 @@ public class Tutorial_Game implements ApplicationListener {
 					{
 						if((e.start_x==place.x)&&(e.start_y==place.y))
 						{
-							Texture enemy_texture;
 							if(e.isLiving)//enemy is alive
 							{
-								enemy_texture = new Texture(Gdx.files.internal(e.pic));
+								t = e.pic;
 							}
 							else//enemy is dead
 							{
-								enemy_texture = new Texture(Gdx.files.internal(e.deadPic));
+								t = e.deadPic;
 							}
 							sb.setColor(1,1,1,1);
-							sb.draw(enemy_texture, ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
+							sb.draw(t, ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
 						}
 					}
 				}
 			}
 			sb.setColor(1,1,1,1);
-			String refString = "assets/character"+direction+".png";
-			t = new Texture(Gdx.files.internal(refString));
+			t = face(direction);
 			sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 			sb.end();
 			
@@ -470,7 +425,7 @@ public class Tutorial_Game implements ApplicationListener {
 		{
 			sb.begin();
 			sb.setColor(1,1,1,1);
-			Texture t = new Texture(Gdx.files.internal("assets/melee.png"));
+			Texture t = new Texture(Gdx.files.internal("assets/melee.png"));//problem here
 			sb.draw(t, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			
@@ -495,5 +450,19 @@ public class Tutorial_Game implements ApplicationListener {
 	public void resume(){}
 	public void dispose(){
 		System.out.println("You just closed the frame.");
+	}
+	public Texture face(int d){
+		Texture r;
+		switch (d){
+		case 0: r = right;
+		break;
+		case 1: r = up;
+		break;
+		case 2: r = left;
+		break;
+		default: r = down;
+		break;
+		}
+		return r;
 	}
 }
