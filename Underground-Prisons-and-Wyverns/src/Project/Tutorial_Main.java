@@ -12,7 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import Project.Tutorial_Game;
 
 public class Tutorial_Main {
-	public static void main(String args[]){
+	public static void main(String args[]) throws InterruptedException
+	{
 		
 		Character character = new Character();
 		

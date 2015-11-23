@@ -3,14 +3,14 @@ package Project;
 import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
 
-public class Character 
+public class Character
 {
 	String name;
 	int strength;
 	int constitution;
 	int armor;
 
-	public Character() 
+	public Character() throws InterruptedException
 	{
 		name = JOptionPane.showInputDialog("What is your name, adventurer?");
 		JOptionPane.showMessageDialog(null, "Now, you can choose your ability scores\n"

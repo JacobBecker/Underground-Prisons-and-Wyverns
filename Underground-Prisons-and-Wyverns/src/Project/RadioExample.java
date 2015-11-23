@@ -77,9 +77,9 @@ class RadioExample extends JFrame implements ActionListener
 		}	
 	}  
 	
-	public int getValue()
+	public int getValue() throws InterruptedException
 	{
-		System.out.println(value);
+		Thread.sleep(500);
 		return value;	
 	}
 }
