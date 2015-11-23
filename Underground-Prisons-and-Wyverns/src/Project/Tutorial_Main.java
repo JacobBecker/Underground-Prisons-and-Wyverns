@@ -16,18 +16,11 @@ public class Tutorial_Main {
 		
 		Character character = new Character();
 		
-		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
-		cfg.width = 500;//width of the window in which the game is displayed
-		cfg.height = 400;//height--
+		//LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+		//cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
+		//cfg.width = 500;//width of the window in which the game is displayed
+		//cfg.height = 400;//height--
 		
-		new LwjglApplication(new Tutorial_Game(), cfg);
-
-		//MyTextInputListener listener = new MyTextInputListener();
-		//Gdx.input.getTextInput(listener, "Dialog Title", "Test Text", null);
-		//Text Input
-		
-		    
-		//Struggling with skins
+		//new LwjglApplication(new Tutorial_Game(), cfg);
 	}
 }

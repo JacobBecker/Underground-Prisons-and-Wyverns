@@ -406,7 +406,7 @@ public class Tutorial_Game implements ApplicationListener {
 			}
 			sb.setColor(1,1,1,1);
 			String refString = "assets/character"+direction+".png";
-			Texture t = new Texture(Gdx.files.internal(refString));
+			t = new Texture(Gdx.files.internal(refString));
 			sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 			sb.end();
 		/*

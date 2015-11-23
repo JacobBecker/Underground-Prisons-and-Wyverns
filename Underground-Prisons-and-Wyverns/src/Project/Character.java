@@ -22,11 +22,14 @@ public class Character
 
 		for (int i = 0; i < preScores.length; i++) 
 		{
-			preScores[i] = 0;
-			while (preScores[i] < 9 && preScores[i] != preScores[0] && preScores[i] != preScores[1] && preScores[i] != preScores[2]) 
+			int value0 =  preScores[0];
+			int value1 =  preScores[1];
+			int value2 =  preScores[2];
+			while (preScores[i] < 9 || preScores[i] == value0 || preScores[i] == value1 || preScores[i] == value2) 
 			{
 				preScores[i] = Utilities.rollDice(3, 6);
 			}
+			System.out.println(preScores[i]);
 		}
 
 		int[] postScores = {0,0,0};
@@ -55,6 +58,8 @@ public class Character
 		strength = postScores[0];
 		constitution = postScores[1];
 		armor = postScores[2];
+		
+		System.out.println(strength + " " + constitution + " " + armor);
 		
 	}
 }
