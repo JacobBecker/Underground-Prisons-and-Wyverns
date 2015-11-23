@@ -102,8 +102,6 @@ public class Tutorial_Game implements ApplicationListener {
 		
 	}
 	public void render(){
-		
-		
 		//SpriteBatch sb = new SpriteBatch();
 		sb.begin();		
 		//ShapeRenderer sr = new ShapeRenderer();
@@ -187,169 +185,6 @@ public class Tutorial_Game implements ApplicationListener {
 			sr.rect(ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 		}*/
 		
-		if(!cameraMode)//if you haven't pressed c (camera is based on character)
-		{
-			if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right key, you move to the right once
-				x_pos++;
-				direction=0;
-				boolean valid=false;
-				for(Location place:locs)
-				{
-					if((place.x==x_pos)&&(place.y==y_pos))
-					{
-						valid = true;
-						place.visited = true;
-					}
-				}
-				if(!valid)//if this movement is not possible, you do not move at all
-				{
-					x_pos--;
-				}
-				else//if the movement is valid, the camera will move based on location
-				{
-					if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
-					{
-						reset_cam_x-=ROOM_WIDTH;
-						cam_pos_x-=ROOM_WIDTH;
-					}
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow key, you will move to the left once
-				x_pos--;
-				direction=2;
-				boolean valid=false;
-				for(Location place:locs)
-				{
-					if((place.x==x_pos)&&(place.y==y_pos))
-					{
-						valid = true;
-						place.visited = true;
-					}
-				}
-				if(!valid)//if this movement is impossible, you don't move at all
-				{
-					x_pos++;
-				}
-				else//if it is valid, move or leave the camera based on location
-				{
-					if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
-					{
-						reset_cam_x+=ROOM_WIDTH;
-						cam_pos_x+=ROOM_WIDTH;
-					}
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if the up arrow is pressed, move up once
-				y_pos++;
-				direction=1;
-				boolean valid=false;
-				for(Location place:locs)
-				{
-					if((place.x==x_pos)&&(place.y==y_pos))
-					{
-						valid = true;
-						place.visited = true;
-					}
-				}
-				if(!valid)//if this movement is not valid, don't move
-				{
-					y_pos--;
-				}
-				else//if the movement is valid move the camera 
-				{
-					if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
-					{
-						reset_cam_y-=ROOM_HEIGHT;
-						cam_pos_y-=ROOM_HEIGHT;
-					}
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if the down arrow is pressed, then move down one
-				y_pos--;
-				direction=3;
-				boolean valid=false;
-				for(Location place:locs)
-				{
-					if((place.x==x_pos)&&(place.y==y_pos))
-					{
-						valid = true;
-						place.visited = true;
-					}
-				}
-				if(!valid)//if this movement is not valid, then do not move
-				{
-					y_pos++;
-				}
-				else//if it is valid, modify the camera
-				{
-					if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
-					{
-						reset_cam_y+=ROOM_HEIGHT;
-						cam_pos_y+=ROOM_HEIGHT;
-					}
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.S)){//if you press s, you can move the directional arrow clockwise
-				direction--;
-				if(direction<0)
-				{
-					direction = 3;
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.A)){//if you press a, you can move the directional arrow counter-clockwise
-				direction = (direction+1)%4;
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-				attack();
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
-				cameraMode=true;
-				System.out.println("Camera Mode on");
-				//reset_cam_x = cam_pos_x;
-				//reset_cam_y = cam_pos_y;
-			}
-		}
-		else
-		{
-			if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right arrow
-				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
-				cam_pos_x -= ROOM_WIDTH;
-				if(cam_pos_x<=WIDTH-WORLD_WIDTH)
-				{
-					cam_pos_x = WIDTH-WORLD_WIDTH;
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow 
-				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
-				cam_pos_x += ROOM_WIDTH;
-				if(cam_pos_x>=0)
-				{
-					cam_pos_x = 0;
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if you press the up arrow
-				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
-				cam_pos_y -= ROOM_HEIGHT;
-				if(cam_pos_y<=HEIGHT-WORLD_HEIGHT)
-				{
-					cam_pos_y = HEIGHT-WORLD_HEIGHT;
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if you press the down arrow
-				//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
-				cam_pos_y += ROOM_HEIGHT;
-				if(cam_pos_y>=0)
-				{
-					cam_pos_y = 0;
-				}
-			}
-			if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press C a second time, turn off mobile camera
-				cameraMode=false;
-				System.out.println("Camera Mode off");
-				cam_pos_x = reset_cam_x;
-				cam_pos_y = reset_cam_y;
-			}
-		}
 		
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -409,6 +244,170 @@ public class Tutorial_Game implements ApplicationListener {
 			t = new Texture(Gdx.files.internal(refString));
 			sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 			sb.end();
+			
+			if(!cameraMode)//if you haven't pressed c (camera is based on character)
+			{
+				if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right key, you move to the right once
+					x_pos++;
+					direction=0;
+					boolean valid=false;
+					for(Location place:locs)
+					{
+						if((place.x==x_pos)&&(place.y==y_pos))
+						{
+							valid = true;
+							place.visited = true;
+						}
+					}
+					if(!valid)//if this movement is not possible, you do not move at all
+					{
+						x_pos--;
+					}
+					else//if the movement is valid, the camera will move based on location
+					{
+						if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
+						{
+							reset_cam_x-=ROOM_WIDTH;
+							cam_pos_x-=ROOM_WIDTH;
+						}
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow key, you will move to the left once
+					x_pos--;
+					direction=2;
+					boolean valid=false;
+					for(Location place:locs)
+					{
+						if((place.x==x_pos)&&(place.y==y_pos))
+						{
+							valid = true;
+							place.visited = true;
+						}
+					}
+					if(!valid)//if this movement is impossible, you don't move at all
+					{
+						x_pos++;
+					}
+					else//if it is valid, move or leave the camera based on location
+					{
+						if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
+						{
+							reset_cam_x+=ROOM_WIDTH;
+							cam_pos_x+=ROOM_WIDTH;
+						}
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if the up arrow is pressed, move up once
+					y_pos++;
+					direction=1;
+					boolean valid=false;
+					for(Location place:locs)
+					{
+						if((place.x==x_pos)&&(place.y==y_pos))
+						{
+							valid = true;
+							place.visited = true;
+						}
+					}
+					if(!valid)//if this movement is not valid, don't move
+					{
+						y_pos--;
+					}
+					else//if the movement is valid move the camera 
+					{
+						if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
+						{
+							reset_cam_y-=ROOM_HEIGHT;
+							cam_pos_y-=ROOM_HEIGHT;
+						}
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if the down arrow is pressed, then move down one
+					y_pos--;
+					direction=3;
+					boolean valid=false;
+					for(Location place:locs)
+					{
+						if((place.x==x_pos)&&(place.y==y_pos))
+						{
+							valid = true;
+							place.visited = true;
+						}
+					}
+					if(!valid)//if this movement is not valid, then do not move
+					{
+						y_pos++;
+					}
+					else//if it is valid, modify the camera
+					{
+						if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
+						{
+							reset_cam_y+=ROOM_HEIGHT;
+							cam_pos_y+=ROOM_HEIGHT;
+						}
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.S)){//if you press s, you can move the directional arrow clockwise
+					direction--;
+					if(direction<0)
+					{
+						direction = 3;
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.A)){//if you press a, you can move the directional arrow counter-clockwise
+					direction = (direction+1)%4;
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+					attack();
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
+					cameraMode=true;
+					System.out.println("Camera Mode on");
+					//reset_cam_x = cam_pos_x;
+					//reset_cam_y = cam_pos_y;
+				}
+			}
+			else
+			{
+				if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right arrow
+					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+					cam_pos_x -= ROOM_WIDTH;
+					if(cam_pos_x<=WIDTH-WORLD_WIDTH)
+					{
+						cam_pos_x = WIDTH-WORLD_WIDTH;
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow 
+					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+					cam_pos_x += ROOM_WIDTH;
+					if(cam_pos_x>=0)
+					{
+						cam_pos_x = 0;
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if you press the up arrow
+					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+					cam_pos_y -= ROOM_HEIGHT;
+					if(cam_pos_y<=HEIGHT-WORLD_HEIGHT)
+					{
+						cam_pos_y = HEIGHT-WORLD_HEIGHT;
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if you press the down arrow
+					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
+					cam_pos_y += ROOM_HEIGHT;
+					if(cam_pos_y>=0)
+					{
+						cam_pos_y = 0;
+					}
+				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press C a second time, turn off mobile camera
+					cameraMode=false;
+					System.out.println("Camera Mode off");
+					cam_pos_x = reset_cam_x;
+					cam_pos_y = reset_cam_y;
+				}
+			}
 		/*
 		ShapeRenderer sr = new ShapeRenderer();
 		sr.begin();
