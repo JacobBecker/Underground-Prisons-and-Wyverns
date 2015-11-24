@@ -6,9 +6,10 @@ public class Enemy
 {
 	int start_x;
 	int start_y;
-	int hp;
-	int damage;
-	int defense;
+	int armor;
+	int HP;
+	int numOfDice;
+	int diceSides;
 	String name;
 	boolean isLiving = true;
 	Texture pic;
