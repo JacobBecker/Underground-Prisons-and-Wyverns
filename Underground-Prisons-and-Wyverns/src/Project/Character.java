@@ -1,7 +1,6 @@
 package Project;
 
 import javax.swing.JOptionPane;
-import javax.swing.ButtonGroup;
 
 public class Character
 {
