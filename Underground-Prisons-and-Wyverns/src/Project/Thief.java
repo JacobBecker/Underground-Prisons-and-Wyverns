@@ -7,7 +7,7 @@ public class Thief
 	private int constitution;//mid to low health
 	private int armor;//light armor
 	//these things are all in the character class, we can move them around later
-	public Thief()
+	public Thief() throws InterruptedException
 	{
 		int[] preScores = {0, 0, 0};
 		
