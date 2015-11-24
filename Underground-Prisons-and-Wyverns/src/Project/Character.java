@@ -59,6 +59,78 @@ public class Character
 	int liveHP;
 	int armor;
 
+	
+	//This is for generation of a test character w/o going through all the Dialog
+	//Solely for testing purposes
+	public Character(int str, int con, int arm, String nam)
+	{
+		name = nam;
+		strength = str;
+		constitution = con;
+		defence = arm;
+		
+		//Assigning str bonus
+		if(strength < 13)
+		{
+			strBonus = 0;
+		}
+		else if(strength < 15)
+		{
+			strBonus = 1;
+		}
+		else if(strength < 18)
+		{
+			strBonus = 2;
+		}
+		else
+		{
+			strBonus = 3;
+		}
+		
+		//Assigning con bonus
+		if(constitution <13)
+		{
+			conBonus = 0;
+		}
+		else if(constitution < 15)
+		{
+			conBonus = 1;
+		}
+		else if(constitution < 18)
+		{
+			conBonus = 2;
+		}
+		else
+		{
+			conBonus = 3;
+		}
+		
+		//Assigning armor bonus
+		if(defence <13)
+		{
+			armorBonus = 0;
+		}
+		else if(defence < 15)
+		{
+			armorBonus = 2;
+		}
+		else if(defence < 18)
+		{
+			armorBonus = 4;
+		}
+		else
+		{
+			armorBonus = 6;
+		}
+		
+		//HP
+		maxHP = Utilities.rollDice(2,4) + conBonus;
+		liveHP = maxHP;
+		
+		//Armor
+		armor = 10 + armorBonus;
+	}
+	
 	public Character() throws InterruptedException
 	{
 		name = JOptionPane.showInputDialog("What is your name, adventurer?");

@@ -4,10 +4,14 @@ public class testingMain
 {
 	public static void main(String args[])
 	{
-		GrayOoze ooze1 = new GrayOoze();
-		for(int i = 1; i < 10; i++)
+		Trump bat = new Trump(15, 20);
+		Character jacob = new Character(15, 9, 14, "Jacob");
+		
+		while(bat.HP > 0)
 		{
-			//System.out.println(ooze1.damage);
+			Utilities.charAttack(jacob, bat);
+			System.out.println(bat.HP);
+			System.out.println(bat.isLiving);
 		}
 		
 	}
