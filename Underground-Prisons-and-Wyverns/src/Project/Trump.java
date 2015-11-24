@@ -9,9 +9,10 @@ public class Trump extends Enemy {
 	{
 		start_x = x;
 		start_y = y;
-		hp = Utilities.rollDice(4, 8); 
-		damage = Utilities.rollDice(2, 6); 
-		defense = 3;
+		HP = Utilities.rollDice(4, 8); 
+		numOfDice = 2;
+		diceSides = 6;
+		armor = 3;
 		name = "Trump";
 		pic = new Texture(Gdx.files.internal("assets/trump.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/skull.png"));

@@ -4,9 +4,10 @@ public class TigerBeetle extends Enemy
 {
 	public TigerBeetle()
 	{
-		hp = Utilities.rollDice(2, 8); 
-		damage = Utilities.rollDice(1, 6); 
-		defense = 4;
+		HP = Utilities.rollDice(2, 8); 
+		numOfDice = 1;
+		diceSides = 6;
+		armor = 4;
 		name = "TigerBeetle";
 	}
 }
