@@ -17,7 +17,9 @@ public class Character
 										+ "Your Strength affects your damage with melee weapons\n"
 										+ "Your Constituation affects your Hit Points, or your health\n"
 										+ "Your Armor affects how much damage you take");
-
+		/*
+		 * Character choice code can go here, I (Carly) will work on this. Similar to stat choice buttons
+		 */
 		int[] preScores = {0,0,0};
 
 		for (int i = 0; i < preScores.length; i++) 

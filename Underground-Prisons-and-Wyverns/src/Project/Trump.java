@@ -1,5 +1,8 @@
 package Project;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Trump extends Enemy {
 
 	public Trump(int x, int y)
@@ -10,7 +13,9 @@ public class Trump extends Enemy {
 		damage = Utilities.rollDice(2, 6); 
 		defense = 3;
 		name = "Trump";
-		pic = "assets/trump.png";
-		deadPic = "assets/skull.png";
+		pic = new Texture(Gdx.files.internal("assets/trump.png"));
+		deadPic = new Texture(Gdx.files.internal("assets/skull.png"));
+		//pic = "assets/trump.png";
+		//deadPic = "assets/skull.png";
 	}
 }
