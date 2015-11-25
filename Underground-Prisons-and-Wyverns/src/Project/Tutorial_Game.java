@@ -21,8 +21,10 @@ public class Tutorial_Game implements ApplicationListener {
 	public static int HEIGHT;
 	public static int ROOM_WIDTH = 50;
 	public static int ROOM_HEIGHT = 50;
-	public static int WORLD_WIDTH = 1000;//boundaries of world; for now, 2W
-	public static int WORLD_HEIGHT = 800;//for now, 2H
+	//public static int WORLD_WIDTH = 1000;//boundaries of world; for now, 2W
+	//public static int WORLD_HEIGHT = 800;//for now, 2H
+	public static int WORLD_WIDTH = 1500;//My map didn't fit, making these bigger
+	public static int WORLD_HEIGHT = 1200;//
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -63,6 +65,10 @@ public class Tutorial_Game implements ApplicationListener {
 		cam.translate(WIDTH/2, HEIGHT/2);
 		cam.update();
 		//It should be noted that the board's dimensions start at 0 for both x and y so the starting tile we see is at (0,0)
+		cam.position.set(0,0,0);
+		locs = levelGeneration.generate(locs);
+		
+		/*
 		for(int i=0; i<15; i++){
 			locs.add(new Location(i,0));//Adding 14 yellow tiles going in the horizontal or x direction
 		}
@@ -71,10 +77,22 @@ public class Tutorial_Game implements ApplicationListener {
 		}
 		locs.add(new Location(4,1));
 		
+		//Jacob is trying something
+		for(int i=7; i<15; i++)
+		{
+			for(int j=1; j<4; j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+
+		
+		
 		//secret places
 		locs.add(new Location(2,2,true));
 		locs.add(new Location(3,2,true));
 		locs.add(new Location(4,2,true));
+		*/
 		//Gdx.graphics.setContinuousRendering(false);
 		
 		BaseScreen x = new BaseScreen();
