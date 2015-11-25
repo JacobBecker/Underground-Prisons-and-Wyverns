@@ -40,6 +40,7 @@ public class Tutorial_Game implements ApplicationListener {
 	
 	SpriteBatch sb;
 	Texture terrain;
+	Texture attack;
 	Texture t;
 	Texture right;
 	Texture up;
@@ -49,6 +50,7 @@ public class Tutorial_Game implements ApplicationListener {
 	public void create(){
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
+		attack = new Texture(Gdx.files.internal("assets/melee.png"));
 		right = new Texture(Gdx.files.internal("assets/character0.png"));
 		up = new Texture(Gdx.files.internal("assets/character1.png"));
 		left = new Texture(Gdx.files.internal("assets/character2.png"));
@@ -439,8 +441,7 @@ public class Tutorial_Game implements ApplicationListener {
 		{
 			sb.begin();
 			sb.setColor(1,1,1,1);
-			Texture t = new Texture(Gdx.files.internal("assets/melee.png"));//problem here
-			sb.draw(t, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
+			sb.draw(attack, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			
 			//defeats enemy if there is an enemy there
