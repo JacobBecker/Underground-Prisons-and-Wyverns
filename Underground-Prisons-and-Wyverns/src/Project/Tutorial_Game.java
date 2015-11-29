@@ -196,6 +196,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							valid = true;
 							place.visited = true;
+							for (Enemy e: enems)
+							{
+								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
+								{
+									valid = false;
+								}
+							}
 						}
 					}
 					if(!valid)//if this movement is not possible, you do not move at all
@@ -228,6 +235,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							valid = true;
 							place.visited = true;
+							for (Enemy e: enems)
+							{
+								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
+								{
+									valid = false;
+								}
+							}
 						}
 					}
 					if(!valid)//if this movement is impossible, you don't move at all
@@ -260,6 +274,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							valid = true;
 							place.visited = true;
+							for (Enemy e: enems)
+							{
+								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
+								{
+									valid = false;
+								}
+							}
 						}
 					}
 					if(!valid)//if this movement is not valid, don't move
@@ -292,6 +313,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							valid = true;
 							place.visited = true;
+							for (Enemy e: enems)
+							{
+								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
+								{
+									valid = false;
+								}
+							}
 						}
 					}
 					if(!valid)//if this movement is not valid, then do not move
@@ -426,12 +454,6 @@ public class Tutorial_Game implements ApplicationListener {
 					e.move(x_pos, y_pos);
 				}
 			}
-			/*ShapeRenderer sr = new ShapeRenderer();
-			sr.begin(ShapeType.Filled);
-			sr.setColor(1,0,0,1);
-			sr.line(attack_x*ROOM_WIDTH, (attack_y+1)*ROOM_HEIGHT, (attack_x+1)*ROOM_WIDTH, attack_y*ROOM_HEIGHT);
-			sr.line(attack_x*ROOM_WIDTH, attack_y*ROOM_HEIGHT, (attack_x+1)*ROOM_WIDTH, (attack_y+1)*ROOM_HEIGHT);
-			sr.end();*/
 		}
 	}
 	public void resize(int width, int height){}
