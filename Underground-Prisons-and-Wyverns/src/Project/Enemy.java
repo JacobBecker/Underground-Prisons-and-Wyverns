@@ -6,6 +6,8 @@ public class Enemy
 {
 	int start_x;
 	int start_y;
+	int current_x;
+	int current_y;
 	int armor;
 	int HP;
 	int numOfDice;
@@ -23,5 +25,8 @@ public class Enemy
 		defense = de;
 	}
 	*/
-	
+	public void move(int character_x, int character_y)
+	{
+		//enemy movement
+	}
 }

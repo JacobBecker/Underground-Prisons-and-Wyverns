@@ -8,7 +8,9 @@ public class Nook extends Enemy {
 	public Nook(int x, int y)
 	{
 		start_x = x;
+		current_x=x;
 		start_y = y;
+		current_y=y;
 		HP = Utilities.rollDice(4, 8); 
 		numOfDice = 2;
 		diceSides = 6;

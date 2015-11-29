@@ -102,7 +102,7 @@ public class Tutorial_Game implements ApplicationListener {
 		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 		
 		//enemies
-		Enemy temp = new Trump(3,2);
+		Enemy temp = new Trump(0,3);
 		enems.add(temp);
 		Enemy temp2 = new Nook(1,5);
 		enems.add(temp2);
@@ -128,37 +128,6 @@ public class Tutorial_Game implements ApplicationListener {
 		
 	}
 	public void render(){
-		//SpriteBatch sb = new SpriteBatch();
-		
-		/*
-		ShapeRenderer sr = new ShapeRenderer();
-		sr.begin();
-		if(direction==0)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
-		}
-		else if(direction==1)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y+2*ROOM_HEIGHT/5);
-		}
-		else if(direction==2)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
-		}
-		else
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y-2*ROOM_HEIGHT/5);
-		}
-		sr.end();*/
-		/*
-		sr.begin(ShapeType.Line);
-		sr.setColor(0,0,0,1);
-		for(Location place:locs)
-		{
-			sr.rect(ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
-		}*/
-		
-		
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			//SpriteBatch sb = new SpriteBatch();
@@ -194,7 +163,7 @@ public class Tutorial_Game implements ApplicationListener {
 				{
 					for(Enemy e: enems)
 					{
-						if((e.start_x==place.x)&&(e.start_y==place.y))
+						if((e.current_x==place.x)&&(e.current_y==place.y))
 						{
 							if(e.isLiving)//enemy is alive
 							{
@@ -240,6 +209,13 @@ public class Tutorial_Game implements ApplicationListener {
 							reset_cam_x-=ROOM_WIDTH;
 							cam_pos_x-=ROOM_WIDTH;
 						}
+						for(Enemy e: enems)
+						{
+							if(e.isLiving)
+							{
+								e.move(x_pos, y_pos);
+							}
+						}
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow key, you will move to the left once
@@ -264,6 +240,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							reset_cam_x+=ROOM_WIDTH;
 							cam_pos_x+=ROOM_WIDTH;
+						}
+						for(Enemy e: enems)
+						{
+							if(e.isLiving)
+							{
+								e.move(x_pos, y_pos);
+							}
 						}
 					}
 				}
@@ -290,6 +273,13 @@ public class Tutorial_Game implements ApplicationListener {
 							reset_cam_y-=ROOM_HEIGHT;
 							cam_pos_y-=ROOM_HEIGHT;
 						}
+						for(Enemy e: enems)
+						{
+							if(e.isLiving)
+							{
+								e.move(x_pos, y_pos);
+							}
+						}
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if the down arrow is pressed, then move down one
@@ -314,6 +304,13 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							reset_cam_y+=ROOM_HEIGHT;
 							cam_pos_y+=ROOM_HEIGHT;
+						}
+						for(Enemy e: enems)
+						{
+							if(e.isLiving)
+							{
+								e.move(x_pos, y_pos);
+							}
 						}
 					}
 				}
@@ -378,36 +375,6 @@ public class Tutorial_Game implements ApplicationListener {
 					cam_pos_y = reset_cam_y;
 				}
 			}
-		/*
-		ShapeRenderer sr = new ShapeRenderer();
-		sr.begin();
-		if(direction==0)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
-		}
-		else if(direction==1)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y+2*ROOM_HEIGHT/5);
-		}
-		else if(direction==2)
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y+ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x-2*ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y);
-		}
-		else
-		{
-			sr.triangle(25+ROOM_WIDTH*x_pos+cam_pos_x-ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x+ROOM_WIDTH/5, 25+ROOM_WIDTH*y_pos+cam_pos_y-ROOM_HEIGHT/5, 25+ROOM_WIDTH*x_pos+cam_pos_x, 25+ROOM_WIDTH*y_pos+cam_pos_y-2*ROOM_HEIGHT/5);
-		}
-		sr.end();*/
-		/*
-		sr.begin(ShapeType.Line);
-		sr.setColor(0,0,0,1);
-		for(Location place:locs)
-		{
-			sr.rect(ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
-		}*/
-
-        //stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        //stage.draw();
 	}
 	public void attack()
 	{
@@ -447,9 +414,16 @@ public class Tutorial_Game implements ApplicationListener {
 			//defeats enemy if there is an enemy there
 			for (Enemy e:enems)
 			{
-				if((e.start_x==attack_x)&&(e.start_y==attack_y))
+				if((e.current_x==attack_x)&&(e.current_y==attack_y))
 				{
-					e.isLiving = false;
+					e.isLiving = false;//should change to taking damage
+				}
+			}
+			for(Enemy e: enems)
+			{
+				if(e.isLiving)
+				{
+					e.move(x_pos, y_pos);
 				}
 			}
 			/*ShapeRenderer sr = new ShapeRenderer();
