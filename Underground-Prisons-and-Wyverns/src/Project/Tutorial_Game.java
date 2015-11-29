@@ -38,6 +38,8 @@ public class Tutorial_Game implements ApplicationListener {
 	ArrayList<Enemy> enems = new ArrayList<Enemy>();
 	public static OrthographicCamera cam;
 	
+	Character character;
+	
 	SpriteBatch sb;
 	Texture terrain;
 	Texture attack;
@@ -48,6 +50,7 @@ public class Tutorial_Game implements ApplicationListener {
 	Texture down;
 	
 	public void create(){
+		character = new Character(15, 9, 14, "Jacob");
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
@@ -128,7 +131,10 @@ public class Tutorial_Game implements ApplicationListener {
 		
 	}
 	public void render(){
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		if(!character.isLiving)
+		{
+			gameOver();
+		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			//SpriteBatch sb = new SpriteBatch();
 			sb.begin();		
@@ -476,5 +482,9 @@ public class Tutorial_Game implements ApplicationListener {
 		break;
 		}
 		return r;
+	}
+	public void gameOver(){
+		System.out.println("Game over");//change to displaying text
+		dispose();
 	}
 }
