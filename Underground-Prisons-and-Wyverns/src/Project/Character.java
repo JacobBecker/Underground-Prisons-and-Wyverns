@@ -242,6 +242,9 @@ public class Character
 		
 		//Armor
 		armor = 10 + armorBonus;
+		
+		//Beginnings of character choices
+		String [] emptyclass = {"Thief", "Warrior", "Cleric", "Mage", "Ranger", "Bard"};
 	}
 }
 
