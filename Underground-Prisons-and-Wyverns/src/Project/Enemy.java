@@ -25,8 +25,17 @@ public class Enemy
 		defense = de;
 	}
 	*/
-	public void move(int character_x, int character_y)
+	public void move(int character_x, int character_y, Character c)
 	{
-		//enemy movement
+		boolean adjacent = ((Math.abs(current_x-character_x)==1)&&(current_y==character_y))
+				||((Math.abs(current_y-character_y)==1)&&(current_x==character_x));
+		if(adjacent)
+		{
+			Utilities.charDefend(c, this);
+		}
+		else
+		{
+			//enemy movement
+		}
 	}
 }

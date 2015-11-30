@@ -43,6 +43,7 @@ public class Utilities
 		if(atkRoll >= character.armor)
 		{
 			character.liveHP = character.liveHP - damage;
+			character.hurt = true;
 			//Display hit/damage
 			
 			if(character.liveHP <= 0)

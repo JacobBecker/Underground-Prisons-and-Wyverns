@@ -43,6 +43,7 @@ public class Tutorial_Game implements ApplicationListener {
 	SpriteBatch sb;
 	Texture terrain;
 	Texture attack;
+	Texture hit;
 	Texture t;
 	Texture right;
 	Texture up;
@@ -54,6 +55,7 @@ public class Tutorial_Game implements ApplicationListener {
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
+		hit = new Texture(Gdx.files.internal("assets/hit.png"));
 		right = new Texture(Gdx.files.internal("assets/character0.png"));
 		up = new Texture(Gdx.files.internal("assets/character1.png"));
 		left = new Texture(Gdx.files.internal("assets/character2.png"));
@@ -107,7 +109,7 @@ public class Tutorial_Game implements ApplicationListener {
 		//enemies
 		Enemy temp = new Trump(0,3);
 		enems.add(temp);
-		Enemy temp2 = new Nook(1,5);
+		Enemy temp2 = new Nook(4,12);
 		enems.add(temp2);
 		
 		//Scene2d Test
@@ -134,6 +136,7 @@ public class Tutorial_Game implements ApplicationListener {
 		if(!character.isLiving)
 		{
 			gameOver();
+			character.isLiving = true;//for now, you resurrect when you die
 		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			//SpriteBatch sb = new SpriteBatch();
@@ -186,7 +189,15 @@ public class Tutorial_Game implements ApplicationListener {
 				}
 			}
 			sb.setColor(1,1,1,1);
-			t = face(direction);
+			if(character.hurt)
+			{
+				t = hit;
+				character.hurt = false;
+			}
+			else
+			{
+				t = face(direction);
+			}
 			sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 			sb.end();
 			
@@ -226,7 +237,7 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos);
+								e.move(x_pos, y_pos, character);
 							}
 						}
 					}
@@ -265,7 +276,7 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos);
+								e.move(x_pos, y_pos, character);
 							}
 						}
 					}
@@ -304,7 +315,7 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos);
+								e.move(x_pos, y_pos, character);
 							}
 						}
 					}
@@ -343,7 +354,7 @@ public class Tutorial_Game implements ApplicationListener {
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos);
+								e.move(x_pos, y_pos, character);
 							}
 						}
 					}
@@ -445,19 +456,19 @@ public class Tutorial_Game implements ApplicationListener {
 			sb.draw(attack, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			
-			//defeats enemy if there is an enemy there
+			//damages enemy if there is an enemy there
 			for (Enemy e:enems)
 			{
 				if((e.current_x==attack_x)&&(e.current_y==attack_y))
 				{
-					e.isLiving = false;//should change to taking damage
+					Utilities.charAttack(character, e);
 				}
 			}
 			for(Enemy e: enems)
 			{
 				if(e.isLiving)
 				{
-					e.move(x_pos, y_pos);
+					e.move(x_pos, y_pos, character);
 				}
 			}
 		}
@@ -485,6 +496,6 @@ public class Tutorial_Game implements ApplicationListener {
 	}
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
-		dispose();
+		//Gdx.app.exit();//ends program
 	}
 }

@@ -46,6 +46,7 @@ public class Character
 {
 	String name;
 	boolean isLiving = true;
+	boolean hurt = false;
 	
 	int strength;
 	int constitution;
