@@ -135,7 +135,7 @@ public class Tutorial_Game implements ApplicationListener {
 	public void render(){
 		if(!character.isLiving)
 		{
-			gameOver();
+			//gameOver();
 			character.isLiving = true;//for now, you resurrect when you die
 		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);

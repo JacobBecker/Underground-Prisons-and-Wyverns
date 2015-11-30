@@ -8,9 +8,6 @@ import Project.Tutorial_Game;
 public class Tutorial_Main {
 	public static void main(String args[]) throws InterruptedException
 	{
-		Character character = new Character();
-		//Character character = new Character(15, 9, 14, "Jacob");
-		
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Underground Prisons and Wyverns";//title that shows on the top of the window
 		cfg.width = 500;//width of the window in which the game is displayed
