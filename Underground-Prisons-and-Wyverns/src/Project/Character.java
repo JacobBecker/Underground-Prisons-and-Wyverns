@@ -46,6 +46,7 @@ public class Character
 {
 	String name;
 	boolean isLiving = true;
+	boolean hurt = false;
 	
 	int strength;
 	int constitution;
@@ -241,6 +242,9 @@ public class Character
 		
 		//Armor
 		armor = 10 + armorBonus;
+		
+		//Beginnings of character choices
+		String [] emptyclass = {"Thief", "Warrior", "Cleric", "Mage", "Ranger", "Bard"};
 	}
 }
 

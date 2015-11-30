@@ -8,7 +8,9 @@ public class Trump extends Enemy {
 	public Trump(int x, int y)
 	{
 		start_x = x;
+		current_x=x;
 		start_y = y;
+		current_y=y;
 		HP = Utilities.rollDice(4, 8); 
 		numOfDice = 2;
 		diceSides = 6;
