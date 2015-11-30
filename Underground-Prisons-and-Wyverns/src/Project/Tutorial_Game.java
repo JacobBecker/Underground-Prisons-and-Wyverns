@@ -235,11 +235,13 @@ public class Tutorial_Game implements ApplicationListener {
 					}
 					else//if the movement is valid, the camera will move based on location
 					{
+						
 						if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
 						{
 							reset_cam_x-=ROOM_WIDTH;
 							cam_pos_x-=ROOM_WIDTH;
 						}
+						
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow key, you will move to the left once
@@ -330,6 +332,12 @@ public class Tutorial_Game implements ApplicationListener {
 				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 					attack();
 				}
+				
+				cam.position.x = x_pos;
+				cam.position.y = y_pos;
+				cam.update();
+
+				
 				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
 					cameraMode=true;
 					System.out.println("Camera Mode on");
