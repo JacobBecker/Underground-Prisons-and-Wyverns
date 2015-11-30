@@ -44,6 +44,7 @@ public class CharacterChoice extends JFrame
 		
 		pack();
 	}
+	//this will not work until I finish CharRadio, it shouldn't affect run though
 	public static String generate(final String[] classes)
 	{
 		SwingUtilities.invokeLater(new Runnable()
