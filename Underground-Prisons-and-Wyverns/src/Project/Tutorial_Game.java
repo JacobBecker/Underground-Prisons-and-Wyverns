@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
-public class Tutorial_Game implements ApplicationListener {
+public class Tutorial_Game implements ApplicationListener{
+	
+	private SpriteBatch batch;
+    private BitmapFont font;
+	
 	
 	Stage stage;
 	TextButton button;
@@ -44,6 +50,7 @@ public class Tutorial_Game implements ApplicationListener {
 	Character character;
 	
 	SpriteBatch sb;
+	Texture scroll;
 	Texture terrain;
 	Texture attack;
 	Texture hit;
@@ -53,8 +60,25 @@ public class Tutorial_Game implements ApplicationListener {
 	Texture left;
 	Texture down;
 	
-	public void create(){
+	public void create()
+	{ 
+		
+		scroll = new Texture(Gdx.files.internal("assets/scroll.jpg"));
+		  
+        font = new BitmapFont();
+        font.setColor(Color.RED);
+		
 		character = new Character(15, 9, 14, "Jacob");
+		
+		/*
+		try {
+			character = new Character();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
@@ -138,6 +162,7 @@ public class Tutorial_Game implements ApplicationListener {
 		
 	}
 	public void render(){
+		
 		if(!character.isLiving)
 		{
 			gameOver();
@@ -204,6 +229,11 @@ public class Tutorial_Game implements ApplicationListener {
 				t = face(direction);
 			}
 			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
+			
+			sb.draw(scroll, 400, 0, 100, HEIGHT);
+			
+			font.draw(sb, character.liveHP + "/" + character.maxHP, 450, HEIGHT/2);
+			
 			sb.end();
 			
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
