@@ -54,7 +54,7 @@ class CharRadio extends JFrame implements ActionListener
 		groupie.add(button5);
 		groupie.add(button6);
 		
-		button = new Jbutton("click");
+		button = new JButton("click");
 		button.setBounds(100, 350, 100, 30);
 		button.addActionListener(this);
 		
