@@ -24,7 +24,10 @@ public class Tutorial_Game implements ApplicationListener {
 	//public static int WORLD_WIDTH = 1000;//boundaries of world; for now, 2W
 	//public static int WORLD_HEIGHT = 800;//for now, 2H
 	public static int WORLD_WIDTH = 1500;//My map didn't fit, making these bigger
-	public static int WORLD_HEIGHT = 1200;//
+	public static int WORLD_HEIGHT = 1200;
+	
+	public static int OFFSET_X;//offsets all display so that you are centered
+	public static int OFFSET_Y;//offsets all display so that you are centered
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -68,6 +71,8 @@ public class Tutorial_Game implements ApplicationListener {
 		//System.out.println("The frame was created successfully.");
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
+		OFFSET_X = WIDTH/2;
+		OFFSET_Y = HEIGHT/2;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);//setting the camera to look down at the entirety of the board's dimensions (at first) as seen in Tutorial_Main
 		cam.translate(WIDTH/2, HEIGHT/2);
 		cam.update();
@@ -135,7 +140,7 @@ public class Tutorial_Game implements ApplicationListener {
 	public void render(){
 		if(!character.isLiving)
 		{
-			//gameOver();
+			gameOver();
 			character.isLiving = true;//for now, you resurrect when you die
 		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -166,7 +171,7 @@ public class Tutorial_Game implements ApplicationListener {
 						display_enemy = true;
 					}
 				}
-				sb.draw(terrain, ROOM_WIDTH*place.x+cam_pos_x,ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
+				sb.draw(terrain, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 			
 				if(display_enemy)//if there is an enemy in sight
 				{
@@ -183,7 +188,7 @@ public class Tutorial_Game implements ApplicationListener {
 								t = e.deadPic;
 							}
 							sb.setColor(1,1,1,1);
-							sb.draw(t, ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
+							sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
 						}
 					}
 				}
@@ -198,7 +203,7 @@ public class Tutorial_Game implements ApplicationListener {
 			{
 				t = face(direction);
 			}
-			sb.draw(t,25+ROOM_WIDTH*x_pos+cam_pos_x-20, 25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
+			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
 			sb.end();
 			
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
@@ -229,11 +234,11 @@ public class Tutorial_Game implements ApplicationListener {
 					else//if the movement is valid, the camera will move based on location
 					{
 						
-						if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
-						{
+						//if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
+						//{
 							reset_cam_x-=ROOM_WIDTH;
 							cam_pos_x-=ROOM_WIDTH;
-						}
+						//}
 						
 						for(Enemy e: enems)
 						{
@@ -269,11 +274,11 @@ public class Tutorial_Game implements ApplicationListener {
 					}
 					else//if it is valid, move or leave the camera based on location
 					{
-						if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
-						{
+						//if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
+						//{
 							reset_cam_x+=ROOM_WIDTH;
 							cam_pos_x+=ROOM_WIDTH;
-						}
+						//}
 						for(Enemy e: enems)
 						{
 							if(e.isLiving)
@@ -308,11 +313,11 @@ public class Tutorial_Game implements ApplicationListener {
 					}
 					else//if the movement is valid move the camera 
 					{
-						if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
-						{
+						//if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
+						//{
 							reset_cam_y-=ROOM_HEIGHT;
 							cam_pos_y-=ROOM_HEIGHT;
-						}
+						//}
 						for(Enemy e: enems)
 						{
 							if(e.isLiving)
@@ -347,11 +352,11 @@ public class Tutorial_Game implements ApplicationListener {
 					}
 					else//if it is valid, modify the camera
 					{
-						if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
-						{
+						//if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
+						//{
 							reset_cam_y+=ROOM_HEIGHT;
 							cam_pos_y+=ROOM_HEIGHT;
-						}
+						//}
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.S)){//if you press s, you can move the directional arrow clockwise
@@ -454,7 +459,7 @@ public class Tutorial_Game implements ApplicationListener {
 		{
 			sb.begin();
 			sb.setColor(1,1,1,1);
-			sb.draw(attack, attack_x*ROOM_WIDTH+cam_pos_x, attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
+			sb.draw(attack, OFFSET_X+attack_x*ROOM_WIDTH+cam_pos_x, OFFSET_Y+attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			
 			//damages enemy if there is an enemy there
@@ -494,5 +499,9 @@ public class Tutorial_Game implements ApplicationListener {
 		break;
 		}
 		return r;
+	}
+	public void gameOver(){
+		System.out.println("Game over");//change to displaying text
+		//Gdx.app.exit();//ends program
 	}
 }
