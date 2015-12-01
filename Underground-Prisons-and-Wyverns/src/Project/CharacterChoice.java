@@ -1,4 +1,6 @@
+//Similar to JRadioButtonPopup
 package Project;
+
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -8,39 +10,41 @@ import javax.swing.SwingUtilities;
 //(Carly) Using this class eventually to display buttons for class choice
 public class CharacterChoice extends JFrame
 {
-	private static final long serialVersionUID = 1L;
-	static JRadioButton option1;
-	static JRadioButton option2;
-	static JRadioButton option3;
-	static JRadioButton option4;
-	static JRadioButton option5;
-	static JRadioButton option6;
+	
+	private static final long serialVersionUID = 2L;
+	
+	static JRadioButton choice1;
+	static JRadioButton choice2;
+	static JRadioButton choice3;
+	static JRadioButton choice4;
+	static JRadioButton choice5;
+	static JRadioButton choice6;
 	
 	public CharacterChoice(String[] classes)
 	{
 		super("Swing CharacterChoice");
 		
-		option1 = new JRadioButton(classes[0]);
-		option2 = new JRadioButton(classes[1]);
-		option3 = new JRadioButton(classes[2]);
-		option4 = new JRadioButton(classes[3]);
-		option5 = new JRadioButton(classes[4]);
-		option6 = new JRadioButton(classes[5]);
+		choice1 = new JRadioButton(classes[0]);
+		choice2 = new JRadioButton(classes[1]);
+		choice3 = new JRadioButton(classes[2]);
+		choice4 = new JRadioButton(classes[3]);
+		choice5 = new JRadioButton(classes[4]);
+		choice6 = new JRadioButton(classes[5]);
 		
 		ButtonGroup nuevo = new ButtonGroup();
-		nuevo.add(option1);
-		nuevo.add(option2);
-		nuevo.add(option3);
-		nuevo.add(option4);
-		nuevo.add(option5);
-		nuevo.add(option6);
+		nuevo.add(choice1);
+		nuevo.add(choice2);
+		nuevo.add(choice3);
+		nuevo.add(choice4);
+		nuevo.add(choice5);
+		nuevo.add(choice6);
 		setLayout(new FlowLayout());
-		add(option1);
-		add(option2);
-		add(option3);
-		add(option4);
-		add(option5);
-		add(option6);
+		add(choice1);
+		add(choice2);
+		add(choice3);
+		add(choice4);
+		add(choice5);
+		add(choice6);
 		
 		pack();
 	}
@@ -55,27 +59,27 @@ public class CharacterChoice extends JFrame
 				new CharacterChoice(classes).setVisible(true);
 			}
 		});
-		if(option1.isSelected())
+		if(choice1.isSelected())
 		{
 			return classes[0];
 		}
-		else if(option2.isSelected())
+		else if(choice2.isSelected())
 		{
 			return classes[1];
 		}
-		else if(option3.isSelected())
+		else if(choice3.isSelected())
 		{
 			return classes[2];
 		}
-		else if(option4.isSelected())
+		else if(choice4.isSelected())
 		{
 			return classes[3];
 		}
-		else if(option5.isSelected())
+		else if(choice5.isSelected())
 		{
 			return classes[4];
 		}
-		else if(option6.isSelected())
+		else if(choice6.isSelected())
 		{
 			return classes[5];
 		}
