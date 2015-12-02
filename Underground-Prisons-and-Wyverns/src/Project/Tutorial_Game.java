@@ -49,9 +49,11 @@ public class Tutorial_Game implements ApplicationListener {
 	Texture up;
 	Texture left;
 	Texture down;
+	Finish portal;
 	
 	public void create(){
 		character = new Character(15, 9, 14, "Jacob");
+		portal = new Finish(4,21);
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
@@ -144,6 +146,9 @@ public class Tutorial_Game implements ApplicationListener {
 			//ShapeRenderer sr = new ShapeRenderer();
 			for(Location place:locs)
 			{
+				//Trying to display portal
+				boolean display_finish = false;
+				
 				boolean display_enemy = false;
 				if((Math.abs(place.x-x_pos)<=2)&&(Math.abs(place.y-y_pos)<=2)&&(place.secret==false))
 				{
@@ -187,6 +192,41 @@ public class Tutorial_Game implements ApplicationListener {
 						}
 					}
 				}
+				
+				//Checking for portal in sight?
+				if((Math.abs(place.x-x_pos)<=2)&&(Math.abs(place.y-y_pos)<=2)&&(place.secret==false))
+				{
+					place.visited=true;
+				}
+				if((place.secret==false)&&(place.visited==true))
+				{
+					sb.setColor(1,1,1,1);
+					display_finish = true;
+				}
+				else
+				{
+					if(place.visited==false)
+					{
+						sb.setColor(0,0,0,1);
+					}
+					else
+					{
+						sb.setColor(0,0,2,1);
+						display_finish = true;
+					}
+				}
+				
+				//displaying portal?
+				if(display_finish)
+				{
+					if((portal.location_x==place.x)&&(portal.location_y==place.y))
+						{
+							t = portal.picture;
+							sb.setColor(1,1,1,1);
+							sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
+						}
+				}
+				
 			}
 			sb.setColor(1,1,1,1);
 			if(character.hurt)
