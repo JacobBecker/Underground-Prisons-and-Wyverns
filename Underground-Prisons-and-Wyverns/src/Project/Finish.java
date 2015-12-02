@@ -10,8 +10,8 @@ public class Finish
 	Texture picture = new Texture(Gdx.files.internal("assets/portal.png"));
 	public Finish(int x, int y)
 	{
-		int location_x = x;
-		int location_y = y;
+		location_x = x;
+		location_y = y;
 	}
 
 }
