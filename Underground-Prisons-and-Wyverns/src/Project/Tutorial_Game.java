@@ -1,5 +1,6 @@
 package Project;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationListener;
@@ -25,9 +26,12 @@ public class Tutorial_Game implements ApplicationListener {
 	//public static int WORLD_HEIGHT = 800;//for now, 2H
 	public static int WORLD_WIDTH = 1500;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1200;
+	public static int level = 0;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
+	
+	boolean delay = false;
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -143,6 +147,16 @@ public class Tutorial_Game implements ApplicationListener {
 			gameOver();
 			character.isLiving = true;//for now, you resurrect when you die
 		}
+			
+		if(delay)
+		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				//do nothing
+			}
+			delay = false;
+		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 			//SpriteBatch sb = new SpriteBatch();
 			sb.begin();		
@@ -196,6 +210,7 @@ public class Tutorial_Game implements ApplicationListener {
 			sb.setColor(1,1,1,1);
 			if(character.hurt)
 			{
+				delay = true;
 				t = hit;
 				character.hurt = false;
 			}
@@ -457,11 +472,11 @@ public class Tutorial_Game implements ApplicationListener {
 		}
 		if(valid)
 		{
+			delay = true;
 			sb.begin();
 			sb.setColor(1,1,1,1);
 			sb.draw(attack, OFFSET_X+attack_x*ROOM_WIDTH+cam_pos_x, OFFSET_Y+attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
-			
 			//damages enemy if there is an enemy there
 			for (Enemy e:enems)
 			{
