@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 class CharRadio extends JFrame implements ActionListener
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	JRadioButton button1, button2, button3, button4, button5, button6;
 	JButton button;
 	
@@ -101,9 +101,10 @@ class CharRadio extends JFrame implements ActionListener
 			}
 		}
 		//Did not transcribe code from RadioExample because it was checking a second list of "post" values
+		setVisible(false);
 		selectedClass = tempClass;
 	}
-	public String getClass() throws InterruptedException
+	public String getThis() throws InterruptedException
 	{
 		Thread.sleep(500);
 		return selectedClass;

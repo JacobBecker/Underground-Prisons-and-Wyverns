@@ -49,7 +49,7 @@ public class CharacterChoice extends JFrame
 		pack();
 	}
 	//this will not work until I finish CharRadio, it shouldn't affect run though
-	public static String generate(final String[] classes)
+	public static String generation(final String[] classes)
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -79,7 +79,7 @@ public class CharacterChoice extends JFrame
 		{
 			return classes[4];
 		}
-		else if(choice6.isSelected())
+		else
 		{
 			return classes[5];
 		}

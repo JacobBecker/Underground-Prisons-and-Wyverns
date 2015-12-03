@@ -45,7 +45,7 @@ import javax.swing.JOptionPane;
 public class Character
 {
 	String name;
-	String chosenclass;
+	String chosenclass = null;
 	boolean isLiving = true;
 	boolean hurt = false;
 	
@@ -148,7 +148,10 @@ public class Character
 		
 		JOptionPane.showMessageDialog(null, "What class will you choose " + name + "?");
 		CharRadio instance = new CharRadio(classchoices);
-		chosenclass = instance.getClass();
+		while(chosenclass == null)
+		{
+			chosenclass = instance.getThis();
+		}
 		JOptionPane.showMessageDialog(null, "You have chosen to become a " + chosenclass + ".");
 		*/
 		
