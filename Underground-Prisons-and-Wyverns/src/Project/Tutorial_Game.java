@@ -237,7 +237,7 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 				}
 				
-				//Checking for portal in sight?
+				//Checking for portal in sight
 				if((Math.abs(place.x-x_pos)<=2)&&(Math.abs(place.y-y_pos)<=2)&&(place.secret==false))
 				{
 					place.visited=true;
@@ -260,7 +260,7 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 				}
 				
-				//displaying portal?
+				//displaying portal
 				if(display_finish)
 				{
 					if((portal.location_x==place.x)&&(portal.location_y==place.y))
@@ -329,7 +329,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character);
+								e.move(x_pos, y_pos, character, locs);
 							}
 						}
 					}
@@ -368,7 +368,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character);
+								e.move(x_pos, y_pos, character, locs);
 							}
 						}
 					}
@@ -407,7 +407,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character);
+								e.move(x_pos, y_pos, character, locs);
 							}
 						}
 					}
@@ -442,7 +442,16 @@ public class Tutorial_Game implements ApplicationListener{
 							reset_cam_y+=ROOM_HEIGHT;
 							cam_pos_y+=ROOM_HEIGHT;
 						//}
-					}
+					} 
+					
+					 for(Enemy e: enems)
+					 {
+					 	if(e.isLiving)
+					 	{
+					 		e.move(x_pos, y_pos, character, locs);
+					 	}
+					 }
+					 
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.S)){//if you press s, you can move the directional arrow clockwise
 					direction--;
@@ -559,7 +568,7 @@ public class Tutorial_Game implements ApplicationListener{
 			{
 				if(e.isLiving)
 				{
-					e.move(x_pos, y_pos, character);
+					e.move(x_pos, y_pos, character, locs);
 				}
 			}
 		}
