@@ -190,7 +190,7 @@ public class Tutorial_Game implements ApplicationListener{
 			//ShapeRenderer sr = new ShapeRenderer();
 			for(Location place:locs)
 			{
-				//Trying to display portal
+				//displaying portal
 				boolean display_finish = false;
 				
 				boolean display_enemy = false;

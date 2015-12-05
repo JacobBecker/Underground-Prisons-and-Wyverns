@@ -23,9 +23,10 @@ public class Enemy
 
 	public void move(int character_x, int character_y, Character c, ArrayList<Location> locs)
 	{
-		
+
 		int run = current_x-character_x;
 		int rise = current_y-character_y;
+		boolean check;
 		boolean insight = ((Math.abs(run)<=3) && (Math.abs(rise)<=3));
 		boolean adjacent = ((Math.abs(current_x-character_x)==1)&&(current_y==character_y))
 				||((Math.abs(current_y-character_y)==1)&&(current_x==character_x));
@@ -48,14 +49,12 @@ public class Enemy
 					{
 						move_y = current_y-1;
 						move_x = current_x;
-					}
-					
+					}	
 					
 				}
 			
 				else 
 				{
-
 					if(run < 0)
 					{
 						move_x = current_x +1;
@@ -66,8 +65,6 @@ public class Enemy
 						move_x = current_x-1;
 						move_y = current_y;
 					}
-					
-					
 				}
 			}
 			else
@@ -76,32 +73,25 @@ public class Enemy
 					move_x = current_x;
 			}
 
-			current_x = move_x;
-			current_y = move_y;
-			System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);
-			/*
+			//current_x = move_x;
+			//current_y = move_y;
+			//System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);
 			for(Location place:locs)
-			{
-				check = false;
-				while (check = false)
+			{		//System.out.println("1");
+				if((place.x==move_x)&&(place.y==move_y))
 				{
-					if((place.x==move_x)&&(place.y==move_y))
-					{
-						check = true;
-					}
-					else
-					{
-						
-					}
-					
-					
+					current_x = move_x;
+					current_y = move_y;	
+					//System.out.println(	"2");					
 				}
-				current_x = move_x;
-				current_y = move_y;
-				
-			}*/
-
-
+				/*else
+				{
+					//find a new location to move to 
+					move_x = current_x;
+					move_y = current_y;
+						
+				}		*/			
+			}									
 		}
 	}
 }
