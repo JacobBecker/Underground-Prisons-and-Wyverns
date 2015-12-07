@@ -140,20 +140,18 @@ public class Character
 										+ "Your Strength affects your damage with melee weapons\n"
 										+ "Your Constituation affects your Hit Points, or your health\n"
 										+ "Your Defence affects how much damage you take");
-		/*
-		 * Character choice code can go here, I (Carly) will work on this. Similar to stat choice buttons
-		 */
-		
-		String[] classchoices = {"Warrior", "Cleric", "Thief", "Mage", "Ranger", "Bard"};
+
+//Character choice code	start	
+		String[] classchoices = {"Warrior", "Cleric", "Thief"};//class choices
 		
 		JOptionPane.showMessageDialog(null, "What class will you choose " + name + "?");
-		CharRadio k = new CharRadio(classchoices);
-		while(chosenclass == null)
+		CharRadio k = new CharRadio(classchoices);//displays choice buttons
+		while(chosenclass == null)//while you have not chosen a class
 		{
-			chosenclass = k.getThis();
+			chosenclass = k.getThis();//choose a class
 		}
 		JOptionPane.showMessageDialog(null, "You have chosen to become a " + chosenclass + ".");
-		
+		//character choice code end
 		
 		int[] preScores = {0,0,0};
 
