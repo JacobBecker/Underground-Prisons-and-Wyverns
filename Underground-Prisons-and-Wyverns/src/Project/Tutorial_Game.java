@@ -28,8 +28,6 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int HEIGHT;
 	public static int ROOM_WIDTH = 50;
 	public static int ROOM_HEIGHT = 50;
-	//public static int WORLD_WIDTH = 1000;//boundaries of world; for now, 2W
-	//public static int WORLD_HEIGHT = 800;//for now, 2H
 	public static int WORLD_WIDTH = 1500;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1200;
 	public static int level = 0;
@@ -49,8 +47,6 @@ public class Tutorial_Game implements ApplicationListener{
 	int reset_cam_y = 0;
 	
 	Level levelList [];
-	//ArrayList<Location> locs = new ArrayList<Location>();
-	//ArrayList<Enemy> enems = new ArrayList<Enemy>();
 	
 	public static OrthographicCamera cam;
 	
@@ -97,12 +93,7 @@ public class Tutorial_Game implements ApplicationListener{
 		up = new Texture(Gdx.files.internal("assets/character1.png"));
 		left = new Texture(Gdx.files.internal("assets/character2.png"));
 		down = new Texture(Gdx.files.internal("assets/character3.png"));
-		/*stage = new Stage();
-		Texture t = new Texture(Gdx.files.internal("character.jpg"));
-		Image img = new Image(t);
-		stage.addActor(img);*/
-	
-		//System.out.println("The frame was created successfully.");
+
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
 		OFFSET_X = WIDTH/2;
@@ -112,38 +103,11 @@ public class Tutorial_Game implements ApplicationListener{
 		cam.update();
 		//It should be noted that the board's dimensions start at 0 for both x and y so the starting tile we see is at (0,0)
 		cam.position.set(0,0,0);
-		levelList[0].locs = levelGeneration.generate(levelList[0].locs);
+		levelGeneration.generate(levelList[0].locs);
 		
-		/*
-		for(int i=0; i<15; i++){
-			locs.add(new Location(i,0));//Adding 14 yellow tiles going in the horizontal or x direction
-		}
-		for(int i=0; i<12; i++){
-			locs.add(new Location(1,i));//Adding 11 yellow tiles going in the y direction
-		}
-		locs.add(new Location(4,1));
-		
-		//Jacob is trying something
-		for(int i=7; i<15; i++)
-		{
-			for(int j=1; j<4; j++)
-			{
-				locs.add(new Location(i,j));
-			}
-		}
-
-		
-		
-		//secret places
-		locs.add(new Location(2,2,true));
-		locs.add(new Location(3,2,true));
-		locs.add(new Location(4,2,true));
-		*/
-		//Gdx.graphics.setContinuousRendering(false);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
-		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 		
 		//enemies
 		Enemy temp = new Trump(0,3);
@@ -151,24 +115,11 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp2 = new Nook(4,12);
 		levelList[0].enems.add(temp2);
 		
-		//Scene2d Test
-		
-		/*
-		//Skin skin = new Skin(Gdx.files.internal("assets/uiskin.json"));
-		Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-
-		stage = new Stage();
-		button = new TextButton("Click Me!", skin);
-		stage.addActor(button);
-		
-		button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                button.setText("Clicked!");
-            }
-            
-        });
-	*/
+		//forges
+		Forge f = new Weapon_Forge(0,1,3,10);
+		levelList[0].forges.add(f);
+		Forge f2 = new Armor_Forge(0,-1,3,10);
+		levelList[0].forges.add(f2);
 		
 	}
 	public void render(){
@@ -189,9 +140,7 @@ public class Tutorial_Game implements ApplicationListener{
 			delay = false;
 		}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-			//SpriteBatch sb = new SpriteBatch();
 			sb.begin();		
-			//ShapeRenderer sr = new ShapeRenderer();
 			for(Location place:levelList[level].locs)
 			{
 				//displaying portal
@@ -219,7 +168,15 @@ public class Tutorial_Game implements ApplicationListener{
 						display_enemy = true;
 					}
 				}
-				sb.draw(terrain, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
+				t = terrain;
+				for(Forge f:levelList[level].forges)
+				{
+					if((place.x==f.x)&&(place.y==f.y))
+					{
+						t = f.image;
+					}
+				}
+				sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
 			
 				if(display_enemy)//if there is an enemy in sight
 				{
@@ -320,15 +277,11 @@ public class Tutorial_Game implements ApplicationListener{
 					{
 						x_pos--;
 					}
-					else//if the movement is valid, the camera will move based on location
+					else//the camera will move based on location
 					{
-						
-						//if(x_pos+reset_cam_x/ROOM_WIDTH>=WIDTH/ROOM_WIDTH)//!
-						//{
-							reset_cam_x-=ROOM_WIDTH;
-							cam_pos_x-=ROOM_WIDTH;
-						//}
-						
+
+						reset_cam_x-=ROOM_WIDTH;
+						cam_pos_x-=ROOM_WIDTH;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -361,13 +314,10 @@ public class Tutorial_Game implements ApplicationListener{
 					{
 						x_pos++;
 					}
-					else//if it is valid, move or leave the camera based on location
+					else//move or leave the camera based on location
 					{
-						//if(-1*reset_cam_x/ROOM_WIDTH>x_pos)
-						//{
-							reset_cam_x+=ROOM_WIDTH;
-							cam_pos_x+=ROOM_WIDTH;
-						//}
+						reset_cam_x+=ROOM_WIDTH;
+						cam_pos_x+=ROOM_WIDTH;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -400,13 +350,10 @@ public class Tutorial_Game implements ApplicationListener{
 					{
 						y_pos--;
 					}
-					else//if the movement is valid move the camera 
+					else//move the camera 
 					{
-						//if(y_pos+reset_cam_y/ROOM_HEIGHT>=HEIGHT/ROOM_HEIGHT)
-						//{
-							reset_cam_y-=ROOM_HEIGHT;
-							cam_pos_y-=ROOM_HEIGHT;
-						//}
+						reset_cam_y-=ROOM_HEIGHT;
+						cam_pos_y-=ROOM_HEIGHT;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -439,13 +386,10 @@ public class Tutorial_Game implements ApplicationListener{
 					{
 						y_pos++;
 					}
-					else//if it is valid, modify the camera
+					else//modify the camera
 					{
-						//if(-1*reset_cam_y/ROOM_HEIGHT>y_pos)
-						//{
-							reset_cam_y+=ROOM_HEIGHT;
-							cam_pos_y+=ROOM_HEIGHT;
-						//}
+						reset_cam_y+=ROOM_HEIGHT;
+						cam_pos_y+=ROOM_HEIGHT;
 					} 
 					
 					 for(Enemy e: levelList[level].enems)
@@ -479,14 +423,11 @@ public class Tutorial_Game implements ApplicationListener{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
 					cameraMode=true;
 					System.out.println("Camera Mode on");
-					//reset_cam_x = cam_pos_x;
-					//reset_cam_y = cam_pos_y;
 				}
 			}
 			else
 			{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right arrow
-					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 					cam_pos_x -= ROOM_WIDTH;
 					if(cam_pos_x<=WIDTH-WORLD_WIDTH)
 					{
@@ -494,15 +435,13 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow 
-					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 					cam_pos_x += ROOM_WIDTH;
-					if(cam_pos_x>=0)
+					if(cam_pos_x>=WORLD_WIDTH)
 					{
 						cam_pos_x = 0;
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if you press the up arrow
-					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 					cam_pos_y -= ROOM_HEIGHT;
 					if(cam_pos_y<=HEIGHT-WORLD_HEIGHT)
 					{
@@ -510,9 +449,8 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if you press the down arrow
-					//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 					cam_pos_y += ROOM_HEIGHT;
-					if(cam_pos_y>=0)
+					if(cam_pos_y>=WORLD_HEIGHT)
 					{
 						cam_pos_y = 0;
 					}

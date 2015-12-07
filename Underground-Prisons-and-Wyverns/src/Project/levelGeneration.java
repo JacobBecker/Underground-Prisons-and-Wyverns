@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class levelGeneration 
 {
-	public static ArrayList<Location> generate(ArrayList<Location> locs)
+	public static void generate(ArrayList<Location> locs)
 	{
 		int x;
 		int y;
@@ -120,6 +120,6 @@ public class levelGeneration
 			locs.add(new Location(4,y));
 		}
 		
-		return locs;
+		//return locs;
 	}
 }
