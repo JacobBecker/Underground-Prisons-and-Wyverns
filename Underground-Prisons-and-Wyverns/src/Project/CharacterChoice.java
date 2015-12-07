@@ -16,9 +16,6 @@ public class CharacterChoice extends JFrame
 	static JRadioButton choice1;
 	static JRadioButton choice2;
 	static JRadioButton choice3;
-	static JRadioButton choice4;
-	static JRadioButton choice5;
-	static JRadioButton choice6;
 	
 	public CharacterChoice(String[] classes)
 	{
@@ -27,24 +24,15 @@ public class CharacterChoice extends JFrame
 		choice1 = new JRadioButton(classes[0]);
 		choice2 = new JRadioButton(classes[1]);
 		choice3 = new JRadioButton(classes[2]);
-		choice4 = new JRadioButton(classes[3]);
-		choice5 = new JRadioButton(classes[4]);
-		choice6 = new JRadioButton(classes[5]);
 		
 		ButtonGroup nuevo = new ButtonGroup();
 		nuevo.add(choice1);
 		nuevo.add(choice2);
 		nuevo.add(choice3);
-		nuevo.add(choice4);
-		nuevo.add(choice5);
-		nuevo.add(choice6);
 		setLayout(new FlowLayout());
 		add(choice1);
 		add(choice2);
 		add(choice3);
-		add(choice4);
-		add(choice5);
-		add(choice6);
 		
 		pack();
 	}
@@ -67,21 +55,9 @@ public class CharacterChoice extends JFrame
 		{
 			return classes[1];
 		}
-		else if(choice3.isSelected())
-		{
-			return classes[2];
-		}
-		else if(choice4.isSelected())
-		{
-			return classes[3];
-		}
-		else if(choice5.isSelected())
-		{
-			return classes[4];
-		}
 		else
 		{
-			return classes[5];
+			return classes[2];
 		}
 	}
 }
