@@ -143,17 +143,17 @@ public class Character
 		/*
 		 * Character choice code can go here, I (Carly) will work on this. Similar to stat choice buttons
 		 */
-		/*
+		
 		String[] classchoices = {"Warrior", "Cleric", "Thief", "Mage", "Ranger", "Bard"};
 		
 		JOptionPane.showMessageDialog(null, "What class will you choose " + name + "?");
-		CharRadio instance = new CharRadio(classchoices);
+		CharRadio k = new CharRadio(classchoices);
 		while(chosenclass == null)
 		{
-			chosenclass = instance.getThis();
+			chosenclass = k.getThis();
 		}
 		JOptionPane.showMessageDialog(null, "You have chosen to become a " + chosenclass + ".");
-		*/
+		
 		
 		int[] preScores = {0,0,0};
 

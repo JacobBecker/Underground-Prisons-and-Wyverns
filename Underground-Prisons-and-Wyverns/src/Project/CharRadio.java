@@ -10,7 +10,7 @@ class CharRadio extends JFrame implements ActionListener
 	JRadioButton button1, button2, button3, button4, button5, button6;
 	JButton button;
 	
-	String selectedClass = "null";
+	String selectedClass = null;
 	
 	String class1;
 	String class2;
