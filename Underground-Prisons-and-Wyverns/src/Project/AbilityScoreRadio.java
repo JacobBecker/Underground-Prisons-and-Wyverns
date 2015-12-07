@@ -3,7 +3,7 @@ package Project;
 import javax.swing.*;  
 import java.awt.event.*;  
 
-class RadioExample extends JFrame implements ActionListener
+class AbilityScoreRadio extends JFrame implements ActionListener
 {  
 	private static final long serialVersionUID = 1L;
 	JRadioButton rb1,rb2,rb3;  
@@ -19,7 +19,7 @@ class RadioExample extends JFrame implements ActionListener
 	int value5;
 	int value6;
 	
-	RadioExample(int[] preScores, int[] postScores)
+	AbilityScoreRadio(int[] preScores, int[] postScores)
 	{  			
 			value1 = preScores[0];
 			value2 = preScores[1];

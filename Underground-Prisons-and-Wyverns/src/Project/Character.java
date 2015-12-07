@@ -179,21 +179,21 @@ public class Character
 		int[] postScores = {0,0,0};
 		
 		JOptionPane.showMessageDialog(null, "What is your strength " + name + "?");
-		RadioExample x = new RadioExample (preScores, postScores);
+		AbilityScoreRadio x = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[0] == 0)
 		{
 			postScores[0] = x.getValue();
 		}
 		
 		JOptionPane.showMessageDialog(null, "What is your consitution " + name + "?");
-		RadioExample y = new RadioExample (preScores, postScores);
+		AbilityScoreRadio y = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[1] == 0)
 		{
 			postScores[1] = y.getValue();
 		}
 		
 		JOptionPane.showMessageDialog(null, "What is your defence " + name + "?");
-		RadioExample z = new RadioExample (preScores, postScores);
+		AbilityScoreRadio z = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[2] == 0)
 		{
 			postScores[2] = z.getValue();
