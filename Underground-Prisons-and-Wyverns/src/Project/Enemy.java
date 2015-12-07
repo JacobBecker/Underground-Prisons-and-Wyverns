@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Enemy 
 {
+	int boundx1;
+	int boundx2;
+	int boundy1;
+	int boundy2;
 	int move_y;
 	int move_x;
 	int start_x;
@@ -26,6 +30,7 @@ public class Enemy
 
 		int run = current_x-character_x;
 		int rise = current_y-character_y;
+		//boolean inbounds = current_x<=boundx2 && current_x>= boundx1 && current_y<=boundy2 && current_y>=boundy1;
 		boolean check;
 		boolean insight = ((Math.abs(run)<=3) && (Math.abs(rise)<=3));
 		boolean adjacent = ((Math.abs(current_x-character_x)==1)&&(current_y==character_y))
@@ -73,12 +78,13 @@ public class Enemy
 					move_x = current_x;
 			}
 
+			
 			//current_x = move_x;
 			//current_y = move_y;
 			//System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);
 			for(Location place:locs)
 			{		//System.out.println("1");
-				if((place.x==move_x)&&(place.y==move_y))
+				if((place.x==move_x)&&(place.y==move_y) && move_x<=boundx2 && move_x>= boundx1 && move_y<=boundy2 && move_y>=boundy1 )
 				{
 					current_x = move_x;
 					current_y = move_y;	

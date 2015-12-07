@@ -146,9 +146,9 @@ public class Tutorial_Game implements ApplicationListener{
 		//System.out.println("X: "+cam_pos_x+"/n"+"Y: "+cam_pos_y);
 		
 		//enemies
-		Enemy temp = new Trump(0,3);
+		Enemy temp = new Trump(-7,13,-10,-4,11,14);
 		levelList[0].enems.add(temp);
-		Enemy temp2 = new Nook(4,12);
+		Enemy temp2 = new Nook(4,12,3,5,11,13);
 		levelList[0].enems.add(temp2);
 		
 		//Scene2d Test
