@@ -47,8 +47,11 @@ public class Tutorial_Game implements ApplicationListener{
 	int cam_pos_y = 0;
 	int reset_cam_x = 0;
 	int reset_cam_y = 0;
-	ArrayList<Location> locs = new ArrayList<Location>();
-	ArrayList<Enemy> enems = new ArrayList<Enemy>();
+	
+	Level levelList [];
+	//ArrayList<Location> locs = new ArrayList<Location>();
+	//ArrayList<Enemy> enems = new ArrayList<Enemy>();
+	
 	public static OrthographicCamera cam;
 	
 	Character character;
@@ -67,7 +70,8 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public void create()
 	{ 
-		
+		levelList = new Level[1];//will be changed later to different number
+		levelList[0] = new Level();
 		scroll = new Texture(Gdx.files.internal("assets/scroll.jpg"));
 		  
         font = new BitmapFont();
@@ -108,7 +112,7 @@ public class Tutorial_Game implements ApplicationListener{
 		cam.update();
 		//It should be noted that the board's dimensions start at 0 for both x and y so the starting tile we see is at (0,0)
 		cam.position.set(0,0,0);
-		locs = levelGeneration.generate(locs);
+		levelList[0].locs = levelGeneration.generate(levelList[0].locs);
 		
 		/*
 		for(int i=0; i<15; i++){
@@ -143,9 +147,9 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		//enemies
 		Enemy temp = new Trump(0,3);
-		enems.add(temp);
+		levelList[0].enems.add(temp);
 		Enemy temp2 = new Nook(4,12);
-		enems.add(temp2);
+		levelList[0].enems.add(temp2);
 		
 		//Scene2d Test
 		
@@ -188,7 +192,7 @@ public class Tutorial_Game implements ApplicationListener{
 			//SpriteBatch sb = new SpriteBatch();
 			sb.begin();		
 			//ShapeRenderer sr = new ShapeRenderer();
-			for(Location place:locs)
+			for(Location place:levelList[level].locs)
 			{
 				//displaying portal
 				boolean display_finish = false;
@@ -219,7 +223,7 @@ public class Tutorial_Game implements ApplicationListener{
 			
 				if(display_enemy)//if there is an enemy in sight
 				{
-					for(Enemy e: enems)
+					for(Enemy e: levelList[level].enems)
 					{
 						if((e.current_x==place.x)&&(e.current_y==place.y))
 						{
@@ -297,13 +301,13 @@ public class Tutorial_Game implements ApplicationListener{
 					x_pos++;
 					direction=0;
 					boolean valid=false;
-					for(Location place:locs)
+					for(Location place:levelList[level].locs)
 					{
 						if((place.x==x_pos)&&(place.y==y_pos))
 						{
 							valid = true;
 							place.visited = true;
-							for (Enemy e: enems)
+							for (Enemy e: levelList[level].enems)
 							{
 								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
 								{
@@ -325,11 +329,11 @@ public class Tutorial_Game implements ApplicationListener{
 							cam_pos_x-=ROOM_WIDTH;
 						//}
 						
-						for(Enemy e: enems)
+						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs);
 							}
 						}
 					}
@@ -338,13 +342,13 @@ public class Tutorial_Game implements ApplicationListener{
 					x_pos--;
 					direction=2;
 					boolean valid=false;
-					for(Location place:locs)
+					for(Location place:levelList[level].locs)
 					{
 						if((place.x==x_pos)&&(place.y==y_pos))
 						{
 							valid = true;
 							place.visited = true;
-							for (Enemy e: enems)
+							for (Enemy e: levelList[level].enems)
 							{
 								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
 								{
@@ -364,11 +368,11 @@ public class Tutorial_Game implements ApplicationListener{
 							reset_cam_x+=ROOM_WIDTH;
 							cam_pos_x+=ROOM_WIDTH;
 						//}
-						for(Enemy e: enems)
+						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs);
 							}
 						}
 					}
@@ -377,13 +381,13 @@ public class Tutorial_Game implements ApplicationListener{
 					y_pos++;
 					direction=1;
 					boolean valid=false;
-					for(Location place:locs)
+					for(Location place:levelList[level].locs)
 					{
 						if((place.x==x_pos)&&(place.y==y_pos))
 						{
 							valid = true;
 							place.visited = true;
-							for (Enemy e: enems)
+							for (Enemy e: levelList[level].enems)
 							{
 								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
 								{
@@ -403,11 +407,11 @@ public class Tutorial_Game implements ApplicationListener{
 							reset_cam_y-=ROOM_HEIGHT;
 							cam_pos_y-=ROOM_HEIGHT;
 						//}
-						for(Enemy e: enems)
+						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs);
 							}
 						}
 					}
@@ -416,13 +420,13 @@ public class Tutorial_Game implements ApplicationListener{
 					y_pos--;
 					direction=3;
 					boolean valid=false;
-					for(Location place:locs)
+					for(Location place:levelList[level].locs)
 					{
 						if((place.x==x_pos)&&(place.y==y_pos))
 						{
 							valid = true;
 							place.visited = true;
-							for (Enemy e: enems)
+							for (Enemy e: levelList[level].enems)
 							{
 								if((e.isLiving)&&(e.current_x==x_pos)&&(e.current_y==y_pos))
 								{
@@ -444,11 +448,11 @@ public class Tutorial_Game implements ApplicationListener{
 						//}
 					} 
 					
-					 for(Enemy e: enems)
+					 for(Enemy e: levelList[level].enems)
 					 {
 					 	if(e.isLiving)
 					 	{
-					 		e.move(x_pos, y_pos, character, locs);
+					 		e.move(x_pos, y_pos, character, levelList[level].locs);
 					 	}
 					 }
 					 
@@ -542,7 +546,7 @@ public class Tutorial_Game implements ApplicationListener{
 			attack_y--;
 		}
 		boolean valid = false;
-		for(Location place:locs)
+		for(Location place:levelList[level].locs)
 		{
 			if((place.x==attack_x)&&(place.y==attack_y))
 			{
@@ -557,18 +561,18 @@ public class Tutorial_Game implements ApplicationListener{
 			sb.draw(attack, OFFSET_X+attack_x*ROOM_WIDTH+cam_pos_x, OFFSET_Y+attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
 			sb.end();
 			//damages enemy if there is an enemy there
-			for (Enemy e:enems)
+			for (Enemy e:levelList[level].enems)
 			{
 				if((e.current_x==attack_x)&&(e.current_y==attack_y))
 				{
 					Utilities.charAttack(character, e);
 				}
 			}
-			for(Enemy e: enems)
+			for(Enemy e: levelList[level].enems)
 			{
 				if(e.isLiving)
 				{
-					e.move(x_pos, y_pos, character, locs);
+					e.move(x_pos, y_pos, character, levelList[level].locs);
 				}
 			}
 		}
