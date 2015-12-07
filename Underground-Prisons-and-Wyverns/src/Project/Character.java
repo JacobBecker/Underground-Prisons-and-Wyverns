@@ -60,6 +60,9 @@ public class Character
 	int maxHP;
 	int liveHP;
 	int armor;
+	
+	int gold = 0;
+	int exp = 0;
 
 	
 	//This is for generation of a test character w/o going through all the Dialog
