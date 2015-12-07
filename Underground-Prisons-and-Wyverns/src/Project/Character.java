@@ -63,6 +63,13 @@ public class Character
 	
 	int gold = 0;
 	int exp = 0;
+	int nextLevel = 20;
+	
+	int hpNumOfDice = 2;
+	int hpDiceSides = 4;
+	
+	int atkNumOfDice = 1;
+	int atkDiceSides = 6;
 
 	
 	//This is for generation of a test character w/o going through all the Dialog
@@ -251,7 +258,7 @@ public class Character
 		}
 		
 		//HP
-		maxHP = Utilities.rollDice(2,4) + conBonus;
+		maxHP = Utilities.rollDice(hpNumOfDice, hpDiceSides) + conBonus;
 		liveHP = maxHP;
 		
 		//Armor
