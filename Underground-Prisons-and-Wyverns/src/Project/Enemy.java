@@ -20,6 +20,9 @@ public class Enemy
 	boolean isLiving = true;
 	Texture pic;
 	Texture deadPic;
+	
+	int gold = 0;
+	int exp = 0;
 
 	public void move(int character_x, int character_y, Character c, ArrayList<Location> locs)
 	{

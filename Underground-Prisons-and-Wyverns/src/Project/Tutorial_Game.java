@@ -73,20 +73,21 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
 		
-		//character = new Character(15, 9, 14, "Jacob");
+		character = new Character(15, 9, 14, "Jacob");
 		
-        
+        /*
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
 		
 		portal = new Finish(4,20);
 		sb = new SpriteBatch();
-		terrain = new Texture(Gdx.files.internal("assets/terrain.png"));
+		terrain = new Texture(Gdx.files.internal("assets/tile.jpg"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
 		hit = new Texture(Gdx.files.internal("assets/hit.png"));
 		right = new Texture(Gdx.files.internal("assets/character0.png"));

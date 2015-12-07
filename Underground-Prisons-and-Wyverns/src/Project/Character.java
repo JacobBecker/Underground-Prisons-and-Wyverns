@@ -60,6 +60,16 @@ public class Character
 	int maxHP;
 	int liveHP;
 	int armor;
+	
+	int gold = 0;
+	int exp = 0;
+	int nextLevel = 20;
+	
+	int hpNumOfDice = 2;
+	int hpDiceSides = 4;
+	
+	int atkNumOfDice = 1;
+	int atkDiceSides = 6;
 
 	
 	//This is for generation of a test character w/o going through all the Dialog
@@ -140,20 +150,18 @@ public class Character
 										+ "Your Strength affects your damage with melee weapons\n"
 										+ "Your Constituation affects your Hit Points, or your health\n"
 										+ "Your Defence affects how much damage you take");
-		/*
-		 * Character choice code can go here, I (Carly) will work on this. Similar to stat choice buttons
-		 */
-		/*
-		String[] classchoices = {"Warrior", "Cleric", "Thief", "Mage", "Ranger", "Bard"};
+
+//Character choice code	start	
+		String[] classchoices = {"Warrior", "Cleric", "Thief"};//class choices
 		
 		JOptionPane.showMessageDialog(null, "What class will you choose " + name + "?");
-		CharRadio instance = new CharRadio(classchoices);
-		while(chosenclass == null)
+		CharRadio k = new CharRadio(classchoices);//displays choice buttons
+		while(chosenclass == null)//while you have not chosen a class
 		{
-			chosenclass = instance.getThis();
+			chosenclass = k.getThis();//choose a class
 		}
 		JOptionPane.showMessageDialog(null, "You have chosen to become a " + chosenclass + ".");
-		*/
+		//character choice code end
 		
 		int[] preScores = {0,0,0};
 
@@ -171,21 +179,21 @@ public class Character
 		int[] postScores = {0,0,0};
 		
 		JOptionPane.showMessageDialog(null, "What is your strength " + name + "?");
-		RadioExample x = new RadioExample (preScores, postScores);
+		AbilityScoreRadio x = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[0] == 0)
 		{
 			postScores[0] = x.getValue();
 		}
 		
 		JOptionPane.showMessageDialog(null, "What is your consitution " + name + "?");
-		RadioExample y = new RadioExample (preScores, postScores);
+		AbilityScoreRadio y = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[1] == 0)
 		{
 			postScores[1] = y.getValue();
 		}
 		
 		JOptionPane.showMessageDialog(null, "What is your defence " + name + "?");
-		RadioExample z = new RadioExample (preScores, postScores);
+		AbilityScoreRadio z = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[2] == 0)
 		{
 			postScores[2] = z.getValue();
@@ -250,7 +258,7 @@ public class Character
 		}
 		
 		//HP
-		maxHP = Utilities.rollDice(2,4) + conBonus;
+		maxHP = Utilities.rollDice(hpNumOfDice, hpDiceSides) + conBonus;
 		liveHP = maxHP;
 		
 		//Armor

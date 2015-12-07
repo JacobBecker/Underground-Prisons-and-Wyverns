@@ -17,7 +17,7 @@ public class Utilities
 	public static void charAttack(Character character, Enemy enemy)
 	{
 		int atkRoll = Utilities.rollDice(1,  20) + character.strBonus;
-		int damage = Utilities.rollDice(1,6);
+		int damage = Utilities.rollDice(character.atkNumOfDice, character.atkDiceSides);
 		
 		if(atkRoll >= enemy.armor)
 		{
@@ -27,6 +27,14 @@ public class Utilities
 			if(enemy.HP <= 0)
 			{
 				enemy.isLiving = false;
+				
+				character.gold += enemy.gold;
+				character.exp += enemy.exp;
+				
+				if(character.exp >= character.nextLevel)
+				{
+					levelup(character);
+				}
 			}
 		}
 		else
@@ -55,5 +63,10 @@ public class Utilities
 		{
 			//Display miss
 		}
+	}
+	
+	public static void levelup(Character character)
+	{
+		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
 	}
 }
