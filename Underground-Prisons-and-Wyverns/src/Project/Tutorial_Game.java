@@ -87,7 +87,7 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		portal = new Finish(4,20);
 		sb = new SpriteBatch();
-		terrain = new Texture(Gdx.files.internal("assets/tile.jpg"));
+		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
 		attack = new Texture(Gdx.files.internal("assets/melee.png"));
 		hit = new Texture(Gdx.files.internal("assets/hit.png"));
 		right = new Texture(Gdx.files.internal("assets/character0.png"));
