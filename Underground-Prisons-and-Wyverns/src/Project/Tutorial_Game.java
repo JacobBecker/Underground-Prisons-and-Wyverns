@@ -111,7 +111,7 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//enemies
-		Enemy temp = new Bat(-7,13,-10,-4,11,14);
+		Enemy temp = new Bat(-7,13,-8,-2,11,14);
 		levelList[0].enems.add(temp);
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[0].enems.add(temp2);

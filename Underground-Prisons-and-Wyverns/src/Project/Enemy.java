@@ -33,8 +33,7 @@ public class Enemy
 
 		int run = current_x-character_x;
 		int rise = current_y-character_y;
-		//boolean inbounds = current_x<=boundx2 && current_x>= boundx1 && current_y<=boundy2 && current_y>=boundy1;
-		boolean check;
+		//boolean check;
 		boolean insight = ((Math.abs(run)<=3) && (Math.abs(rise)<=3));
 		boolean adjacent = ((Math.abs(current_x-character_x)==1)&&(current_y==character_y))
 				||((Math.abs(current_y-character_y)==1)&&(current_x==character_x));
@@ -46,7 +45,7 @@ public class Enemy
 		{
 			if(insight)
 			{
-				if (Math.abs(rise) < Math.abs(run)|| run == 0)
+				if ((rise !=0) && (Math.abs(rise) < Math.abs(run) || run == 0))
 				{
 					if (rise < 0)
 					{
@@ -60,8 +59,8 @@ public class Enemy
 					}	
 					
 				}
-			
-				else 
+
+				else
 				{
 					if(run < 0)
 					{
@@ -87,7 +86,7 @@ public class Enemy
 			//System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);
 			for(Location place:locs)
 			{		//System.out.println("1");
-				if((place.x==move_x)&&(place.y==move_y) && move_x<=boundx2 && move_x>= boundx1 && move_y<=boundy2 && move_y>=boundy1 )
+				if((place.x==move_x)&&(place.y==move_y)&& (move_x<=boundx2) && (move_x>= boundx1) && (move_y<=boundy2) && (move_y>=boundy1))
 				{
 					current_x = move_x;
 					current_y = move_y;	
