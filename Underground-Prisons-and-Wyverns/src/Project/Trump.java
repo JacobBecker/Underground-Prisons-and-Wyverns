@@ -15,6 +15,7 @@ public class Trump extends Enemy {
 		current_x=x;
 		start_y = y;
 		current_y=y;
+		
 		HP = Utilities.rollDice(4, 8); 
 		numOfDice = 2;
 		diceSides = 6;

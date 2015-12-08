@@ -12,7 +12,7 @@ public class Weapon_Forge extends Forge {
 		variance = v;
 		cost = 100*benefit-variance+(int)(Math.random()*2*variance);
 		
-		image = new Texture(Gdx.files.internal("assets/sword.jpg"));
+		image = new Texture(Gdx.files.internal("assets/Weapon Rack.png"));
 	}
 	@Override
 	boolean shop() {
