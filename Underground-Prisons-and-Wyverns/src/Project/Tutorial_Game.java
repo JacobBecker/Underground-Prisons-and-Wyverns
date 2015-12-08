@@ -26,10 +26,10 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public static int WIDTH;
 	public static int HEIGHT;
-	public static int ROOM_WIDTH = 50;
-	public static int ROOM_HEIGHT = 50;
-	public static int WORLD_WIDTH = 1500;//My map didn't fit, making these bigger
-	public static int WORLD_HEIGHT = 1200;
+	public static int ROOM_WIDTH = 75;
+	public static int ROOM_HEIGHT = 75;
+	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
+	public static int WORLD_HEIGHT = 1800;
 	public static int level = 0;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
@@ -68,7 +68,6 @@ public class Tutorial_Game implements ApplicationListener{
 	{ 
 		levelList = new Level[1];//will be changed later to different number
 		levelList[0] = new Level();
-		scroll = new Texture(Gdx.files.internal("assets/scroll.jpg"));
 		  
         font = new BitmapFont();
         font.setColor(Color.RED);
@@ -85,10 +84,11 @@ public class Tutorial_Game implements ApplicationListener{
 		*/
 		
 		
+		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		portal = new Finish(4,20);
 		sb = new SpriteBatch();
-		terrain = new Texture(Gdx.files.internal("assets/tile.jpg"));
-		attack = new Texture(Gdx.files.internal("assets/melee.png"));
+		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
+		attack = new Texture(Gdx.files.internal("assets/melee 2.png"));
 		hit = new Texture(Gdx.files.internal("assets/hit.png"));
 		right = new Texture(Gdx.files.internal("assets/character0.png"));
 		up = new Texture(Gdx.files.internal("assets/character1.png"));
@@ -246,9 +246,9 @@ public class Tutorial_Game implements ApplicationListener{
 			{
 				t = face(direction);
 			}
-			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,40,40);
+			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,60,60);
 			
-			sb.draw(scroll, 400, 0, 100, HEIGHT);
+			sb.draw(scroll, (int)(WIDTH-(ROOM_WIDTH*1.25)), (int)(HEIGHT/2-(ROOM_HEIGHT*1.5)), (int)(ROOM_WIDTH * 1.25), ROOM_HEIGHT*3);
 			
 			font.draw(sb, character.liveHP + "/" + character.maxHP, 450, HEIGHT/2);
 			

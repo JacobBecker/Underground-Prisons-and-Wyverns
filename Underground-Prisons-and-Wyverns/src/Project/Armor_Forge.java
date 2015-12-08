@@ -12,7 +12,7 @@ public class Armor_Forge extends Forge {
 		variance = v;
 		cost = 100*benefit-variance+(int)(Math.random()*2*variance);
 		
-		image = new Texture(Gdx.files.internal("assets/Anvil.png"));
+		image = new Texture(Gdx.files.internal("assets/Anvil 2.jpg"));
 	}
 	@Override
 	boolean shop() {
