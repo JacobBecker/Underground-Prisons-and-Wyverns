@@ -122,4 +122,14 @@ public class levelGeneration
 		
 		//return locs;
 	}
+	public static void generate2(ArrayList<Location> locs)
+	{
+		for(int i=0; i<6; i++)
+		{
+			for(int j=0; j<6; j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+	}
 }

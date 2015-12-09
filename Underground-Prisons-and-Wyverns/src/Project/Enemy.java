@@ -28,7 +28,7 @@ public class Enemy
 	int gold = 0;
 	int exp = 0;
 
-	public void move(int character_x, int character_y, Character c, ArrayList<Location> locs)
+	public void move(int character_x, int character_y, Character c, ArrayList<Location> locs, ArrayList<Enemy> enems)
 	{
 
 		int run = current_x-character_x;
@@ -88,8 +88,19 @@ public class Enemy
 			{		//System.out.println("1");
 				if((place.x==move_x)&&(place.y==move_y)&& (move_x<=boundx2) && (move_x>= boundx1) && (move_y<=boundy2) && (move_y>=boundy1))
 				{
-					current_x = move_x;
-					current_y = move_y;	
+					boolean valid = true;
+					for(Enemy e:enems)
+					{
+						if((e.current_x==current_x)&&(e.current_y==current_y)&&(e.isLiving)&&(e!=this))
+						{
+							valid=false;
+						}
+					}
+					if(valid)
+					{
+						current_x = move_x;
+						current_y = move_y;
+					}
 					//System.out.println(	"2");					
 				}
 				/*else
