@@ -26,8 +26,8 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public static int WIDTH;
 	public static int HEIGHT;
-	public static int ROOM_WIDTH = 75;
-	public static int ROOM_HEIGHT = 75;
+	public static int TILE_WIDTH = 75;
+	public static int TILE_HEIGHT = 75;
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
 	public static int level = 0;
@@ -64,6 +64,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture left;
 	Texture down;
 	Finish portal;
+	Texture gameover;
 	
 	public void create()
 	{ 
@@ -87,7 +88,7 @@ public class Tutorial_Game implements ApplicationListener{
 		}
 		*/
 		
-		
+		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
@@ -120,7 +121,7 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//enemies
-		Enemy temp = new Bat(-7,13,-8,-2,11,14);
+		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[0].enems.add(temp);
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[0].enems.add(temp2);
@@ -151,8 +152,10 @@ public class Tutorial_Game implements ApplicationListener{
 			cam_pos_x = 0;
 			cam_pos_y = 0;
 			level++;
+		
 			if(level==finalLevel)
 			{
+				level--;
 				win();
 			}
 		}
@@ -204,7 +207,7 @@ public class Tutorial_Game implements ApplicationListener{
 						sb.setColor(1,1,1,1);
 					}
 				}
-				sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y,ROOM_WIDTH,ROOM_HEIGHT);
+				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 			
 				if(display_enemy)//if there is an enemy in sight
 				{
@@ -221,7 +224,7 @@ public class Tutorial_Game implements ApplicationListener{
 								t = e.deadPic;
 							}
 							sb.setColor(1,1,1,1);
-							sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
+							sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x+TILE_WIDTH/5,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y+TILE_WIDTH/5,3*TILE_WIDTH/5,3*TILE_HEIGHT/5);
 						}
 					}
 				}
@@ -256,7 +259,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							t = levelList[level].portal.picture;
 							sb.setColor(1,1,1,1);
-							sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
+							sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x+TILE_WIDTH/5,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y+TILE_WIDTH/5,3*TILE_WIDTH/5,3*TILE_HEIGHT/5);
 						}
 				}
 				
@@ -272,11 +275,16 @@ public class Tutorial_Game implements ApplicationListener{
 			{
 				t = face(direction);
 			}
-			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,60,60);
+			sb.draw(t,OFFSET_X+25+TILE_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+TILE_WIDTH*y_pos+cam_pos_y-20,60,60);
 			
-			sb.draw(scroll, (int)(WIDTH-(ROOM_WIDTH*1.25)), (int)(HEIGHT/2-(ROOM_HEIGHT*1.5)), (int)(ROOM_WIDTH * 1.25), ROOM_HEIGHT*3);
 			
+			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.25)), (int)(HEIGHT/2-(TILE_HEIGHT*1.5)), (int)(TILE_WIDTH * 1.25), TILE_HEIGHT*3);
 			font.draw(sb, character.liveHP + "/" + character.maxHP, 450, HEIGHT/2);
+			
+			if(character.liveHP <= 0)
+			{
+				sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
+			}
 			
 			sb.end();
 			
@@ -308,8 +316,8 @@ public class Tutorial_Game implements ApplicationListener{
 					else//the camera will move based on location
 					{
 
-						reset_cam_x-=ROOM_WIDTH;
-						cam_pos_x-=ROOM_WIDTH;
+						reset_cam_x-=TILE_WIDTH;
+						cam_pos_x-=TILE_WIDTH;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -344,8 +352,8 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else//move or leave the camera based on location
 					{
-						reset_cam_x+=ROOM_WIDTH;
-						cam_pos_x+=ROOM_WIDTH;
+						reset_cam_x+=TILE_WIDTH;
+						cam_pos_x+=TILE_WIDTH;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -380,8 +388,8 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else//move the camera 
 					{
-						reset_cam_y-=ROOM_HEIGHT;
-						cam_pos_y-=ROOM_HEIGHT;
+						reset_cam_y-=TILE_HEIGHT;
+						cam_pos_y-=TILE_HEIGHT;
 						for(Enemy e: levelList[level].enems)
 						{
 							if(e.isLiving)
@@ -416,8 +424,8 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else//modify the camera
 					{
-						reset_cam_y+=ROOM_HEIGHT;
-						cam_pos_y+=ROOM_HEIGHT;
+						reset_cam_y+=TILE_HEIGHT;
+						cam_pos_y+=TILE_HEIGHT;
 					} 
 					
 					 for(Enemy e: levelList[level].enems)
@@ -442,11 +450,14 @@ public class Tutorial_Game implements ApplicationListener{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 					attack();
 				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.I))
+				{
+					checkShop();
+				}
 				
 				cam.position.x = x_pos;
 				cam.position.y = y_pos;
 				cam.update();
-
 				
 				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
 					cameraMode=true;
@@ -456,28 +467,28 @@ public class Tutorial_Game implements ApplicationListener{
 			else
 			{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right arrow
-					cam_pos_x -= ROOM_WIDTH;
+					cam_pos_x -= TILE_WIDTH;
 					if(cam_pos_x<=WIDTH-WORLD_WIDTH)
 					{
 						cam_pos_x = WIDTH-WORLD_WIDTH;
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){//if you press the left arrow 
-					cam_pos_x += ROOM_WIDTH;
+					cam_pos_x += TILE_WIDTH;
 					if(cam_pos_x>=WORLD_WIDTH)
 					{
 						cam_pos_x = 0;
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){//if you press the up arrow
-					cam_pos_y -= ROOM_HEIGHT;
+					cam_pos_y -= TILE_HEIGHT;
 					if(cam_pos_y<=HEIGHT-WORLD_HEIGHT)
 					{
 						cam_pos_y = HEIGHT-WORLD_HEIGHT;
 					}
 				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){//if you press the down arrow
-					cam_pos_y += ROOM_HEIGHT;
+					cam_pos_y += TILE_HEIGHT;
 					if(cam_pos_y>=WORLD_HEIGHT)
 					{
 						cam_pos_y = 0;
@@ -524,7 +535,7 @@ public class Tutorial_Game implements ApplicationListener{
 			delay = true;
 			sb.begin();
 			sb.setColor(1,1,1,1);
-			sb.draw(attack, OFFSET_X+attack_x*ROOM_WIDTH+cam_pos_x, OFFSET_Y+attack_y*ROOM_HEIGHT+cam_pos_y, ROOM_WIDTH, ROOM_HEIGHT);
+			sb.draw(attack, OFFSET_X+attack_x*TILE_WIDTH+cam_pos_x, OFFSET_Y+attack_y*TILE_HEIGHT+cam_pos_y, TILE_WIDTH, TILE_HEIGHT);
 			sb.end();
 			//damages enemy if there is an enemy there
 			for (Enemy e:levelList[level].enems)
@@ -563,6 +574,34 @@ public class Tutorial_Game implements ApplicationListener{
 		break;
 		}
 		return r;
+	}
+	public void checkShop()
+	{
+		for(Forge f: levelList[level].forges)
+		{
+			if((f.x==x_pos)&&(f.y==y_pos))
+			{
+				if(f.shop())
+				{
+					if(character.gold>=f.cost)
+					{
+						character.gold-=f.cost;
+						if(f instanceof Weapon_Forge)
+						{
+							character.strength+=f.benefit;
+						}
+						else
+						{
+							character.armor+=f.benefit;
+						}
+					}
+					else
+					{
+						System.out.println("You don't have enough gold.");
+					}
+				}
+			}
+		}
 	}
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
