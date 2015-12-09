@@ -153,6 +153,7 @@ public class Tutorial_Game implements ApplicationListener{
 			level++;
 			if(level==finalLevel)
 			{
+				level--;
 				win();
 			}
 		}
@@ -442,11 +443,14 @@ public class Tutorial_Game implements ApplicationListener{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 					attack();
 				}
+				if(Gdx.input.isKeyJustPressed(Input.Keys.I))
+				{
+					checkShop();
+				}
 				
 				cam.position.x = x_pos;
 				cam.position.y = y_pos;
 				cam.update();
-
 				
 				if(Gdx.input.isKeyJustPressed(Input.Keys.C)){//if you press c, you can move the camera
 					cameraMode=true;
@@ -563,6 +567,34 @@ public class Tutorial_Game implements ApplicationListener{
 		break;
 		}
 		return r;
+	}
+	public void checkShop()
+	{
+		for(Forge f: levelList[level].forges)
+		{
+			if((f.x==x_pos)&&(f.y==y_pos))
+			{
+				if(f.shop())
+				{
+					if(character.gold>=f.cost)
+					{
+						character.gold-=f.cost;
+						if(f instanceof Weapon_Forge)
+						{
+							character.strength+=f.benefit;
+						}
+						else
+						{
+							character.armor+=f.benefit;
+						}
+					}
+					else
+					{
+						System.out.println("You don't have enough gold.");
+					}
+				}
+			}
+		}
 	}
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
