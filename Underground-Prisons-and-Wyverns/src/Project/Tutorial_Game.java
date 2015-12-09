@@ -31,6 +31,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
 	public static int level = 0;
+	public static int finalLevel = 2;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
@@ -66,8 +67,8 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public void create()
 	{ 
-		levelList = new Level[2];//will be changed later to different number
-		for(int i=0; i<2; i++)
+		levelList = new Level[finalLevel];//will be changed later to different number
+		for(int i=0; i<finalLevel; i++)
 		{
 			levelList[i] = new Level();
 		}
@@ -150,6 +151,10 @@ public class Tutorial_Game implements ApplicationListener{
 			cam_pos_x = 0;
 			cam_pos_y = 0;
 			level++;
+			if(level==finalLevel)
+			{
+				win();
+			}
 		}
 		
 		if(delay)
@@ -562,5 +567,9 @@ public class Tutorial_Game implements ApplicationListener{
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
 		//Gdx.app.exit();//ends program
+	}
+	public void win(){
+		System.out.println("You win");//change to displaying text
+		Gdx.app.exit();//ends program
 	}
 }
