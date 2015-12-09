@@ -66,8 +66,11 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public void create()
 	{ 
-		levelList = new Level[1];//will be changed later to different number
-		levelList[0] = new Level();
+		levelList = new Level[2];//will be changed later to different number
+		for(int i=0; i<2; i++)
+		{
+			levelList[i] = new Level();
+		}
 		  
         font = new BitmapFont();
         font.setColor(Color.RED);
@@ -85,7 +88,6 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
-		portal = new Finish(4,20);
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
 		attack = new Texture(Gdx.files.internal("assets/melee 2.png"));
@@ -104,8 +106,14 @@ public class Tutorial_Game implements ApplicationListener{
 		cam.update();
 		//It should be noted that the board's dimensions start at 0 for both x and y so the starting tile we see is at (0,0)
 		cam.position.set(0,0,0);
-		levelGeneration.generate(levelList[0].locs);
 		
+		//finishes
+		levelList[0].portal = new Finish(4,20);
+		levelList[1].portal = new Finish(5,5);
+		
+		//locations
+		levelGeneration.generate(levelList[0].locs);
+		levelGeneration.generate2(levelList[1].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
@@ -116,12 +124,16 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[0].enems.add(temp2);
 		
+		levelList[1].enems.add(new Bat(4,4,3,5,3,5));
+		levelList[1].enems.add(new Bat(5,5,3,5,3,5));
+		
 		//forges
 		Forge f = new Weapon_Forge(0,1,3,10);
 		levelList[0].forges.add(f);
 		Forge f2 = new Armor_Forge(0,-1,3,10);
 		levelList[0].forges.add(f2);
 		
+		levelList[1].forges.add(new Weapon_Forge(0,4,3,10));
 	}
 	public void render(){
 		
@@ -130,7 +142,16 @@ public class Tutorial_Game implements ApplicationListener{
 			gameOver();
 			character.isLiving = true;//for now, you resurrect when you die
 		}
-			
+		
+		if((x_pos==levelList[level].portal.location_x)&&(y_pos==levelList[level].portal.location_y))
+		{
+			x_pos=0;
+			y_pos=0;
+			cam_pos_x = 0;
+			cam_pos_y = 0;
+			level++;
+		}
+		
 		if(delay)
 		{
 			try {
@@ -226,9 +247,9 @@ public class Tutorial_Game implements ApplicationListener{
 				//displaying portal
 				if(display_finish)
 				{
-					if((portal.location_x==place.x)&&(portal.location_y==place.y))
+					if((levelList[level].portal.location_x==place.x)&&(levelList[level].portal.location_y==place.y))
 						{
-							t = portal.picture;
+							t = levelList[level].portal.picture;
 							sb.setColor(1,1,1,1);
 							sb.draw(t, OFFSET_X+ROOM_WIDTH*place.x+cam_pos_x+ROOM_WIDTH/5,OFFSET_Y+ROOM_HEIGHT*place.y+cam_pos_y+ROOM_WIDTH/5,3*ROOM_WIDTH/5,3*ROOM_HEIGHT/5);
 						}
@@ -288,7 +309,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, levelList[level].locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs, levelList[level].enems);
 							}
 						}
 					}
@@ -324,7 +345,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, levelList[level].locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs, levelList[level].enems);
 							}
 						}
 					}
@@ -360,7 +381,7 @@ public class Tutorial_Game implements ApplicationListener{
 						{
 							if(e.isLiving)
 							{
-								e.move(x_pos, y_pos, character, levelList[level].locs);
+								e.move(x_pos, y_pos, character, levelList[level].locs, levelList[level].enems);
 							}
 						}
 					}
@@ -398,7 +419,7 @@ public class Tutorial_Game implements ApplicationListener{
 					 {
 					 	if(e.isLiving)
 					 	{
-					 		e.move(x_pos, y_pos, character, levelList[level].locs);
+					 		e.move(x_pos, y_pos, character, levelList[level].locs, levelList[level].enems);
 					 	}
 					 }
 					 
@@ -512,7 +533,7 @@ public class Tutorial_Game implements ApplicationListener{
 			{
 				if(e.isLiving)
 				{
-					e.move(x_pos, y_pos, character, levelList[level].locs);
+					e.move(x_pos, y_pos, character, levelList[level].locs, levelList[level].enems);
 				}
 			}
 		}
