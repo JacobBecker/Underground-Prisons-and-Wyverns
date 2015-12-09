@@ -63,6 +63,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture left;
 	Texture down;
 	Finish portal;
+	Texture gameover;
 	
 	public void create()
 	{ 
@@ -83,7 +84,7 @@ public class Tutorial_Game implements ApplicationListener{
 		}
 		*/
 		
-		
+		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		portal = new Finish(4,20);
 		sb = new SpriteBatch();
@@ -111,7 +112,7 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//enemies
-		Enemy temp = new Bat(-7,13,-8,-2,11,14);
+		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[0].enems.add(temp);
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[0].enems.add(temp2);
@@ -248,9 +249,15 @@ public class Tutorial_Game implements ApplicationListener{
 			}
 			sb.draw(t,OFFSET_X+25+ROOM_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+ROOM_WIDTH*y_pos+cam_pos_y-20,60,60);
 			
-			sb.draw(scroll, (int)(WIDTH-(ROOM_WIDTH*1.25)), (int)(HEIGHT/2-(ROOM_HEIGHT*1.5)), (int)(ROOM_WIDTH * 1.25), ROOM_HEIGHT*3);
 			
+			sb.draw(scroll, (int)(WIDTH-(ROOM_WIDTH*1.25)), (int)(HEIGHT/2-(ROOM_HEIGHT*1.5)), (int)(ROOM_WIDTH * 1.25), ROOM_HEIGHT*3);
 			font.draw(sb, character.liveHP + "/" + character.maxHP, 450, HEIGHT/2);
+			
+			if(character.liveHP <= 0)
+			{
+				sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
+
+			}
 			
 			sb.end();
 			

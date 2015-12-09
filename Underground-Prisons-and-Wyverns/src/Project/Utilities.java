@@ -68,5 +68,7 @@ public class Utilities
 	public static void levelup(Character character)
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
+		character.nextLevel += 20;
+		character.level++;
 	}
 }
