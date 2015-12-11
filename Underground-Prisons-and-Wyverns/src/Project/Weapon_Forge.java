@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 public class Weapon_Forge extends Forge {
 
 	public Weapon_Forge(int x_pos, int y_pos, int b, int v){
+		
+		type = "weapon";
+		
 		x = x_pos;
 		y = y_pos;
 		benefit = b;

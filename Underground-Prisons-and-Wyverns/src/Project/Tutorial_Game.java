@@ -17,6 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class Tutorial_Game implements ApplicationListener{
 	
+	Forge currentForge;
+	int currentLevel;
+	
 	private SpriteBatch batch;
     private BitmapFont font;
 	
@@ -30,13 +33,14 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int TILE_HEIGHT = 75;
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
-	public static int level = 0;
-	public static int finalLevel = 2;
+	public static int level = 1;
+	public static int finalLevel = 3;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
 	
 	boolean delay = false;
+	boolean shopDelay = false;
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -54,6 +58,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Character character;
 	
 	SpriteBatch sb;
+	Texture box;
 	Texture scroll;
 	Texture terrain;
 	Texture attack;
@@ -88,6 +93,7 @@ public class Tutorial_Game implements ApplicationListener{
 		}
 		*/
 		
+		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		sb = new SpriteBatch();
@@ -110,34 +116,51 @@ public class Tutorial_Game implements ApplicationListener{
 		cam.position.set(0,0,0);
 		
 		//finishes
-		levelList[0].portal = new Finish(4,20);
-		levelList[1].portal = new Finish(5,5);
+		levelList[0].portal = new Finish(20,20);
+		levelList[1].portal = new Finish(4,20);
+		levelList[2].portal = new Finish(5,5);
 		
 		//locations
-		levelGeneration.generate(levelList[0].locs);
-		levelGeneration.generate2(levelList[1].locs);
+		levelGeneration.generateYesNo(levelList[0].locs);
+		levelGeneration.generate(levelList[1].locs);
+		levelGeneration.generate2(levelList[2].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
 		
+		//Don't worry about it
+		levelList[0].answers.add(new Yes());
+		levelList[0].answers.add(new No());
+		
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
-		levelList[0].enems.add(temp);
+		levelList[1].enems.add(temp);
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
-		levelList[0].enems.add(temp2);
+		levelList[1].enems.add(temp2);
 		
-		levelList[1].enems.add(new Bat(4,4,3,5,3,5));
-		levelList[1].enems.add(new Bat(5,5,3,5,3,5));
+		levelList[2].enems.add(new Bat(4,4,3,5,3,5));
+		levelList[2].enems.add(new Bat(5,5,3,5,3,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,3,10);
-		levelList[0].forges.add(f);
+		levelList[1].forges.add(f);
 		Forge f2 = new Armor_Forge(0,-1,3,10);
-		levelList[0].forges.add(f2);
+		levelList[1].forges.add(f2);
 		
-		levelList[1].forges.add(new Weapon_Forge(0,4,3,10));
+		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
 	}
 	public void render(){
+		
+		if(shopDelay)
+		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				//do nothing
+			}
+			shopDelay = false;
+
+		}
 		
 		if(!character.isLiving)
 		{
@@ -208,7 +231,60 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 				}
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-			
+				
+				//Jacob's special level
+				if(level == 0)
+				{
+					for(Answer f:levelList[level].answers)
+					{
+						if((place.x==f.x)&&(place.y==f.y))
+						{
+							t = f.image;
+							sb.setColor(1,1,1,1);
+						}
+					}
+					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
+					
+					sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
+					
+					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
+								  "To upgrade your " + currentForge.type + "\n" +
+								  "Would you like to? \n" +
+								  "Use b to select",200, 325);
+					if(Gdx.input.isKeyJustPressed(Input.Keys.B))
+					{
+						if(x_pos == -1)
+						{
+							if(character.gold >= currentForge.cost)
+							{
+								if(currentForge.type.equals("armor"))
+								{
+									Utilities.upgradeArmor(currentForge, character);
+								}
+								if(currentForge.type.equals("weapon"))
+								{
+									Utilities.upgradeWeapon(currentForge, character);
+								}
+							}
+							else
+							{
+								sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
+								font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 325);
+								shopDelay = true;
+							}		
+							level = currentLevel;
+							x_pos = currentForge.x;
+							y_pos = currentForge.y;
+						}
+						if(x_pos == 1)
+						{
+							level = currentLevel;
+							x_pos = currentForge.x;
+							y_pos = currentForge.y;
+						}
+					}
+				}
+
 				if(display_enemy)//if there is an enemy in sight
 				{
 					for(Enemy e: levelList[level].enems)
@@ -581,6 +657,12 @@ public class Tutorial_Game implements ApplicationListener{
 		{
 			if((f.x==x_pos)&&(f.y==y_pos))
 			{
+				currentLevel = level;
+				currentForge = f;
+				level = 0;
+				x_pos = 0;
+				y_pos = 0;
+				/*
 				if(f.shop())
 				{
 					if(character.gold>=f.cost)
@@ -600,6 +682,7 @@ public class Tutorial_Game implements ApplicationListener{
 						System.out.println("You don't have enough gold.");
 					}
 				}
+				*/
 			}
 		}
 	}
