@@ -63,7 +63,7 @@ public class Character
 	
 	int gold = 0;
 	int exp = 0;
-	int nextLevel = 20;
+	int nextLevel = 6;
 	int level = 1;
 	
 	int hpNumOfDice = 2;
