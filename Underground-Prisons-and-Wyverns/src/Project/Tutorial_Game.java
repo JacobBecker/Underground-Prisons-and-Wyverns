@@ -83,16 +83,15 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 9, 14, "Jacob");
+		//character = new Character(15, 9, 14, "Jacob");
 		
-        /*
+        
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
@@ -366,7 +365,7 @@ public class Tutorial_Game implements ApplicationListener{
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.25)), (int)(HEIGHT/2-(TILE_HEIGHT*1.5)), (int)(TILE_WIDTH * 1.25), TILE_HEIGHT*3);
 			font.draw(sb, character.name, 420, 270);
 			font.draw(sb,character.line, 420, 269);
-			font.draw(sb,"Level: " + character.level + "\nHealth: " + character.liveHP + "/" + character.maxHP + "\nGold: "+ character.gold + "\nExp: " + character.exp, 420, 245);
+			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp, +"\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
 			
 			sb.end();
 			
