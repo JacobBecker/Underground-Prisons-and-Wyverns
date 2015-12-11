@@ -39,6 +39,7 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	boolean delay = false;
 	boolean shopDelay = false;
+	boolean firstDeath = false;
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -168,12 +169,20 @@ public class Tutorial_Game implements ApplicationListener{
 			shopDelay = false;
 
 		}
-		
-		if(!character.isLiving)
+		if(firstDeath)
 		{
 			gameOver();
-			character.isLiving = true;//for now, you resurrect when you die
 		}
+		if(!character.isLiving)
+		{
+			sb.begin();
+			sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
+			sb.end();
+			firstDeath = true;
+			//character.isLiving = true;//for now, you resurrect when you die
+		}
+		else
+		{
 		
 		if((x_pos==levelList[level].portal.location_x)&&(y_pos==levelList[level].portal.location_y))
 		{
@@ -375,11 +384,6 @@ public class Tutorial_Game implements ApplicationListener{
 			font.draw(sb, character.name, 420, 270);
 			font.draw(sb,character.line, 420, 269);
 			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp +"\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
-			
-			if(character.liveHP <= 0)
-			{
-				sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
-			}
 			
 			sb.end();
 			
@@ -596,6 +600,7 @@ public class Tutorial_Game implements ApplicationListener{
 					cam_pos_y = reset_cam_y;
 				}
 			}
+		}//end of living loop here
 	}
 	public void attack()
 	{
@@ -694,7 +699,12 @@ public class Tutorial_Game implements ApplicationListener{
 	}
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
-		//Gdx.app.exit();//ends program
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			//do nothing
+		}
+		Gdx.app.exit();//ends program
 	}
 	public void win(){
 		System.out.println("You win");//change to displaying text
