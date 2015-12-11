@@ -16,6 +16,8 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	Forge currentForge;
 	int currentLevel;
+	int current_cam_x;
+	int current_cam_y;
 	
     private BitmapFont font;
 	
@@ -78,15 +80,16 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		//character = new Character(15, 9, 14, "Jacob");
+		character = new Character(15, 9, 14, "Jacob");
 		
-        
+        /*
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
@@ -153,6 +156,15 @@ public class Tutorial_Game implements ApplicationListener{
 			} catch (InterruptedException e1) {
 				//do nothing
 			}
+			level = currentLevel;
+			
+			cam_pos_x =current_cam_x;
+			cam_pos_y = current_cam_y;
+			reset_cam_x = current_cam_x;
+			reset_cam_y = current_cam_y;
+			
+			x_pos = currentForge.x;
+			y_pos = currentForge.y;
 			shopDelay = false;
 
 		}
@@ -239,7 +251,6 @@ public class Tutorial_Game implements ApplicationListener{
 						}
 					}
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-					
 					sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
@@ -260,22 +271,33 @@ public class Tutorial_Game implements ApplicationListener{
 								{
 									Utilities.upgradeWeapon(currentForge, character);
 								}
+								level = currentLevel;
+								
+								cam_pos_x =current_cam_x;
+								cam_pos_y = current_cam_y;
+								reset_cam_x = current_cam_x;
+								reset_cam_y = current_cam_y;
 							}
 							else
 							{
 								sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
 								font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 325);
 								shopDelay = true;
+								
 							}		
-							level = currentLevel;
-							x_pos = currentForge.x;
-							y_pos = currentForge.y;
+							
 						}
 						if(x_pos == 1)
 						{
 							level = currentLevel;
+							
 							x_pos = currentForge.x;
 							y_pos = currentForge.y;
+							
+							cam_pos_x =current_cam_x;
+							cam_pos_y = current_cam_y;
+							reset_cam_x = current_cam_x;
+							reset_cam_y = current_cam_y;
 						}
 					}
 				}
@@ -659,27 +681,14 @@ public class Tutorial_Game implements ApplicationListener{
 				level = 0;
 				x_pos = 0;
 				y_pos = 0;
-				/*
-				if(f.shop())
-				{
-					if(character.gold>=f.cost)
-					{
-						character.gold-=f.cost;
-						if(f instanceof Weapon_Forge)
-						{
-							character.strength+=f.benefit;
-						}
-						else
-						{
-							character.armor+=f.benefit;
-						}
-					}
-					else
-					{
-						System.out.println("You don't have enough gold.");
-					}
-				}
-				*/
+				
+				current_cam_x = cam_pos_x;
+				current_cam_y = cam_pos_y;
+				
+				cam_pos_x = 0;
+				cam_pos_y = 0;
+				reset_cam_x = 0;
+				reset_cam_y = 0;
 			}
 		}
 	}

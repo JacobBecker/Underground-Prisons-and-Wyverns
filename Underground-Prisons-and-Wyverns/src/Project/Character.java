@@ -85,13 +85,6 @@ public class Character
 		strength = str;
 		constitution = con;
 		defence = arm;
-		//name length and while loop are for displaying underline on scroll
-		nameLength = name.length();
-		while (counter <= nameLength-1)
-		{
-			line = line + "_";
-		    counter ++;
-		}
 		
 		//Assigning str bonus
 		if(strength < 13)
@@ -162,7 +155,14 @@ public class Character
 										+ "Your Strength affects your damage with melee weapons\n"
 										+ "Your Constituation affects your Hit Points, or your health\n"
 										+ "Your Defence affects how much damage you take");
-
+		
+		//name length and while loop are for displaying underline on scroll
+		nameLength = name.length();
+		while (counter <= nameLength-1)
+		{
+			line = line + "_";
+		    counter ++;
+		}
 //Character choice code	start	
 		String[] classchoices = {"Warrior", "Cleric", "Thief"};//class choices
 		
