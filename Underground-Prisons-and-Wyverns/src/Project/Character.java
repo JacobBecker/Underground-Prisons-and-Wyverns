@@ -161,7 +161,7 @@ public class Character
 		JOptionPane.showMessageDialog(null, "Now, you can choose your ability scores\n"
 										+ "Your Strength affects your damage with melee weapons\n"
 										+ "Your Constituation affects your Hit Points, or your health\n"
-										+ "Your Defence affects how much damage you take");
+										+ "Your Defense affects how much damage you take");
 
 //Character choice code	start	
 		String[] classchoices = {"Warrior", "Cleric", "Thief"};//class choices
@@ -204,7 +204,7 @@ public class Character
 			postScores[1] = y.getValue();
 		}
 		
-		JOptionPane.showMessageDialog(null, "What is your defence " + name + "?");
+		JOptionPane.showMessageDialog(null, "What is your defense " + name + "?");
 		AbilityScoreRadio z = new AbilityScoreRadio (preScores, postScores);
 		while(postScores[2] == 0)
 		{
@@ -216,57 +216,45 @@ public class Character
 		defence = postScores[2];
 		
 		//Assigning str bonus
-		if(strength < 13)
+		if(chosenclass.equals("Thief"))
 		{
-			strBonus = 0;
+			strBonus = 4;
 		}
-		else if(strength < 15)
-		{
-			strBonus = 1;
-		}
-		else if(strength < 18)
+		else if(chosenclass.equals("Cleric"))
 		{
 			strBonus = 2;
 		}
-		else
+		else if(chosenclass.equals("Warrior"))
 		{
-			strBonus = 3;
+			strBonus = 1;
 		}
 		
 		//Assigning con bonus
-		if(constitution <13)
-		{
-			conBonus = 0;
-		}
-		else if(constitution < 15)
+		if(chosenclass.equals("Thief"))
 		{
 			conBonus = 1;
 		}
-		else if(constitution < 18)
+		else if(chosenclass.equals("Cleric"))
+		{
+			conBonus = 4;
+		}
+		else if(chosenclass.equals("Warrior"))
 		{
 			conBonus = 2;
 		}
-		else
-		{
-			conBonus = 3;
-		}
 		
 		//Assigning armor bonus
-		if(defence <13)
+		if(chosenclass.equals("Thief"))
 		{
-			armorBonus = 0;
+			armorBonus = 1;
 		}
-		else if(defence < 15)
+		else if(chosenclass.equals("Cleric"))
 		{
 			armorBonus = 2;
 		}
-		else if(defence < 18)
+		else if(chosenclass.equals("Warrior"))
 		{
 			armorBonus = 4;
-		}
-		else
-		{
-			armorBonus = 6;
 		}
 		
 		//HP
@@ -276,6 +264,7 @@ public class Character
 		//Armor
 		armor = 10 + armorBonus;
 		
+		strength = strength + strBonus;
 	}
 }
 
