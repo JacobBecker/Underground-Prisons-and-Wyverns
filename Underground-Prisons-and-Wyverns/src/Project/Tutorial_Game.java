@@ -1,8 +1,5 @@
 package Project;
 
-import java.sql.Time;
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -20,7 +17,6 @@ public class Tutorial_Game implements ApplicationListener{
 	Forge currentForge;
 	int currentLevel;
 	
-	private SpriteBatch batch;
     private BitmapFont font;
 	
 	
