@@ -76,7 +76,7 @@ public class Tutorial_Game implements ApplicationListener{
 		  
         font = new BitmapFont();
         font.setColor(Color.RED);
-		
+        	
 		character = new Character(15, 9, 14, "Jacob");
 		
         /*
@@ -279,7 +279,7 @@ public class Tutorial_Game implements ApplicationListener{
 			
 			
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.25)), (int)(HEIGHT/2-(TILE_HEIGHT*1.5)), (int)(TILE_WIDTH * 1.25), TILE_HEIGHT*3);
-			font.draw(sb, character.liveHP + "/" + character.maxHP, 450, HEIGHT/2);
+			font.draw(sb, character.name + "\nLevel: " + character.level + "\nHealth: " + character.liveHP + "/" + character.maxHP + "\nGold: "+ character.gold + "\nExp: " + character.exp, 420, 270);
 			
 			if(character.liveHP <= 0)
 			{
