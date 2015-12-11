@@ -101,6 +101,11 @@ public class Enemy
 						current_x = move_x;
 						current_y = move_y;
 					}
+					else
+					{
+						move_x = current_x;
+						move_y = current_y;
+					}
 					//System.out.println(	"2");					
 				}
 				/*else
