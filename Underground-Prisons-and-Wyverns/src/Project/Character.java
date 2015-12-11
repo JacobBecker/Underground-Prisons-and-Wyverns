@@ -71,7 +71,11 @@ public class Character
 	
 	int atkNumOfDice = 1;
 	int atkDiceSides = 6;
-
+	
+	//these is for displaying line under name
+	int nameLength;
+	int counter = 1;
+	String line = "_";
 	
 	//This is for generation of a test character w/o going through all the Dialog
 	//Solely for testing purposes
@@ -81,6 +85,13 @@ public class Character
 		strength = str;
 		constitution = con;
 		defence = arm;
+		//name length and while loop are for displaying underline on scroll
+		nameLength = name.length();
+		while (counter <= nameLength-1)
+		{
+			line = line + "_";
+		    counter ++;
+		}
 		
 		//Assigning str bonus
 		if(strength < 13)
