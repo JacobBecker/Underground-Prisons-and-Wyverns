@@ -22,6 +22,8 @@ public class Enemy
 	int diceSides;
 	String name;
 	boolean isLiving = true;
+	boolean looted = false;
+	
 	Texture pic;
 	Texture deadPic;
 	

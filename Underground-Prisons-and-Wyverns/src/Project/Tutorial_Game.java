@@ -40,6 +40,7 @@ public class Tutorial_Game implements ApplicationListener{
 	boolean delay = false;
 	boolean shopDelay = false;
 	boolean firstDeath = false;
+	boolean firstWin = false;
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -69,6 +70,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture down;
 	Finish portal;
 	Texture gameover;
+	Texture win;
 	
 	public void create()
 	{ 
@@ -94,6 +96,7 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
+		win = new Texture(Gdx.files.internal("assets/win.jpg"));
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
@@ -150,6 +153,10 @@ public class Tutorial_Game implements ApplicationListener{
 	}
 	public void render(){
 		
+		if(firstWin)
+		{
+			win();
+		}
 		if(shopDelay)
 		{
 			try {
@@ -195,7 +202,7 @@ public class Tutorial_Game implements ApplicationListener{
 			if(level==finalLevel)
 			{
 				level--;
-				win();
+				firstWin = true;
 			}
 		}
 		
@@ -600,6 +607,12 @@ public class Tutorial_Game implements ApplicationListener{
 					cam_pos_y = reset_cam_y;
 				}
 			}
+			if(firstWin)
+			{
+				sb.begin();
+				sb.draw(win, 0, 0, WIDTH, HEIGHT);
+				sb.end();
+			}
 		}//end of living loop here
 	}
 	public void attack()
@@ -708,6 +721,11 @@ public class Tutorial_Game implements ApplicationListener{
 	}
 	public void win(){
 		System.out.println("You win");//change to displaying text
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			//do nothing
+		}
 		Gdx.app.exit();//ends program
 	}
 }

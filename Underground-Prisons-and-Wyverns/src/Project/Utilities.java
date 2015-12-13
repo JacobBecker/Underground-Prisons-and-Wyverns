@@ -27,10 +27,12 @@ public class Utilities
 			if(enemy.HP <= 0)
 			{
 				enemy.isLiving = false;
-				
-				character.gold += enemy.gold;
-				character.exp += enemy.exp;
-				
+				if(enemy.looted==false)
+				{
+					character.gold += enemy.gold;
+					character.exp += enemy.exp;
+					enemy.looted = true;
+				}
 				if(character.exp >= character.nextLevel)
 				{
 					levelup(character);
@@ -68,6 +70,7 @@ public class Utilities
 	public static void levelup(Character character)
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
+		character.heal();//restores character to full health.
 		character.nextLevel += 20;
 		character.level++;
 	}

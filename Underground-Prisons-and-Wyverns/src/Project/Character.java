@@ -266,5 +266,9 @@ public class Character
 		
 		strength = strength + strBonus;
 	}
+	
+	void heal(){
+		liveHP = maxHP;
+	}
 }
 
