@@ -1,8 +1,5 @@
 package Project;
 
-import java.sql.Time;
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -19,8 +16,9 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	Forge currentForge;
 	int currentLevel;
+	int current_cam_x;
+	int current_cam_y;
 	
-	private SpriteBatch batch;
     private BitmapFont font;
 	
 	
@@ -41,6 +39,8 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	boolean delay = false;
 	boolean shopDelay = false;
+	boolean firstDeath = false;
+	boolean firstWin = false;
 	
 	boolean cameraMode = false;
 	int x_pos = 0;
@@ -70,6 +70,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture down;
 	Finish portal;
 	Texture gameover;
+	Texture win;
 	
 	public void create()
 	{ 
@@ -82,18 +83,20 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		//character = new Character(15, 9, 14, "Jacob");
+		character = new Character(15, 9, 14, "Jacob");
 		
-        
+        /*
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
+		win = new Texture(Gdx.files.internal("assets/win.jpg"));
 		scroll = new Texture(Gdx.files.internal("assets/scroll 2.png"));
 		sb = new SpriteBatch();
 		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
@@ -128,8 +131,6 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//Don't worry about it
-		levelList[0].answers.add(new Yes());
-		levelList[0].answers.add(new No());
 		
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
@@ -137,8 +138,8 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[1].enems.add(temp2);
 		
-		levelList[2].enems.add(new Bat(4,4,3,5,3,5));
-		levelList[2].enems.add(new Bat(5,5,3,5,3,5));
+		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
+		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,3,10);
@@ -150,6 +151,10 @@ public class Tutorial_Game implements ApplicationListener{
 	}
 	public void render(){
 		
+		if(firstWin)
+		{
+			win();
+		}
 		if(shopDelay)
 		{
 			try {
@@ -157,15 +162,32 @@ public class Tutorial_Game implements ApplicationListener{
 			} catch (InterruptedException e1) {
 				//do nothing
 			}
+			level = currentLevel;
+			
+			cam_pos_x =current_cam_x;
+			cam_pos_y = current_cam_y;
+			reset_cam_x = current_cam_x;
+			reset_cam_y = current_cam_y;
+			
+			x_pos = currentForge.x;
+			y_pos = currentForge.y;
 			shopDelay = false;
 
 		}
-		
-		if(!character.isLiving)
+		if(firstDeath)
 		{
 			gameOver();
-			character.isLiving = true;//for now, you resurrect when you die
 		}
+		if(!character.isLiving)
+		{
+			sb.begin();
+			sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
+			sb.end();
+			firstDeath = true;
+			//character.isLiving = true;//for now, you resurrect when you die
+		}
+		else
+		{
 		
 		if((x_pos==levelList[level].portal.location_x)&&(y_pos==levelList[level].portal.location_y))
 		{
@@ -178,7 +200,7 @@ public class Tutorial_Game implements ApplicationListener{
 			if(level==finalLevel)
 			{
 				level--;
-				win();
+				firstWin = true;
 			}
 		}
 		
@@ -234,53 +256,55 @@ public class Tutorial_Game implements ApplicationListener{
 				//Jacob's special level
 				if(level == 0)
 				{
-					for(Answer f:levelList[level].answers)
-					{
-						if((place.x==f.x)&&(place.y==f.y))
-						{
-							t = f.image;
-							sb.setColor(1,1,1,1);
-						}
-					}
+					direction = 0; 
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-					
-					sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
+					sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
 								  "To upgrade your " + currentForge.type + "\n" +
 								  "Would you like to? \n" +
-								  "Use b to select",200, 325);
-					if(Gdx.input.isKeyJustPressed(Input.Keys.B))
+								  "(Y)es or (N)o",200, 400);
+					
+					
+					if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
 					{
-						if(x_pos == -1)
+						if(character.gold >= currentForge.cost)
 						{
-							if(character.gold >= currentForge.cost)
+							if(currentForge.type.equals("armor"))
 							{
-								if(currentForge.type.equals("armor"))
-								{
-									Utilities.upgradeArmor(currentForge, character);
-								}
-								if(currentForge.type.equals("weapon"))
-								{
-									Utilities.upgradeWeapon(currentForge, character);
-								}
+								Utilities.upgradeArmor(currentForge, character);
 							}
-							else
+							if(currentForge.type.equals("weapon"))
 							{
-								sb.draw(box, 175, 225, TILE_WIDTH*3, TILE_HEIGHT*2);
-								font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 325);
-								shopDelay = true;
-							}		
+								Utilities.upgradeWeapon(currentForge, character);
+							}
 							level = currentLevel;
-							x_pos = currentForge.x;
-							y_pos = currentForge.y;
+							
+							cam_pos_x =current_cam_x;
+							cam_pos_y = current_cam_y;
+							reset_cam_x = current_cam_x;
+							reset_cam_y = current_cam_y;
 						}
-						if(x_pos == 1)
+						else
 						{
-							level = currentLevel;
-							x_pos = currentForge.x;
-							y_pos = currentForge.y;
+							sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
+							shopDelay = true;
+							
 						}
+					}
+					else if(Gdx.input.isKeyJustPressed(Input.Keys.N))
+					{
+						level = currentLevel;
+						
+						x_pos = currentForge.x;
+						y_pos = currentForge.y;
+						
+						cam_pos_x =current_cam_x;
+						cam_pos_y = current_cam_y;
+						reset_cam_x = current_cam_x;
+						reset_cam_y = current_cam_y;
+
 					}
 				}
 
@@ -357,11 +381,6 @@ public class Tutorial_Game implements ApplicationListener{
 			font.draw(sb, character.name, 420, 270);
 			font.draw(sb,character.line, 420, 269);
 			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
-			
-			if(character.liveHP <= 0)
-			{
-				sb.draw(gameover, 0, 0, WIDTH, HEIGHT);
-			}
 			
 			sb.end();
 			
@@ -578,6 +597,13 @@ public class Tutorial_Game implements ApplicationListener{
 					cam_pos_y = reset_cam_y;
 				}
 			}
+			if(firstWin)
+			{
+				sb.begin();
+				sb.draw(win, 0, 0, WIDTH, HEIGHT);
+				sb.end();
+			}
+		}//end of living loop here
 	}
 	public void attack()
 	{
@@ -663,36 +689,33 @@ public class Tutorial_Game implements ApplicationListener{
 				level = 0;
 				x_pos = 0;
 				y_pos = 0;
-				/*
-				if(f.shop())
-				{
-					if(character.gold>=f.cost)
-					{
-						character.gold-=f.cost;
-						if(f instanceof Weapon_Forge)
-						{
-							character.strength+=f.benefit;
-						}
-						else
-						{
-							character.armor+=f.benefit;
-						}
-					}
-					else
-					{
-						System.out.println("You don't have enough gold.");
-					}
-				}
-				*/
+				
+				current_cam_x = cam_pos_x;
+				current_cam_y = cam_pos_y;
+				
+				cam_pos_x = 0;
+				cam_pos_y = 0;
+				reset_cam_x = 0;
+				reset_cam_y = 0;
 			}
 		}
 	}
 	public void gameOver(){
 		System.out.println("Game over");//change to displaying text
-		//Gdx.app.exit();//ends program
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			//do nothing
+		}
+		Gdx.app.exit();//ends program
 	}
 	public void win(){
 		System.out.println("You win");//change to displaying text
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			//do nothing
+		}
 		Gdx.app.exit();//ends program
 	}
 }
