@@ -6,6 +6,5 @@ public class Level {
 	ArrayList<Location> locs = new ArrayList<Location>();
 	ArrayList<Enemy> enems = new ArrayList<Enemy>();
 	ArrayList<Forge> forges = new ArrayList<Forge>();
-	ArrayList<Answer> answers = new ArrayList<Answer>();
 	Finish portal;
 }

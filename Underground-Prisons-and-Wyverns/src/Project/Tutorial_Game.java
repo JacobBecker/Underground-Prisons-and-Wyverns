@@ -131,8 +131,6 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//Don't worry about it
-		levelList[0].answers.add(new Yes());
-		levelList[0].answers.add(new No());
 		
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
@@ -258,63 +256,55 @@ public class Tutorial_Game implements ApplicationListener{
 				//Jacob's special level
 				if(level == 0)
 				{
-					for(Answer f:levelList[level].answers)
-					{
-						if((place.x==f.x)&&(place.y==f.y))
-						{
-							t = f.image;
-							sb.setColor(1,1,1,1);
-						}
-					}
+					direction = 0; 
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 					sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
 								  "To upgrade your " + currentForge.type + "\n" +
 								  "Would you like to? \n" +
-								  "Use b to select",200, 400);
-					if(Gdx.input.isKeyJustPressed(Input.Keys.B))
+								  "(Y)es or (N)o",200, 400);
+					
+					
+					if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
 					{
-						if(x_pos == -1)
+						if(character.gold >= currentForge.cost)
 						{
-							if(character.gold >= currentForge.cost)
+							if(currentForge.type.equals("armor"))
 							{
-								if(currentForge.type.equals("armor"))
-								{
-									Utilities.upgradeArmor(currentForge, character);
-								}
-								if(currentForge.type.equals("weapon"))
-								{
-									Utilities.upgradeWeapon(currentForge, character);
-								}
-								level = currentLevel;
-								
-								cam_pos_x =current_cam_x;
-								cam_pos_y = current_cam_y;
-								reset_cam_x = current_cam_x;
-								reset_cam_y = current_cam_y;
+								Utilities.upgradeArmor(currentForge, character);
 							}
-							else
+							if(currentForge.type.equals("weapon"))
 							{
-								sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
-								font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
-								shopDelay = true;
-								
-							}		
-							
-						}
-						if(x_pos == 1)
-						{
+								Utilities.upgradeWeapon(currentForge, character);
+							}
 							level = currentLevel;
-							
-							x_pos = currentForge.x;
-							y_pos = currentForge.y;
 							
 							cam_pos_x =current_cam_x;
 							cam_pos_y = current_cam_y;
 							reset_cam_x = current_cam_x;
 							reset_cam_y = current_cam_y;
 						}
+						else
+						{
+							sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
+							shopDelay = true;
+							
+						}
+					}
+					else if(Gdx.input.isKeyJustPressed(Input.Keys.N))
+					{
+						level = currentLevel;
+						
+						x_pos = currentForge.x;
+						y_pos = currentForge.y;
+						
+						cam_pos_x =current_cam_x;
+						cam_pos_y = current_cam_y;
+						reset_cam_x = current_cam_x;
+						reset_cam_y = current_cam_y;
+
 					}
 				}
 
