@@ -240,7 +240,7 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else
 					{
-						sb.setColor(0,0,2,1);
+						sb.setColor(1,1,1,1);
 						display_enemy = true;
 					}
 				}
