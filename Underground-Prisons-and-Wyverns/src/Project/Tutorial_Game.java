@@ -138,8 +138,8 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp2 = new Goblin(4,12,3,5,11,13);
 		levelList[1].enems.add(temp2);
 		
-		levelList[2].enems.add(new Bat(4,4,3,5,3,5));
-		levelList[2].enems.add(new Bat(5,5,3,5,3,5));
+		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
+		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,3,10);

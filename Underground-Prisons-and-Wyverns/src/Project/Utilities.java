@@ -71,7 +71,7 @@ public class Utilities
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
 		character.heal();//restores character to full health.
-		character.nextLevel += 20;
+		character.nextLevel += 6;
 		character.level++;
 	}
 	
