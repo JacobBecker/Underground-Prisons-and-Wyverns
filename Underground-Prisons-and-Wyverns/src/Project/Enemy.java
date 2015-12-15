@@ -22,6 +22,8 @@ public class Enemy
 	int diceSides;
 	String name;
 	boolean isLiving = true;
+	boolean looted = false;
+	
 	Texture pic;
 	Texture deadPic;
 	
@@ -80,10 +82,6 @@ public class Enemy
 					move_x = current_x;
 			}
 
-			
-			//current_x = move_x;
-			//current_y = move_y;
-			//System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);
 			for(Location place:locs)
 			{		//System.out.println("1");
 				if((place.x==move_x)&&(place.y==move_y)&& (move_x<=boundx2) && (move_x>= boundx1) && (move_y<=boundy2) && (move_y>=boundy1))
@@ -91,7 +89,7 @@ public class Enemy
 					boolean valid = true;
 					for(Enemy e:enems)
 					{
-						if((e.current_x==current_x)&&(e.current_y==current_y)&&(e.isLiving)&&(e!=this))
+						if((e.current_x==move_x)&&(e.current_y==move_y)&&(e.isLiving)&&(e!=this))
 						{
 							valid=false;
 						}
@@ -106,15 +104,9 @@ public class Enemy
 						move_x = current_x;
 						move_y = current_y;
 					}
-					//System.out.println(	"2");					
+					//System.out.println("enemy: " + current_x + " , "+ current_y +" yours: "+ character_x +" , " + character_y);				
 				}
-				/*else
-				{
-					//find a new location to move to 
-					move_x = current_x;
-					move_y = current_y;
-						
-				}		*/			
+		
 			}									
 		}
 	}

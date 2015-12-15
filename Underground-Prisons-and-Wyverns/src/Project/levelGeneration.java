@@ -6,10 +6,7 @@ public class levelGeneration
 {
 	public static void generateYesNo(ArrayList<Location> locs)
 	{
-		for(int x=-1; x <=1; x++)
-		{
-			locs.add(new Location(x,0));
-		}
+		locs.add(new Location(0,0));	
 	}
 	public static void generate(ArrayList<Location> locs)
 	{
