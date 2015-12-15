@@ -194,7 +194,9 @@ public class Tutorial_Game implements ApplicationListener{
 			x_pos=0;
 			y_pos=0;
 			cam_pos_x = 0;
+			reset_cam_x = 0;
 			cam_pos_y = 0;
+			reset_cam_y = 0;
 			level++;
 		
 			if(level==finalLevel)
@@ -248,7 +250,7 @@ public class Tutorial_Game implements ApplicationListener{
 					if((place.x==f.x)&&(place.y==f.y))
 					{
 						t = f.image;
-						sb.setColor(1,1,1,1);
+						//sb.setColor(1,1,1,1);
 					}
 				}
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
