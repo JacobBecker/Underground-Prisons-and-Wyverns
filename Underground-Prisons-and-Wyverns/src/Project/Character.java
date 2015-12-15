@@ -145,7 +145,7 @@ public class Character
 		liveHP = maxHP;
 		
 		//Armor
-		armor = 10 + armorBonus;
+		defence = 10 + armorBonus;
 	}
 	
 	public Character() throws InterruptedException
@@ -216,53 +216,80 @@ public class Character
 		defence = postScores[2];
 		
 		//Assigning str bonus
-		if(chosenclass.equals("Thief"))
+		//Assigning str bonus
+		if(strength < 13)
 		{
-			strBonus = 4;
+			strBonus = 0;
 		}
-		else if(chosenclass.equals("Cleric"))
-		{
-			strBonus = 2;
-		}
-		else if(chosenclass.equals("Warrior"))
+		else if(strength < 15)
 		{
 			strBonus = 1;
 		}
+		else if(strength < 18)
+		{
+			strBonus = 2;
+		}
+		else
+		{
+			strBonus = 3;
+		}
 		
 		//Assigning con bonus
-		if(chosenclass.equals("Thief"))
+		if(constitution <13)
+		{
+			conBonus = 0;
+		}
+		else if(constitution < 15)
 		{
 			conBonus = 1;
 		}
-		else if(chosenclass.equals("Cleric"))
-		{
-			conBonus = 4;
-		}
-		else if(chosenclass.equals("Warrior"))
+		else if(constitution < 18)
 		{
 			conBonus = 2;
 		}
+		else
+		{
+			conBonus = 3;
+		}
 		
 		//Assigning armor bonus
-		if(chosenclass.equals("Thief"))
+		if(defence <13)
 		{
-			armorBonus = 1;
+			armorBonus = 0;
 		}
-		else if(chosenclass.equals("Cleric"))
+		else if(defence < 15)
 		{
 			armorBonus = 2;
 		}
-		else if(chosenclass.equals("Warrior"))
+		else if(defence < 18)
 		{
 			armorBonus = 4;
 		}
+		else
+		{
+			armorBonus = 6;
+		}
 		
+		//class bonus
+		if(chosenclass.equals("Thief"))
+		{
+			strBonus += 1;
+		}
+		else if(chosenclass.equals("Cleric"))
+		{
+			conBonus += 1;
+		}
+		else if(chosenclass.equals("Warrior"))
+		{
+			armorBonus += 1;
+		}
+			
 		//HP
 		maxHP = Utilities.rollDice(hpNumOfDice, hpDiceSides) + conBonus;
 		liveHP = maxHP;
 		
 		//Armor
-		armor = 10 + armorBonus;
+		defence = 10 + armorBonus;
 		
 		strength = strength + strBonus;
 	}
