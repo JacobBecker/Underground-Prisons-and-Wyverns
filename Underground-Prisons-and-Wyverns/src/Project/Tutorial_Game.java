@@ -135,8 +135,19 @@ public class Tutorial_Game implements ApplicationListener{
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[1].enems.add(temp);
-		Enemy temp2 = new Goblin(4,12,3,5,11,13);
+		Enemy temp2 = new Bat(-4,14,-8,-2,11,14);
 		levelList[1].enems.add(temp2);
+		Enemy temp3 = new Goblin(4,12,3,5,11,13);
+		levelList[1].enems.add(temp3);
+		Enemy temp4 = new Goblin(-6,4,-7,-4,4,7);
+		levelList[1].enems.add(temp4);
+		Enemy temp5 = new Bat (7,-1,7,15,-2,2);
+		levelList[1].enems.add(temp5);
+		Enemy temp6 = new Bat (11,2,7,15,-2,2);
+		levelList[1].enems.add(temp6);
+		Enemy temp7 = new Bat (13,0,7,15,-2,2);
+		levelList[1].enems.add(temp7);
+		
 		
 		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
 		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
