@@ -365,7 +365,7 @@ public class Tutorial_Game implements ApplicationListener{
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.25)), (int)(HEIGHT/2-(TILE_HEIGHT*1.5)), (int)(TILE_WIDTH * 1.25), TILE_HEIGHT*3);
 			font.draw(sb, character.name, 420, 270);
 			font.draw(sb,character.line, 420, 269);
-			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp, +"\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
+			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp +"\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
 			
 			sb.end();
 			
