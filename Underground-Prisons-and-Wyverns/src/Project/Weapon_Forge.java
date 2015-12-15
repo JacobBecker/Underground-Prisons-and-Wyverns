@@ -13,7 +13,7 @@ public class Weapon_Forge extends Forge {
 		y = y_pos;
 		benefit = b;
 		variance = v;
-		cost = 100*benefit-variance+(int)(Math.random()*2*variance);
+		cost = 10*benefit-variance+(int)(Math.random()*2*variance);
 		
 		image = new Texture(Gdx.files.internal("assets/Weapon Rack 2.jpg"));
 	}
