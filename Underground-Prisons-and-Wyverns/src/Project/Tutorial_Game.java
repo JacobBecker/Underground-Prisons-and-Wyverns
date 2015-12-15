@@ -142,9 +142,9 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
-		Forge f = new Weapon_Forge(0,1,3,10);
+		Forge f = new Weapon_Forge(0,1,3,5);
 		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,3,10);
+		Forge f2 = new Armor_Forge(0,-1,3,5);
 		levelList[1].forges.add(f2);
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));

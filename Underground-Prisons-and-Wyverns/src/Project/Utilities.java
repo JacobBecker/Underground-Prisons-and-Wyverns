@@ -78,12 +78,12 @@ public class Utilities
 	public static void upgradeArmor(Forge f, Character c)
 	{
 		c.gold -= f.cost;
-		System.out.println("We need decide on armor numbers!");
+		c.defence+=f.benefit;
 	}
 	
 	public static void upgradeWeapon(Forge f, Character c)
 	{
 		c.gold -= f.cost;
-		System.out.println("We need decide on weapon numbers!");
+		c.atkDiceSides += f.benefit;
 	}
 }
