@@ -21,7 +21,7 @@ public class Goblin extends Enemy
 		 numOfDice = 1;
 		 diceSides = 3; //Deals 1 damage
 		 name = "Goblin";
-		 gold = 6;
+		 gold = 10;
 		 exp  = 5;
 		 pic = new Texture(Gdx.files.internal("assets/Goblin_Shaman.png"));
 	   	 deadPic = new Texture(Gdx.files.internal("assets/Dead Goblin.png"));

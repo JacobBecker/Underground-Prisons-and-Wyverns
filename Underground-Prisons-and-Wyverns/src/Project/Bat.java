@@ -21,7 +21,7 @@ public class Bat extends Enemy
 		 numOfDice = 1;
 		 diceSides = 1; //Deals 1 damage
 		 name = "Bat";
-		 gold = 5;
+		 gold = 10;
 		 exp =4;
 		 pic = new Texture(Gdx.files.internal("assets/Batman.png"));
 	   	 deadPic = new Texture(Gdx.files.internal("assets/Dead Batman.png"));
