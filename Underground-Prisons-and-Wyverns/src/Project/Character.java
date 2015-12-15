@@ -137,7 +137,7 @@ public class Character
 		}
 		else
 		{
-			armorBonus = 6;
+			armorBonus = 5;
 		}
 		
 		//HP
