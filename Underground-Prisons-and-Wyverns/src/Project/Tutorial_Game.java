@@ -143,9 +143,9 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
-		Forge f = new Weapon_Forge(0,1,3,10);
+		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,3,10);
+		Forge f2 = new Armor_Forge(0,-1,1,2);
 		levelList[1].forges.add(f2);
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
@@ -199,7 +199,9 @@ public class Tutorial_Game implements ApplicationListener{
 			x_pos=0;
 			y_pos=0;
 			cam_pos_x = 0;
+			reset_cam_x = 0;
 			cam_pos_y = 0;
+			reset_cam_y = 0;
 			level++;
 		
 			if(level==finalLevel)
@@ -253,7 +255,7 @@ public class Tutorial_Game implements ApplicationListener{
 					if((place.x==f.x)&&(place.y==f.y))
 					{
 						t = f.image;
-						sb.setColor(1,1,1,1);
+						//sb.setColor(1,1,1,1);
 					}
 				}
 				
@@ -392,11 +394,10 @@ public class Tutorial_Game implements ApplicationListener{
 			}
 			sb.draw(t,OFFSET_X+25+TILE_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+TILE_WIDTH*y_pos+cam_pos_y-20,60,60);
 			
-			
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.5)), (int)(HEIGHT/2-(TILE_HEIGHT *2)), (int)(TILE_WIDTH * 1.5), TILE_HEIGHT*4);
 			font.draw(sb, character.name, 410, 300);
 			font.draw(sb,character.line, 410, 299);
-			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nStr: " + character.strength + "\nDef: " + character.defence,410, 270);
+			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nDef:"+ character.defence +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nStr: " + character.strength + "\nDef: " + character.defence,410, 270);
 			
 			sb.end();
 			
