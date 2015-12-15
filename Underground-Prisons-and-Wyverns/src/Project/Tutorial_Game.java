@@ -265,9 +265,10 @@ public class Tutorial_Game implements ApplicationListener{
 					if((place.x==a.x)&&(place.y==a.y))
 					{
 						t = a.image2;
-						sb.setColor(1,1,1,1);
 					}
 				}
+				
+				
 					
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 				
