@@ -109,7 +109,7 @@ public class Tutorial_Game implements ApplicationListener{
 
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
-		OFFSET_X = WIDTH/2;
+		OFFSET_X = WIDTH/2 - 50;
 		OFFSET_Y = HEIGHT/2;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);//setting the camera to look down at the entirety of the board's dimensions (at first) as seen in Tutorial_Main
 		cam.translate(WIDTH/2, HEIGHT/2);
@@ -293,6 +293,9 @@ public class Tutorial_Game implements ApplicationListener{
 							}
 							level = currentLevel;
 							
+							x_pos = currentForge.x;
+							y_pos = currentForge.y;
+														
 							cam_pos_x =current_cam_x;
 							cam_pos_y = current_cam_y;
 							reset_cam_x = current_cam_x;
