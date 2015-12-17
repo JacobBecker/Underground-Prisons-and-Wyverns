@@ -286,12 +286,12 @@ public class Tutorial_Game implements ApplicationListener{
 				{
 					direction = 0; 
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-					sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+					sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
 								  "To upgrade your " + currentForge.type + "\n" +
 								  "Would you like to? \n" +
-								  "(Y)es or (N)o",200, 400);
+								  "(Y)es or (N)o",150, 400);
 					
 					
 					if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
@@ -318,8 +318,8 @@ public class Tutorial_Game implements ApplicationListener{
 						}
 						else
 						{
-							sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
-							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
+							sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",150, 400);
 							shopDelay = true;
 							
 						}
