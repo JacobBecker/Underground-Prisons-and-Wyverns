@@ -84,16 +84,16 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 15, 14, "Jacob");
+		//character = new Character(15, 15, 14, "Jacob");
 		
-        /*
+        
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
