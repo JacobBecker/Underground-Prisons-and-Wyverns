@@ -149,8 +149,8 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].enems.add(temp7);
 		
 		
-		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
-		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
+		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
+		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
@@ -395,7 +395,7 @@ public class Tutorial_Game implements ApplicationListener{
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.5)), (int)(HEIGHT/2-(TILE_HEIGHT *2)), (int)(TILE_WIDTH * 1.5), TILE_HEIGHT*4);
 			font.draw(sb, character.name, 410, 300);
 			font.draw(sb,character.line, 410, 299);
-			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nDef:"+ character.defence +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nStr: " + character.strength + "\nDef: " + character.defence,410, 270);
+			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nDef:"+ character.defence +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nDmg: " + character.atkDiceSides ,410, 270);
 			
 			sb.end();
 			
