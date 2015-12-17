@@ -63,6 +63,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture terrain;
 	Texture attack;
 	Texture hit;
+	Texture n;
 	Texture t;
 	Texture right;
 	Texture up;
@@ -159,6 +160,10 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].forges.add(f2);
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
+		
+		//fountains
+		Fountain a = new Fountain(-1, 0);
+		levelList[1].fountains.add(a);
 	}
 	public void render(){
 		
@@ -264,6 +269,18 @@ public class Tutorial_Game implements ApplicationListener{
 						//sb.setColor(1,1,1,1);
 					}
 				}
+				
+				
+				for(FountainStuff a:levelList[level].fountains)
+				{
+					if((place.x==a.x)&&(place.y==a.y))
+					{
+						t = a.image2;
+					}
+				}
+				
+				
+					
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 				
 				//Jacob's special level
