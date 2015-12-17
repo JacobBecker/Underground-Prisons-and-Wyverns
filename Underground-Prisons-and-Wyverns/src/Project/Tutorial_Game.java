@@ -83,7 +83,7 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 9, 14, "Jacob");
+		character = new Character(15, 15, 14, "Jacob");
 		
         /*
 		try {
@@ -149,8 +149,8 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].enems.add(temp7);
 		
 		
-		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
-		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
+		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
+		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
