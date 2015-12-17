@@ -84,7 +84,7 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 9, 14, "Jacob");
+		character = new Character(15, 15, 14, "Jacob");
 		
         /*
 		try {
@@ -110,7 +110,7 @@ public class Tutorial_Game implements ApplicationListener{
 
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
-		OFFSET_X = WIDTH/2;
+		OFFSET_X = WIDTH/2 - 50;
 		OFFSET_Y = HEIGHT/2;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);//setting the camera to look down at the entirety of the board's dimensions (at first) as seen in Tutorial_Main
 		cam.translate(WIDTH/2, HEIGHT/2);
@@ -136,11 +136,22 @@ public class Tutorial_Game implements ApplicationListener{
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[1].enems.add(temp);
-		Enemy temp2 = new Goblin(4,12,3,5,11,13);
+		Enemy temp2 = new Bat(-4,14,-8,-2,11,14);
 		levelList[1].enems.add(temp2);
+		Enemy temp3 = new Goblin(4,12,3,5,11,13);
+		levelList[1].enems.add(temp3);
+		Enemy temp4 = new Goblin(-6,4,-7,-4,4,7);
+		levelList[1].enems.add(temp4);
+		Enemy temp5 = new Bat (7,-1,7,15,-2,2);
+		levelList[1].enems.add(temp5);
+		Enemy temp6 = new Goblin (11,2,7,15,-2,2);
+		levelList[1].enems.add(temp6);
+		Enemy temp7 = new Goblin (13,0,7,15,-2,2);
+		levelList[1].enems.add(temp7);
 		
-		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
-		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
+		
+		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
+		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
@@ -245,7 +256,7 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else
 					{
-						sb.setColor(0,0,2,1);
+						sb.setColor(1,1,1,1);
 						display_enemy = true;
 					}
 				}
@@ -299,6 +310,9 @@ public class Tutorial_Game implements ApplicationListener{
 							}
 							level = currentLevel;
 							
+							x_pos = currentForge.x;
+							y_pos = currentForge.y;
+														
 							cam_pos_x =current_cam_x;
 							cam_pos_y = current_cam_y;
 							reset_cam_x = current_cam_x;
