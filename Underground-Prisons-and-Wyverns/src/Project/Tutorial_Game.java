@@ -150,8 +150,8 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].enems.add(temp7);
 		
 		
-		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
-		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
+		//levelList[2].enems.add(new Slime(4,4,0,5,0,5));
+		//levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
@@ -221,7 +221,6 @@ public class Tutorial_Game implements ApplicationListener{
 				firstWin = true;
 			}
 		}
-		
 		if(delay)
 		{
 			try {
@@ -582,7 +581,17 @@ public class Tutorial_Game implements ApplicationListener{
 				{
 					checkShop();
 				}
-				
+				if(Gdx.input.isKeyJustPressed(Input.Keys.H))
+				{
+					for(FountainStuff a: levelList[level].fountains)
+					{
+						if((a.x==x_pos)&&(a.y==y_pos))
+						{
+							Utilities.heal(character);
+						}
+					}
+					
+				}
 				cam.position.x = x_pos;
 				cam.position.y = y_pos;
 				cam.update();
