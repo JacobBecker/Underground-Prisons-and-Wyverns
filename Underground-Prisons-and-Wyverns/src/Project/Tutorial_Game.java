@@ -84,16 +84,16 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 15, 14, "Jacob");
+		//character = new Character(15, 15, 14, "Jacob");
 		
-        /*
+        
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
@@ -149,9 +149,8 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp7 = new Goblin (13,0,7,15,-2,2);
 		levelList[1].enems.add(temp7);
 		
-		
-		//levelList[2].enems.add(new Slime(4,4,0,5,0,5));
-		//levelList[2].enems.add(new Slime(5,5,0,5,0,5));
+		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
+		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
