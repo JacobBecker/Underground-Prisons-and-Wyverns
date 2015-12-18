@@ -86,4 +86,8 @@ public class Utilities
 		c.gold -= f.cost;
 		c.atkDiceSides += f.benefit;
 	}
+	public static void heal(Character character)
+	{
+		character.liveHP = character.maxHP;
+	}
 }

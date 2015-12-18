@@ -63,6 +63,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture terrain;
 	Texture attack;
 	Texture hit;
+	Texture n;
 	Texture t;
 	Texture right;
 	Texture up;
@@ -83,16 +84,16 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 15, 14, "Jacob");
+		//character = new Character(15, 15, 14, "Jacob");
 		
-        /*
+        
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
@@ -148,9 +149,8 @@ public class Tutorial_Game implements ApplicationListener{
 		Enemy temp7 = new Goblin (13,0,7,15,-2,2);
 		levelList[1].enems.add(temp7);
 		
-		
-		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
-		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
+		levelList[2].enems.add(new Bat(4,4,0,5,0,5));
+		levelList[2].enems.add(new Bat(5,5,0,5,0,5));
 		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
@@ -159,6 +159,10 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].forges.add(f2);
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
+		
+		//fountains
+		Fountain a = new Fountain(-1, 0);
+		levelList[1].fountains.add(a);
 	}
 	public void render(){
 		
@@ -216,7 +220,6 @@ public class Tutorial_Game implements ApplicationListener{
 				firstWin = true;
 			}
 		}
-		
 		if(delay)
 		{
 			try {
@@ -264,6 +267,18 @@ public class Tutorial_Game implements ApplicationListener{
 						//sb.setColor(1,1,1,1);
 					}
 				}
+				
+				
+				for(FountainStuff a:levelList[level].fountains)
+				{
+					if((place.x==a.x)&&(place.y==a.y))
+					{
+						t = a.image2;
+					}
+				}
+				
+				
+					
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 				
 				//Jacob's special level
@@ -271,12 +286,12 @@ public class Tutorial_Game implements ApplicationListener{
 				{
 					direction = 0; 
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-					sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+					sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
 								  "To upgrade your " + currentForge.type + "\n" +
 								  "Would you like to? \n" +
-								  "(Y)es or (N)o",200, 400);
+								  "(Y)es or (N)o",150, 400);
 					
 					
 					if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
@@ -303,8 +318,8 @@ public class Tutorial_Game implements ApplicationListener{
 						}
 						else
 						{
-							sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
-							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
+							sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",150, 400);
 							shopDelay = true;
 							
 						}
@@ -565,7 +580,17 @@ public class Tutorial_Game implements ApplicationListener{
 				{
 					checkShop();
 				}
-				
+				if(Gdx.input.isKeyJustPressed(Input.Keys.H))
+				{
+					for(FountainStuff a: levelList[level].fountains)
+					{
+						if((a.x==x_pos)&&(a.y==y_pos))
+						{
+							Utilities.heal(character);
+						}
+					}
+					
+				}
 				cam.position.x = x_pos;
 				cam.position.y = y_pos;
 				cam.update();
