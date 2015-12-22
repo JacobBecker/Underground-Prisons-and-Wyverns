@@ -6,15 +6,29 @@ public class levelGeneration
 {
 	public static void generateYesNo(ArrayList<Location> locs)
 	{
-		for(int x=-1; x <=1; x++)
-		{
-			locs.add(new Location(x,0));
-		}
+		locs.add(new Location(0,0));	
 	}
 	public static void generate(ArrayList<Location> locs)
 	{
 		int x;
 		int y;
+		//Secret room test
+		for(y=5; y>=3; y--)
+		{
+			locs.add(new Location(7,y));
+		}
+		for(Location l: locs)
+		{
+			l.secret = true;
+		}
+		
+		for(y=-2; y<=2; y++)
+		{
+			for(x=7; x<=15; x++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
 		
 		//Beginning room
 		for(x=-1; x<=1; x++)
@@ -79,10 +93,10 @@ public class levelGeneration
 			locs.add(new Location(-10,y));
 		}
 		
-		//Miss-alligned room (Both)
-		for(x=-6; x<=-4; x++)
+		//Ex-Miss Aligned Room
+		for(x=-7; x<=-4; x++)
 		{
-			for(y=4; y<=5; y++)
+			for(y=4; y<=7; y++)
 			{
 				locs.add(new Location(x,y));
 			}
@@ -92,14 +106,6 @@ public class levelGeneration
 		for(y=8; y<=10; y++)
 		{
 			locs.add(new Location(-4,y));
-		}
-		
-		for(x=-7; x<=-4; x++)
-		{
-			for(y=6; y<=7; y++)
-			{
-				locs.add(new Location(x,y));
-			}
 		}
 		
 		//Why did I do this to myself (Arrowhead)

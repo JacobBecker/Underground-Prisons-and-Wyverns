@@ -63,6 +63,7 @@ public class Tutorial_Game implements ApplicationListener{
 	Texture terrain;
 	Texture attack;
 	Texture hit;
+	Texture n;
 	Texture t;
 	Texture right;
 	Texture up;
@@ -83,16 +84,16 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 9, 14, "Jacob");
+		//character = new Character(15, 15, 14, "Jacob");
 		
-        /*
+        
 		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
 		gameover = new Texture(Gdx.files.internal("assets/Gameover.jpg"));
@@ -109,7 +110,7 @@ public class Tutorial_Game implements ApplicationListener{
 
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
-		OFFSET_X = WIDTH/2;
+		OFFSET_X = WIDTH/2 - 50;
 		OFFSET_Y = HEIGHT/2;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);//setting the camera to look down at the entirety of the board's dimensions (at first) as seen in Tutorial_Main
 		cam.translate(WIDTH/2, HEIGHT/2);
@@ -131,25 +132,37 @@ public class Tutorial_Game implements ApplicationListener{
 		x.render(30);
 		
 		//Don't worry about it
-		levelList[0].answers.add(new Yes());
-		levelList[0].answers.add(new No());
 		
 		//enemies
 		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[1].enems.add(temp);
-		Enemy temp2 = new Goblin(4,12,3,5,11,13);
+		Enemy temp2 = new Bat(-4,14,-8,-2,11,14);
 		levelList[1].enems.add(temp2);
+		Enemy temp3 = new Goblin(4,12,3,5,11,13);
+		levelList[1].enems.add(temp3);
+		Enemy temp4 = new Goblin(-6,4,-7,-4,4,7);
+		levelList[1].enems.add(temp4);
+		Enemy temp5 = new Bat (7,-1,7,15,-2,2);
+		levelList[1].enems.add(temp5);
+		Enemy temp6 = new Goblin (11,2,7,15,-2,2);
+		levelList[1].enems.add(temp6);
+		Enemy temp7 = new Goblin (13,0,7,15,-2,2);
+		levelList[1].enems.add(temp7);
 		
-		levelList[2].enems.add(new Bat(4,4,3,5,3,5));
-		levelList[2].enems.add(new Bat(5,5,3,5,3,5));
+		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
+		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
 		//forges
-		Forge f = new Weapon_Forge(0,1,3,10);
+		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,3,10);
+		Forge f2 = new Armor_Forge(0,-1,1,2);
 		levelList[1].forges.add(f2);
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
+		
+		//fountains
+		Fountain a = new Fountain(-1, 0);
+		levelList[1].fountains.add(a);
 	}
 	public void render(){
 		
@@ -196,7 +209,9 @@ public class Tutorial_Game implements ApplicationListener{
 			x_pos=0;
 			y_pos=0;
 			cam_pos_x = 0;
+			reset_cam_x = 0;
 			cam_pos_y = 0;
+			reset_cam_y = 0;
 			level++;
 		
 			if(level==finalLevel)
@@ -205,7 +220,6 @@ public class Tutorial_Game implements ApplicationListener{
 				firstWin = true;
 			}
 		}
-		
 		if(delay)
 		{
 			try {
@@ -240,7 +254,7 @@ public class Tutorial_Game implements ApplicationListener{
 					}
 					else
 					{
-						sb.setColor(0,0,2,1);
+						sb.setColor(1,1,1,1);
 						display_enemy = true;
 					}
 				}
@@ -250,71 +264,78 @@ public class Tutorial_Game implements ApplicationListener{
 					if((place.x==f.x)&&(place.y==f.y))
 					{
 						t = f.image;
-						sb.setColor(1,1,1,1);
+						//sb.setColor(1,1,1,1);
 					}
 				}
+				
+				
+				for(FountainStuff a:levelList[level].fountains)
+				{
+					if((place.x==a.x)&&(place.y==a.y))
+					{
+						t = a.image2;
+					}
+				}
+				
+				
+					
 				sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
 				
 				//Jacob's special level
 				if(level == 0)
 				{
-					for(Answer f:levelList[level].answers)
-					{
-						if((place.x==f.x)&&(place.y==f.y))
-						{
-							t = f.image;
-							sb.setColor(1,1,1,1);
-						}
-					}
+					direction = 0; 
 					sb.draw(t, OFFSET_X+TILE_WIDTH*place.x+cam_pos_x,OFFSET_Y+TILE_HEIGHT*place.y+cam_pos_y,TILE_WIDTH,TILE_HEIGHT);
-					sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+					sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
 					
 					font.draw(sb, "You may spend " + currentForge.cost + " gold \n" +
 								  "To upgrade your " + currentForge.type + "\n" +
 								  "Would you like to? \n" +
-								  "Use b to select",200, 400);
-					if(Gdx.input.isKeyJustPressed(Input.Keys.B))
+								  "(Y)es or (N)o",150, 400);
+					
+					
+					if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
 					{
-						if(x_pos == -1)
+						if(character.gold >= currentForge.cost)
 						{
-							if(character.gold >= currentForge.cost)
+							if(currentForge.type.equals("armor"))
 							{
-								if(currentForge.type.equals("armor"))
-								{
-									Utilities.upgradeArmor(currentForge, character);
-								}
-								if(currentForge.type.equals("weapon"))
-								{
-									Utilities.upgradeWeapon(currentForge, character);
-								}
-								level = currentLevel;
-								
-								cam_pos_x =current_cam_x;
-								cam_pos_y = current_cam_y;
-								reset_cam_x = current_cam_x;
-								reset_cam_y = current_cam_y;
+								Utilities.upgradeArmor(currentForge, character);
 							}
-							else
+							if(currentForge.type.equals("weapon"))
 							{
-								sb.draw(box, 175, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
-								font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",200, 400);
-								shopDelay = true;
-								
-							}		
-							
-						}
-						if(x_pos == 1)
-						{
+								Utilities.upgradeWeapon(currentForge, character);
+							}
 							level = currentLevel;
 							
 							x_pos = currentForge.x;
 							y_pos = currentForge.y;
-							
+														
 							cam_pos_x =current_cam_x;
 							cam_pos_y = current_cam_y;
 							reset_cam_x = current_cam_x;
 							reset_cam_y = current_cam_y;
 						}
+						else
+						{
+							sb.draw(box, 125, 275, TILE_WIDTH*3, TILE_HEIGHT*2);
+							font.draw(sb, "You need " + (currentForge.cost - character.gold) + " more gold ",150, 400);
+							shopDelay = true;
+							
+						}
+					}
+					else if(Gdx.input.isKeyJustPressed(Input.Keys.N))
+					{
+						level = currentLevel;
+						
+						x_pos = currentForge.x;
+						y_pos = currentForge.y;
+						
+						cam_pos_x =current_cam_x;
+						cam_pos_y = current_cam_y;
+						reset_cam_x = current_cam_x;
+						reset_cam_y = current_cam_y;
+
 					}
 				}
 
@@ -386,11 +407,10 @@ public class Tutorial_Game implements ApplicationListener{
 			}
 			sb.draw(t,OFFSET_X+25+TILE_WIDTH*x_pos+cam_pos_x-20, OFFSET_Y+25+TILE_WIDTH*y_pos+cam_pos_y-20,60,60);
 			
-			
-			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.25)), (int)(HEIGHT/2-(TILE_HEIGHT*1.5)), (int)(TILE_WIDTH * 1.25), TILE_HEIGHT*3);
-			font.draw(sb, character.name, 420, 270);
-			font.draw(sb,character.line, 420, 269);
-			font.draw(sb,"Level: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nArmor:"+ character.armor +"\nGold: "+ character.gold + "\nExp: " + character.exp +"\n" +character.chosenclass + "\nStr: " + character.strength + "\nDef: " + character.defence,420, 245);
+			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.5)), (int)(HEIGHT/2-(TILE_HEIGHT *2)), (int)(TILE_WIDTH * 1.5), TILE_HEIGHT*4);
+			font.draw(sb, character.name, 410, 300);
+			font.draw(sb,character.line, 410, 299);
+			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nDef:"+ character.defence +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nStr: " + character.strength + "\nDef: " + character.defence,410, 270);
 			
 			sb.end();
 			
@@ -560,7 +580,17 @@ public class Tutorial_Game implements ApplicationListener{
 				{
 					checkShop();
 				}
-				
+				if(Gdx.input.isKeyJustPressed(Input.Keys.H))
+				{
+					for(FountainStuff a: levelList[level].fountains)
+					{
+						if((a.x==x_pos)&&(a.y==y_pos))
+						{
+							Utilities.heal(character);
+						}
+					}
+					
+				}
 				cam.position.x = x_pos;
 				cam.position.y = y_pos;
 				cam.update();

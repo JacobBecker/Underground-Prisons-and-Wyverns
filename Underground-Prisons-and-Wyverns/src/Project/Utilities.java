@@ -71,19 +71,23 @@ public class Utilities
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
 		character.heal();//restores character to full health.
-		character.nextLevel += 20;
+		character.nextLevel += 6;
 		character.level++;
 	}
 	
 	public static void upgradeArmor(Forge f, Character c)
 	{
 		c.gold -= f.cost;
-		System.out.println("We need decide on armor numbers!");
+		c.defence+=f.benefit;
 	}
 	
 	public static void upgradeWeapon(Forge f, Character c)
 	{
 		c.gold -= f.cost;
-		System.out.println("We need decide on weapon numbers!");
+		c.atkDiceSides += f.benefit;
+	}
+	public static void heal(Character character)
+	{
+		character.liveHP = character.maxHP;
 	}
 }
