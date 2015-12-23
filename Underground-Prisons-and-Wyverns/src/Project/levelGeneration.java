@@ -145,4 +145,137 @@ public class levelGeneration
 			}
 		}
 	}
+	public static void generate3(ArrayList<Location> locs)
+	{
+		int a;
+		int b;
+		 
+		
+		//Secret room 
+		for(b=-12; b<=-10; b++)
+		{
+			locs.add(new Location(1,b));
+		}
+		for(Location l: locs)
+		{
+			l.secret = true;
+		}
+		
+		
+		for(a=0; a<=2; a++)
+		{
+			for(b=-16; b<=-13; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//spawning room
+		for(a=-2; a<=2; a++)
+		{
+			for(b=-2; b<=2; b++)
+					{
+						locs.add(new Location(a,b));
+					}
+		}
+		//hallway above spawn room
+		for(b=3; b<=4; b++)
+		{
+			locs.add(new Location(0,b));
+		}
+		
+		//rectangular room above spawn room
+		for(a=-2; a<=3; a++)
+		{
+			for(b=5; b<=8; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//block long hallway leading to hallway above
+		locs.add(new Location(-2,9));
+		
+		//hallway leading to left-most room
+		for(a=-7; a<=-2; a++)
+		{
+			locs.add(new Location(a,10));
+		}
+		
+		//left most room
+		for(a=-11; a<=-8 ;a++)
+		{
+			for(b=8; b<=12; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//hallway below spawn room
+		for(b=-5; b<=-3; b++)
+		{
+			locs.add(new Location(0,b));
+		}
+		
+		//room below spawn room
+		for(a=-2; a<=2; a++)
+		{
+			for(b=-9; b<=-6; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//hallway right of spawn room
+		for(a=3; a<=4; a++)
+		{
+			locs.add(new Location(a,0));
+		}
+		
+		//room to the right of the spawn room
+		for(a=5; a<=9; a++)
+		{
+			for(b=-2; b<=2; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//hallway to portal room
+		for(a=10; a<=12; a++)
+		{
+			locs.add(new Location(a,-1));
+		}
+		
+		//portal room
+		for(a=13; a<=17; a++)
+		{
+			for(b=-3; b<=1; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+		//vertical hallway leading to top right room
+		for(b=3; b<=6; b++)
+		{
+			locs.add(new Location(7,b));
+		}
+		
+		//horizontal hallway leading to top right room
+		for(a=4; a<=9; a++)
+		{
+			locs.add(new Location(a,7));
+		}
+		
+		//top right room
+		for(a=10; a<=12; a++)
+		{
+			for(b=5; b<=9; b++)
+			{
+				locs.add(new Location(a,b));
+			}
+		}
+		
+	}
 }

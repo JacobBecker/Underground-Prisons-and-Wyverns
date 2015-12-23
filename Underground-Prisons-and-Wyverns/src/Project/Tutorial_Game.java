@@ -32,7 +32,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
 	public static int level = 1;
-	public static int finalLevel = 3;
+	public static int finalLevel = 4;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
@@ -84,15 +84,15 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		//character = new Character(15, 15, 14, "Jacob");
+		character = new Character(15, 15, 14, "Jacob");
 		
         
-		try {
+		/*try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
@@ -122,11 +122,13 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[0].portal = new Finish(20,20);
 		levelList[1].portal = new Finish(4,20);
 		levelList[2].portal = new Finish(5,5);
+		levelList[3].portal = new Finish(17,-1);
 		
 		//locations
 		levelGeneration.generateYesNo(levelList[0].locs);
 		levelGeneration.generate(levelList[1].locs);
 		levelGeneration.generate2(levelList[2].locs);
+		levelGeneration.generate3(levelList[3].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
@@ -152,6 +154,19 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
 		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
+		levelList[3].enems.add(new Snake(-1,6,-2,3,5,8));//room above spawn
+		levelList[3].enems.add(new BlackSmoke(2,7,-2,3,5,8));
+		levelList[3].enems.add(new Snake(-8,8,-11,-8,8,12));//most left room
+		levelList[3].enems.add(new Snake(-11,11,-11,-8,8,12));
+		levelList[3].enems.add(new BlackSmoke(12,9,10,12,5,9));//top right room
+		levelList[3].enems.add(new BlackSmoke(6,1,5,9,-2,2));//room right of spawn
+		levelList[3].enems.add(new Snake(1,7,-2,2,-9,-6));//room below spawn
+		levelList[3].enems.add(new BlackSmoke(-1,-8,-2,2,-9,-6));
+		levelList[3].enems.add(new Snake(1,-9,-2,2,-9,-6));
+		levelList[3].enems.add(new Snake(14,0,13,17,-3,1));//portal room
+		levelList[3].enems.add(new Snake(17,1,13,17,-3,1));
+		levelList[3].enems.add(new Snake(17,-3,13,17,-3,1));
+		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
@@ -160,9 +175,17 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
 		
+		levelList[3].forges.add(new Weapon_Forge(2,-2,3,10));
+		levelList[3].forges.add(new Weapon_Forge(1,-15,3,10));
+		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
+		
+		
 		//fountains
 		Fountain a = new Fountain(-1, 0);
 		levelList[1].fountains.add(a);
+		
+		levelList[3].fountains.add(new Fountain(1,-14));
+		
 	}
 	public void render(){
 		
