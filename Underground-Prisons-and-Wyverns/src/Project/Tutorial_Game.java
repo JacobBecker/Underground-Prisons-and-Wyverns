@@ -12,6 +12,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+/*
+ * 
+ * HEY EVERYONE! YOU CAN PRESS X TO SKIP LEVELS, FOR TESTING PURPOSES.
+ * 
+ */
+
+
 public class Tutorial_Game implements ApplicationListener{
 	
 	Forge currentForge;
@@ -32,7 +39,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
 	public static int level = 1;
-	public static int finalLevel = 5;
+	public static int finalLevel = 6;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
@@ -127,12 +134,15 @@ public class Tutorial_Game implements ApplicationListener{
 
 		levelList[3].portal = new Finish(17,-1);
 		
+		levelList[5].portal = new Finish(0,23);
+		
 		//locations
 		levelGeneration.generateYesNo(levelList[0].locs);
 		levelGeneration.generate(levelList[1].locs);
 		levelGeneration.generate2(levelList[2].locs);
 		levelGeneration.generate3(levelList[3].locs);
 		levelGeneration.generate4(levelList[4].locs);
+		levelGeneration.generate5(levelList[5].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);

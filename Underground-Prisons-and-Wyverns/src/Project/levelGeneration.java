@@ -375,4 +375,195 @@ public class levelGeneration
 					}
 				}
 	}
+	public static void generate5(ArrayList<Location> locs)
+	{
+		int i;
+		int j;
+		//secret places first
+		//small bottom hallway
+		locs.add(new Location(7,-8));
+		locs.add(new Location(7,-9));
+		//next higher hallway
+		locs.add(new Location(10,0));
+		locs.add(new Location(10,-4));
+		i=11;
+		for(j=0; j>=-4;j--)
+		{
+			locs.add(new Location(i,j));
+		}
+		//nearby hallway
+		i=12;
+		for(j=1;j<=3;j++)
+		{
+			locs.add(new Location(i,j));
+		}
+		locs.add(new Location(13,1));
+		locs.add(new Location(14,1));
+		//top winding hallway
+		locs.add(new Location(4,24));
+		locs.add(new Location(4,25));
+		j=26;
+		for(i=4;i>=-8;i--)
+		{
+			locs.add(new Location(i,j));
+		}
+		i=-8;
+		for(j=25;j>=15;j--)
+		{
+			locs.add(new Location(i,j));
+		}
+		j=15;
+		for(i=-7;i<=-2;i++)
+		{
+			locs.add(new Location(i,j));
+		}
+		i=-2;
+		for(j=14;j>=10;j--)
+		{
+			locs.add(new Location(i,j));
+		}
+		//make them secret
+		for(Location l:locs)
+		{
+			l.secret = true;
+		}
+		//first room
+		for(i=-2;i<=2;i++)
+		{
+			for(j=-2;j<=2;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//left hallway
+		j=0;
+		for(i=-5;i<=-3;i++)
+		{
+			locs.add(new Location(i,j));
+		}
+		//right hallway
+		for(i=3; i<=5; i++)
+		{
+			locs.add(new Location(i,j));
+		}
+		//left room
+		for(i=-9;i<=-6;i++)
+		{
+			for(j=-1;j<=1;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//left vertical hallway
+		i=-7;
+		for(j=2;j<=9;j++)
+		{
+			locs.add(new Location(i,j));
+		}
+		//left horizontal hallway
+		locs.add(new Location(-8,5));
+		locs.add(new Location(-9,5));
+		//left side room
+		for(i=-12;i<=-10;i++)
+		{
+			for(j=4;j<=6;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//upper left room
+		for(i=-9;i<=-5;i++)
+		{
+			for(j=10;j<=12;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		
+		//right room
+		for(i=6;i<=9;i++)
+		{
+			for(j=-1;j<=1;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//right vertical hallway
+		i=7;
+		for(j=2;j<=9;j++)
+		{
+			locs.add(new Location(i,j));
+		}
+		//right horizontal hallway
+		locs.add(new Location(8,5));
+		locs.add(new Location(9,5));
+		//right side room
+		for(i=10;i<=12;i++)
+		{
+			for(j=4;j<=6;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//upper right room
+		for(i=5;i<=9;i++)
+		{
+			for(j=10;j<=12;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//bat room
+		for(i=15;i<=17;i++)
+		{
+			for(j=0;j<=2;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//slime room
+		for(i=7;i<=9;i++)
+		{
+			for(j=-7;j<=-4;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//bottom right hidden room
+		for(i=6;i<=8;i++)
+		{
+			for(j=-12;j<=-10;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		
+		//top hallway
+		j=11;
+		for(i=0;i<=4;i++)
+		{
+			locs.add(new Location(i,j));
+		}
+		i=0;
+		for(j=12;j<=17;j++)
+		{
+			locs.add(new Location(i,j));
+		}
+		//top room
+		for(i=-5;i<=5;i++)
+		{
+			for(j=18;j<=23;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//middle room
+		for(i=-2;i<=2;i++)
+		{
+			for(j=5;j<=9;j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+	}
 }
