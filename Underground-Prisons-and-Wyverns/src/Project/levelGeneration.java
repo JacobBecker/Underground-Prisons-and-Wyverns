@@ -145,4 +145,102 @@ public class levelGeneration
 			}
 		}
 	}
+	public static void generate3(ArrayList<Location> locs)
+	{
+		//secret hallways first
+		for(int i=-3; i<0; i++)
+		{
+			locs.add(new Location(i,8));
+		}
+		for(int i=1; i<4; i++)
+		{
+			locs.add(new Location(i,8));
+		}
+		locs.add(new Location(5,5));
+		locs.add(new Location(6,5));
+		//making them secret
+		for(Location l: locs)
+		{
+			l.secret = true;
+		}
+		//first two rooms
+		for(int i=-1; i<=1; i++)
+		{
+			//first room
+			for(int j=0; j<=2; j++)
+			{
+				locs.add(new Location(i,j));
+			}
+			//second room
+			for(int j=4; j<=6; j++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//tiny hallway
+		locs.add(new Location(0,3));
+		//longer hallway
+		for(int j=7;j<=10;j++)
+		{
+			locs.add(new Location(0,j));
+		}
+		//horizontal hallway
+		for(int i=-4; i<=4; i++)
+		{
+			locs.add(new Location(i,11));
+		}
+		//long right hallway
+		for(int j=11; j>=0; j--)
+		{
+			locs.add(new Location(-4,j));
+		}
+		//long left hallway
+		for(int j=11; j>=0; j--)
+		{
+			locs.add(new Location(4,j));
+		}
+		//tiny hallway
+		locs.add(new Location(-5,5));
+		//pocket rooms
+		for(int j=4;j<=6;j++)
+		{
+			//left room
+			for(int i = -7;i<=-6;i++)
+			{
+				locs.add(new Location(i,j));
+			}
+			//right room
+			for(int i = 7;i<=8;i++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//bottom rooms
+		for(int j =-1;j>=-3;j--)
+		{
+			//left room
+			for(int i=-6; i<=-4; i++)
+			{
+				locs.add(new Location(i,j));
+			}
+			//right room
+			for(int i=4; i<=6; i++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+		//bottom hallways
+		locs.add(new Location(-3,-3));
+		locs.add(new Location(-2,-3));
+		locs.add(new Location(2,-3));
+		locs.add(new Location(3,-3));
+		//bottom middle room
+		for(int j=-3;j<=-2;j++)
+		{
+			for(int i=-1; i<=1; i++)
+			{
+				locs.add(new Location(i,j));
+			}
+		}
+	}
 }

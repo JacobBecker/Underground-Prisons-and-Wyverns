@@ -32,7 +32,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 1800;
 	public static int level = 1;
-	public static int finalLevel = 3;
+	public static int finalLevel = 4;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
@@ -122,11 +122,13 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[0].portal = new Finish(20,20);
 		levelList[1].portal = new Finish(4,20);
 		levelList[2].portal = new Finish(5,5);
+		levelList[3].portal = new Finish(0,-2);
 		
 		//locations
 		levelGeneration.generateYesNo(levelList[0].locs);
 		levelGeneration.generate(levelList[1].locs);
 		levelGeneration.generate2(levelList[2].locs);
+		levelGeneration.generate3(levelList[3].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
@@ -152,6 +154,27 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
 		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
+		//hallways
+		levelList[3].enems.add(new Slime(4,10,4,4,10,10));
+		levelList[3].enems.add(new Slime(-4,10,-4,-4,10,10));
+		//middle room
+		levelList[3].enems.add(new Slime(0,6,-1,1,4,6));
+		levelList[3].enems.add(new Goblin(0,5,-1,1,4,6));
+		//left pocket
+		levelList[3].enems.add(new Goblin(-7,5,-7,-6,4,6));
+		levelList[3].enems.add(new Slime(-6,5,-7,-6,4,6));
+		//right pocket
+		levelList[3].enems.add(new MetalSlime(8,5,7,8,4,6));
+		//bottom left
+		levelList[3].enems.add(new Goblin(-6,-1,-6,-4,-3,-1));
+		levelList[3].enems.add(new Bat(-5,-2,-6,-4,-3,-1));
+		//bottom right
+		levelList[3].enems.add(new Goblin(6,-1,4,6,-3,-1));
+		levelList[3].enems.add(new Bat(5,-2,4,6,-3,-1));
+		//bottom middle
+		levelList[3].enems.add(new Bat(-1,-3,-1,-1,-3,-3));
+		levelList[3].enems.add(new Bat(1,-3,1,1,-3,-3));
+		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
@@ -160,9 +183,13 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
 		
+		levelList[3].forges.add(new Weapon_Forge(-7,4,3,5));
+		levelList[3].forges.add(new Armor_Forge(-7,6,3,5));
 		//fountains
 		Fountain a = new Fountain(-1, 0);
 		levelList[1].fountains.add(a);
+		
+		levelList[3].fountains.add(new Fountain(0,1));
 	}
 	public void render(){
 		
