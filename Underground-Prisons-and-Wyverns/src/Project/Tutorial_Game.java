@@ -37,7 +37,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int TILE_WIDTH = 75;
 	public static int TILE_HEIGHT = 75;
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
-	public static int WORLD_HEIGHT = 1800;
+	public static int WORLD_HEIGHT = 2000;
 	public static int level = 1;
 	public static int finalLevel = 6;
 	
@@ -203,6 +203,65 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].enems.add(new Snake(17,1,13,17,-3,1));
 		levelList[3].enems.add(new Snake(17,-3,13,17,-3,1));
 		
+		//first room
+		levelList[5].enems.add(new Bat(-2,0,-2,2,-2,2));
+		levelList[5].enems.add(new Bat(2,0,-2,2,-2,2));
+		levelList[5].enems.add(new Bat(0,2,-2,2,-2,2));
+		levelList[5].enems.add(new Bat(0,-2,-2,2,-2,2));
+		//left room
+		levelList[5].enems.add(new Goblin(-7,0,-9,-6,-1,1));
+		//left side room
+		levelList[5].enems.add(new Goblin(-11,5,-12,-10,4,6));
+		//upper left room
+		levelList[5].enems.add(new Bat(-9,12,-9,-5,10,12));
+		levelList[5].enems.add(new Bat(-5,12,-9,-5,10,12));
+		levelList[5].enems.add(new GiantFerret(-8,11,-9,-5,10,12));
+		levelList[5].enems.add(new GiantFerret(-6,11,-9,-5,10,12));
+		//right room
+		levelList[5].enems.add(new Goblin(7,0,6,9,-1,1));
+		levelList[5].enems.add(new Slime(9,0,9,9,0,0));
+		//right side room
+		levelList[5].enems.add(new Bat(10,4,10,12,4,6));
+		levelList[5].enems.add(new Bat(10,6,10,12,4,6));
+		levelList[5].enems.add(new Bat(11,5,10,12,4,6));
+		//upper right room
+		levelList[5].enems.add(new GiantFerret(7,11,5,9,10,12));
+		//top room
+		levelList[5].enems.add(new Goblin(-1,18,-5,5,18,23));
+		levelList[5].enems.add(new Goblin(1,18,-5,5,18,23));
+		levelList[5].enems.add(new Bat(-5,20,-5,5,18,23));
+		levelList[5].enems.add(new Bat(-5,21,-5,5,18,23));
+		levelList[5].enems.add(new Bat(-5,22,-5,5,18,23));
+		levelList[5].enems.add(new Bat(5,20,-5,5,18,23));
+		levelList[5].enems.add(new Bat(5,21,-5,5,18,23));
+		levelList[5].enems.add(new Bat(5,22,-5,5,18,23));
+		levelList[5].enems.add(new GiantFerret(-1,23,-5,5,18,23));
+		levelList[5].enems.add(new GiantFerret(1,23,-5,5,18,23));
+		//middle room
+		levelList[5].enems.add(new MetalSlime(0,9,-2,2,5,9));
+		levelList[5].enems.add(new MetalSlime(1,9,-2,2,5,9));
+		levelList[5].enems.add(new MetalSlime(2,9,-2,2,5,9));
+		levelList[5].enems.add(new Goblin(0,5,-2,2,5,9));
+		levelList[5].enems.add(new Goblin(1,6,-2,2,5,9));
+		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9));
+		levelList[5].enems.add(new Slime(1,5,-2,2,5,9));
+		levelList[5].enems.add(new Slime(2,6,-2,2,5,9));
+		//bat room
+		levelList[5].enems.add(new Bat(16,0,15,17,0,2));
+		levelList[5].enems.add(new Bat(16,2,15,17,0,2));
+		levelList[5].enems.add(new Bat(17,0,15,17,0,2));
+		levelList[5].enems.add(new Bat(17,1,15,17,0,2));
+		levelList[5].enems.add(new Bat(17,2,15,17,0,2));
+		//slime room
+		levelList[5].enems.add(new Slime(8,-4,7,9,-7,-4));
+		levelList[5].enems.add(new Slime(7,-5,7,9,-7,-5));
+		levelList[5].enems.add(new Slime(9,-5,7,9,-7,-5));
+		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5));
+		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5));
+		levelList[5].enems.add(new BigSlime(8,-6,8,8,-6,-6));
+		//extra room
+		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
+		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
@@ -218,6 +277,11 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].forges.add(new Weapon_Forge(1,-15,3,10));
 		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
 		
+		levelList[5].forges.add(new Weapon_Forge(-12,5,2,5));
+		levelList[5].forges.add(new Weapon_Forge(9,12,2,5));
+		levelList[5].forges.add(new Weapon_Forge(2,5,5,30));
+		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
+		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
 		
 		//fountains
 		Fountain a = new Fountain(-1, 0);
@@ -227,6 +291,8 @@ public class Tutorial_Game implements ApplicationListener{
 
 		levelList[3].fountains.add(new Fountain(1,-14));
 		
+		levelList[5].fountains.add(new Fountain(-9,0));
+		levelList[5].fountains.add(new Fountain(-2,8));
 	}
 	public void render(){
 		

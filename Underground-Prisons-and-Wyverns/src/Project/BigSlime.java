@@ -3,9 +3,8 @@ package Project;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Slime extends Enemy
-{
-	public Slime(int x, int y, int bx1, int bx2, int by1, int by2)
+public class BigSlime extends Enemy {
+	public BigSlime(int x, int y, int bx1, int bx2, int by1, int by2)
 	{
 
 		boundx1 = bx1;
@@ -17,16 +16,15 @@ public class Slime extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(1, 7); 
-		numOfDice = 1;
+		HP = Utilities.rollDice(3, 14); 
+		numOfDice = 5;
 		diceSides = 3;
-		armor = 7;
-		name = "Slime";
-		gold = 5;
-		 exp  = 3;
-		pic = new Texture(Gdx.files.internal("assets/slime.png"));
+		armor = 9;
+		name = "Big Slime";
+		gold = 50;
+		 exp  = 10;
+		pic = new Texture(Gdx.files.internal("assets/BigSlime.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/slimeball.png"));
 
 	}
-	
 }

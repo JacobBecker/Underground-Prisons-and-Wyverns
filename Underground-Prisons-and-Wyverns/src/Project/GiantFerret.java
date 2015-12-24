@@ -31,6 +31,8 @@ public class GiantFerret extends Enemy
 		numOfDice = 2;
 		diceSides = 4;
 		armor = 9;
+		gold = 15;
+		 exp  = 9;
 		name = "Ferret";
 		pic = new Texture(Gdx.files.internal("assets/ferret.jpg"));
 		deadPic = new Texture(Gdx.files.internal("assets/coat.jpg"));
