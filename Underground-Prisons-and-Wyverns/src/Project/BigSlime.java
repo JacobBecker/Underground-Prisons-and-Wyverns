@@ -23,7 +23,7 @@ public class BigSlime extends Enemy {
 		name = "Big Slime";
 		gold = 50;
 		 exp  = 10;
-		pic = new Texture(Gdx.files.internal("assets/BigSlime.png"));
+		pic = new Texture(Gdx.files.internal("assets/BigSlime2.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/slimeball.png"));
 
 	}

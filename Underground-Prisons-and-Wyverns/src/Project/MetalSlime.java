@@ -23,7 +23,7 @@ public class MetalSlime extends Enemy {
 		 gold = 5;
 		 exp  = 25;
 		 pic = new Texture(Gdx.files.internal("assets/metalSlime.png"));
-	   	 deadPic = new Texture(Gdx.files.internal("assets/staple.jpg"));
+	   	 deadPic = new Texture(Gdx.files.internal("assets/can.png"));
 
 	 }
 }

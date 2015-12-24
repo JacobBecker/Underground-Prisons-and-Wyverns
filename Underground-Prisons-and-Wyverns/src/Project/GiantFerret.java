@@ -34,8 +34,8 @@ public class GiantFerret extends Enemy
 		gold = 15;
 		 exp  = 9;
 		name = "Ferret";
-		pic = new Texture(Gdx.files.internal("assets/ferret.jpg"));
-		deadPic = new Texture(Gdx.files.internal("assets/coat.jpg"));
+		pic = new Texture(Gdx.files.internal("assets/ferret2.png"));
+		deadPic = new Texture(Gdx.files.internal("assets/coat.png"));
 
 	}
 }
