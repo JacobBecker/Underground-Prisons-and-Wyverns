@@ -470,6 +470,11 @@ public class Tutorial_Game implements ApplicationListener{
 			
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
 			{
+				if(Gdx.input.isKeyJustPressed(Input.Keys.X))
+				{
+					x_pos = levelList[level].portal.location_x;
+					y_pos = levelList[level].portal.location_y;
+				}
 				if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){//if you press the right key, you move to the right once
 					x_pos++;
 					direction=0;
