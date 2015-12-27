@@ -158,7 +158,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].enems.add(temp3);
 		Enemy temp4 = new Goblin(-6,4,-7,-4,4,7);
 		levelList[1].enems.add(temp4);
-		Enemy temp5 = new Bat (7,-1,7,15,-2,2);
+		Enemy temp5 = new Bat(7,-1,7,15,-2,2);
 		levelList[1].enems.add(temp5);
 		Enemy temp6 = new Goblin (11,2,7,15,-2,2);
 		levelList[1].enems.add(temp6);
