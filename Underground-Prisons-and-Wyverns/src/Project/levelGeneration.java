@@ -566,4 +566,108 @@ public class levelGeneration
 			}
 		}
 	}
+	//Carly
+	public static void generate6(ArrayList<Location> locs)
+	{
+		int x;
+		int y;
+		//beginning room
+		for(x = 0; x <= 5; x++)
+		{
+			for(y = 0; y <= 3; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		//hallway off of starting room ->
+		for(x = 6; x <= 18; x++)
+		{
+			locs.add(new Location(x,3));
+		}
+		//hallway up off of 1st hallway
+		for(y = 4; y <= 7; y++)
+		{
+			locs.add(new Location(18, y));
+		}
+		//hallway <-
+		for(x = 17; x >= 3; x--)
+		{
+			locs.add(new Location(x,7));
+		}
+		for(y = 8; y <= 19; y++)
+		{
+			locs.add(new Location(3,y));
+		}
+		for(x = 1; x <= 3; x++)
+		{
+			for(y = 20; y <= 21; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		for(x = 3; x <= 16; x++)
+		{
+			locs.add(new Location(x, 22));
+		}
+		for(x = 5; x <= 6; x++)
+		{
+			for(y = 23; y <= 28; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		for(x = 3; x <= 8; x++)
+		{
+			for(y = 29; y <= 32; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		for(y = 23; y <= 24; y++)
+		{
+			locs.add(new Location(15,y));
+		}
+		for(x = 16; x <= 21; x++)
+		{
+			locs.add(new Location(x,24));
+		}
+		for(x = 22; x <= 29; x++)
+		{
+			for(y = 24; y <= 30; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		for(x = 16; x <= 18; x++)
+		{
+			for(y = 20; y <= 21; y++)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+		for(y = 19; y >= 11; y--)
+		{
+			locs.add(new Location(16,y));
+		}
+		for(x = 15; x >= 7; x--)
+		{
+			locs.add(new Location(x,11));
+		}
+		for(y = 12; y <= 18; y++)
+		{
+			locs.add(new Location(7,y));
+		}
+		for(x = 8; x <= 10; x++)
+		{
+			locs.add(new Location(x, 18));
+		}
+		//final room
+		for(x = 11; x <= 12; x++)
+		{
+			for(y = 18; y >= 15; y--)
+			{
+				locs.add(new Location(x,y));
+			}
+		}
+	}
 }

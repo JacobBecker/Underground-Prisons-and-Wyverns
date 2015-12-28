@@ -39,7 +39,7 @@ public class Tutorial_Game implements ApplicationListener{
 	public static int WORLD_WIDTH = 2000;//My map didn't fit, making these bigger
 	public static int WORLD_HEIGHT = 2000;
 	public static int level = 1;
-	public static int finalLevel = 6;
+	public static int finalLevel = 7;
 	
 	public static int OFFSET_X;//offsets all display so that you are centered
 	public static int OFFSET_Y;//offsets all display so that you are centered
@@ -82,12 +82,14 @@ public class Tutorial_Game implements ApplicationListener{
 	
 	public void create()
 	{ 
+		
 		levelList = new Level[finalLevel];//will be changed later to different number
 		for(int i=0; i<finalLevel; i++)
 		{
 			levelList[i] = new Level();
 		}
-		  
+		
+				
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
@@ -135,6 +137,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].portal = new Finish(17,-1);
 		
 		levelList[5].portal = new Finish(0,23);
+		levelList[6].portal = new Finish(11,15);
 		
 		//locations
 		levelGeneration.generateYesNo(levelList[0].locs);
@@ -143,6 +146,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelGeneration.generate3(levelList[3].locs);
 		levelGeneration.generate4(levelList[4].locs);
 		levelGeneration.generate5(levelList[5].locs);
+		levelGeneration.generate6(levelList[6].locs);
 		
 		BaseScreen x = new BaseScreen();
 		x.render(30);
