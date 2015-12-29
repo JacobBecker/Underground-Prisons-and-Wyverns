@@ -266,6 +266,52 @@ public class Tutorial_Game implements ApplicationListener{
 		//extra room
 		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
 		
+		//first hall
+		levelList[6].enems.add(new Snake(9,3,6,9,3,3));
+		levelList[6].enems.add(new Bat(14,3,10,14,3,3));
+		//second hall
+		levelList[6].enems.add(new Slime(18,5,18,18,3,7));
+		//third hall
+		levelList[6].enems.add(new BigSlime(15,7,15,17,7,7));
+		levelList[6].enems.add(new MetalSlime(11,7,11,14,7,7));
+		levelList[6].enems.add(new Snake(3,7,3,10,7,7));
+		//fourth hall
+		levelList[6].enems.add(new BlackSmoke(3,13,3,3,8,13));
+		levelList[6].enems.add(new Snake(3,17,3,3,14,17));
+		//fifth hall
+		levelList[6].enems.add(new Bat(5,22,3,5,22,22));
+		levelList[6].enems.add(new Bat(9,22,6,9,22,22));
+		levelList[6].enems.add(new Bat(13,22,10,13,22,22));
+		//Bat Cave
+		levelList[6].enems.add(new Bat(4,29,3,5,29,30));
+		levelList[6].enems.add(new Bat(7,29,6,8,29,30));
+		levelList[6].enems.add(new Bat(5,31,3,5,30,31));
+		levelList[6].enems.add(new Bat(6,31,6,8,30,31));
+		levelList[6].enems.add(new Bat(3,32,3,5,31,32));
+		levelList[6].enems.add(new Bat(8,32,6,8,31,32));
+		//Snakes and Slime room
+		levelList[6].enems.add(new Slime(15,24,15,15,22,24));
+		levelList[6].enems.add(new Slime(19,24,16,19,24,24));
+		levelList[6].enems.add(new Slime(23,25,22,24,24,26));
+		levelList[6].enems.add(new Slime(25,25,24,26,24,26));
+		levelList[6].enems.add(new Slime(28,25,27,29,24,26));
+		levelList[6].enems.add(new MetalSlime(25,27,22,29,24,30));
+		levelList[6].enems.add(new BigSlime(23,29,22,24,28,30));
+		levelList[6].enems.add(new Slime(25,29,24,26,28,30));
+		levelList[6].enems.add(new BigSlime(28,29,27,29,28,30));
+		//sixth hall
+		levelList[6].enems.add(new Slime(16,15,16,16,15,18));
+		//seventh hall
+		levelList[6].enems.add(new Snake(14,11,14,16,11,11));
+		levelList[6].enems.add(new Snake(10,11,10,13,11,11));
+		//eighth hall
+		levelList[6].enems.add(new BlackSmoke(7,14,7,7,11,14));
+		//final hall
+		levelList[6].enems.add(new Bat(8,18,7,8,18,18));
+		levelList[6].enems.add(new Snake(9,18,9,9,18,18));
+		levelList[6].enems.add(new Slime(10,18,10,10,18,18));
+		
+		
 		//forges
 		Forge f = new Weapon_Forge(0,1,1,2);
 		levelList[1].forges.add(f);
@@ -287,6 +333,9 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
 		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
 		
+		levelList[6].forges.add(new Armor_Forge(17,20,3,6));
+		levelList[6].forges.add(new Weapon_Forge(1,20,3,6));
+		
 		//fountains
 		Fountain a = new Fountain(-1, 0);
 		levelList[1].fountains.add(a);
@@ -297,6 +346,8 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		levelList[5].fountains.add(new Fountain(-9,0));
 		levelList[5].fountains.add(new Fountain(-2,8));
+		
+		levelList[6].fountains.add(new Fountain(5,1));
 	}
 	public void render(){
 		
