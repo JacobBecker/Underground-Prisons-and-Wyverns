@@ -70,7 +70,7 @@ public class Utilities
 	public static void levelup(Character character)
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
-		character.heal();//restores character to full health.
+		//character.heal();//restores character to full health.
 		character.nextLevel += 6;
 		character.level++;
 	}
