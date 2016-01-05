@@ -599,6 +599,10 @@ public class Tutorial_Game implements ApplicationListener{
 			
 			sb.end();
 			
+			if(Gdx.input.isKeyJustPressed(Input.Keys.Q))
+			{
+				character.showHelp();
+			}
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
 			{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.X))

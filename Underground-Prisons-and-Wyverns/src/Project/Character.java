@@ -81,6 +81,7 @@ public class Character
 	//Solely for testing purposes
 	public Character(int str, int con, int arm, String nam)
 	{
+		showHelp();
 		name = nam;
 		strength = str;
 		constitution = con;
@@ -150,6 +151,7 @@ public class Character
 	
 	public Character() throws InterruptedException
 	{
+		showHelp();
 		name = JOptionPane.showInputDialog("What is your name, adventurer?");
 		JOptionPane.showMessageDialog(null, "Now, you can choose your ability scores\n"
 										+ "Your Strength affects your damage with melee weapons\n"
@@ -297,6 +299,17 @@ public class Character
 	void heal()
 	{
 		liveHP = maxHP;
+	}
+	void showHelp()
+	{
+		JOptionPane.showMessageDialog(null, "Use the arrow keys to move. Press A or S to rotate your character.\n"
+				+ "Press C to toggle turn camera mode on and off. In camera mode, you will not be able to move your character, but you can move the camera to look around.\n"
+				+ "Press space bar to attack enemies directly in front of you.\n"
+				+ "Press H on a fountain to heal yourself. Press I to interact with forges, where you can upgrade your character.\n"
+				+ "At any time, press Q to display the help menu.");
+		JOptionPane.showMessageDialog(null, "Your goal is to advance deeper into the dungeon by reaching the portal at the end of each level.\n"
+				+ "Along the way, you will encounter enemies. They will take a turn after each of yours. Defeat them to gain experience and gold.\n"
+				+ "Some rooms are hidden from sight and will only reveal themselves when you step onto the space. Search thoroughly!");
 	}
 }
 
