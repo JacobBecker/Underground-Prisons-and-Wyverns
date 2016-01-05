@@ -241,7 +241,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Bat(5,22,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(-1,23,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(1,23,-5,5,18,23));
-		//middle room
+		//middle room/ secret
 		levelList[5].enems.add(new MetalSlime(0,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(1,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(2,9,-2,2,5,9));
@@ -250,7 +250,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9));
 		levelList[5].enems.add(new Slime(1,5,-2,2,5,9));
 		levelList[5].enems.add(new Slime(2,6,-2,2,5,9));
-		//bat room
+		//bat room/ secret
 		levelList[5].enems.add(new Bat(16,0,15,17,0,2));
 		levelList[5].enems.add(new Bat(16,2,15,17,0,2));
 		levelList[5].enems.add(new Bat(17,0,15,17,0,2));
@@ -263,7 +263,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5));
 		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5));
 		levelList[5].enems.add(new BigSlime(8,-6,8,8,-6,-6));
-		//extra room
+		//extra room/ secret
 		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
 		
 		//first hall
@@ -313,28 +313,28 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		
 		//forges
-		Forge f = new Weapon_Forge(0,1,1,2);
+		Forge f = new Weapon_Forge(0,1,10);
 		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,1,2);
+		Forge f2 = new Armor_Forge(0,-1,10);
 		levelList[1].forges.add(f2);
 		
-		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
+		levelList[2].forges.add(new Weapon_Forge(0,4,12));
 		
-		levelList[4].forges.add(new Weapon_Forge(-7,4,3,5));
-		levelList[4].forges.add(new Armor_Forge(-7,6,3,5));
+		levelList[4].forges.add(new Weapon_Forge(-7,4,30));
+		levelList[4].forges.add(new Armor_Forge(-7,6,30));
 
-		levelList[3].forges.add(new Weapon_Forge(2,-2,3,10));
-		levelList[3].forges.add(new Weapon_Forge(1,-15,3,10));
-		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
+		levelList[3].forges.add(new Weapon_Forge(2,-2,25));
+		levelList[3].forges.add(new Weapon_Forge(1,-15,25));
+		levelList[3].forges.add(new Armor_Forge(-2,2,25));
 		
-		levelList[5].forges.add(new Weapon_Forge(-12,5,2,5));
-		levelList[5].forges.add(new Weapon_Forge(9,12,2,5));
-		levelList[5].forges.add(new Weapon_Forge(2,5,5,30));
-		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
-		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
+		levelList[5].forges.add(new Weapon_Forge(-12,5,60));
+		levelList[5].forges.add(new Weapon_Forge(9,12,60));
+		levelList[5].forges.add(new Weapon_Forge(2,5,40));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,55));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Armor_Forge(12,5,60));
 		
-		levelList[6].forges.add(new Armor_Forge(17,20,3,6));
-		levelList[6].forges.add(new Weapon_Forge(1,20,3,6));
+		levelList[6].forges.add(new Armor_Forge(17,20,80));
+		levelList[6].forges.add(new Weapon_Forge(1,20,80));
 		
 		//fountains
 		Fountain a = new Fountain(-1, 0);
@@ -599,6 +599,10 @@ public class Tutorial_Game implements ApplicationListener{
 			
 			sb.end();
 			
+			if(Gdx.input.isKeyJustPressed(Input.Keys.Q))
+			{
+				character.showHelp();
+			}
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
 			{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.X))

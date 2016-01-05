@@ -383,14 +383,7 @@ public class levelGeneration
 		//small bottom hallway
 		locs.add(new Location(7,-8));
 		locs.add(new Location(7,-9));
-		//next higher hallway
-		locs.add(new Location(10,0));
-		locs.add(new Location(10,-4));
-		i=11;
-		for(j=0; j>=-4;j--)
-		{
-			locs.add(new Location(i,j));
-		}
+		
 		//nearby hallway
 		i=12;
 		for(j=1;j<=3;j++)
@@ -426,6 +419,14 @@ public class levelGeneration
 		for(Location l:locs)
 		{
 			l.secret = true;
+		}
+		//slime hallway
+		locs.add(new Location(10,0));
+		locs.add(new Location(10,-4));
+		i=11;
+		for(j=0; j>=-4;j--)
+		{
+			locs.add(new Location(i,j));
 		}
 		//first room
 		for(i=-2;i<=2;i++)
