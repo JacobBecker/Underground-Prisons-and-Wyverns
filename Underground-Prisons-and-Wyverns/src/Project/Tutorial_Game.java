@@ -313,36 +313,33 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		
 		//forges
-		Forge f = new Weapon_Forge(0,1,10);
-		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,10);
-		levelList[1].forges.add(f2);
+		levelList[1].forges.add(new Weapon_Forge(0,1,5));
+		levelList[1].forges.add(new Armor_Forge(0,-1,5));
 		
-		levelList[2].forges.add(new Weapon_Forge(0,4,12));
+		levelList[2].forges.add(new Weapon_Forge(0,4,7));
 		
-		levelList[4].forges.add(new Weapon_Forge(-7,4,30));
-		levelList[4].forges.add(new Armor_Forge(-7,6,30));
+		levelList[4].forges.add(new Weapon_Forge(-7,4,45));
+		levelList[4].forges.add(new Armor_Forge(-7,6,45));
 
-		levelList[3].forges.add(new Weapon_Forge(2,-2,25));
-		levelList[3].forges.add(new Weapon_Forge(1,-15,25));
-		levelList[3].forges.add(new Armor_Forge(-2,2,25));
+		levelList[3].forges.add(new Weapon_Forge(2,-2,70));
+		levelList[3].forges.add(new Weapon_Forge(1,-15,70));
+		levelList[3].forges.add(new Armor_Forge(-2,2,70));
 		
-		levelList[5].forges.add(new Weapon_Forge(-12,5,60));
-		levelList[5].forges.add(new Weapon_Forge(9,12,60));
-		levelList[5].forges.add(new Weapon_Forge(2,5,40));//this is very hidden should be cheaper
-		levelList[5].forges.add(new Armor_Forge(-7,12,55));//this is slightly hidden should be slightly cheaper
-		levelList[5].forges.add(new Armor_Forge(12,5,60));
+		levelList[5].forges.add(new Weapon_Forge(-12,5,160));
+		levelList[5].forges.add(new Weapon_Forge(9,12,160));
+		levelList[5].forges.add(new Weapon_Forge(2,5,160));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,160));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Armor_Forge(12,5,160));
 		
-		levelList[6].forges.add(new Armor_Forge(17,20,80));
-		levelList[6].forges.add(new Weapon_Forge(1,20,80));
+		levelList[6].forges.add(new Armor_Forge(17,20,200));
+		levelList[6].forges.add(new Weapon_Forge(1,20,200));
 		
 		//fountains
-		Fountain a = new Fountain(-1, 0);
-		levelList[1].fountains.add(a);
+		levelList[1].fountains.add(new Fountain(-1, 0));
+		
+		levelList[3].fountains.add(new Fountain(1,-14));
 		
 		levelList[4].fountains.add(new Fountain(0,1));
-
-		levelList[3].fountains.add(new Fountain(1,-14));
 		
 		levelList[5].fountains.add(new Fountain(-9,0));
 		levelList[5].fountains.add(new Fountain(-2,8));
