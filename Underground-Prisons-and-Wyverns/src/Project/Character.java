@@ -81,15 +81,15 @@ public class Character
 	
 	//This is for generation of a test character w/o going through all the Dialog
 	//Solely for testing purposes
-	public Character(int str, int con, int arm, String nam)
+	public Character(int str, int con, int arm, String nam, String charclass)
 	{
 		showHelp();
 		name = nam;
 		strength = str;
 		constitution = con;
 		defence = arm;
+		chosenclass = charclass;
 		
-		//Assigning str bonus
 		if(strength < 13)
 		{
 			strBonus = 0;
@@ -140,15 +140,31 @@ public class Character
 		}
 		else
 		{
-			armorBonus = 5;
+			armorBonus = 6;
 		}
 		
+		//class bonus
+		if(chosenclass.equals("Thief"))
+		{
+			strBonus += 1;
+		}
+		else if(chosenclass.equals("Cleric"))
+		{
+			conBonus += 1;
+		}
+		else if(chosenclass.equals("Warrior"))
+		{
+			armorBonus += 1;
+		}
+			
 		//HP
-		maxHP = Utilities.rollDice(2,4) + conBonus;
+		maxHP = Utilities.rollDice(hpNumOfDice, hpDiceSides) + conBonus;
 		liveHP = maxHP;
 		
 		//Armor
 		defence = 10 + armorBonus;
+		
+		strength = strength + strBonus;
 	}
 	
 	public Character() throws InterruptedException
