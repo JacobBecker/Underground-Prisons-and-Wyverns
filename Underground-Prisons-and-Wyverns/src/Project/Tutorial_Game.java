@@ -327,8 +327,8 @@ public class Tutorial_Game implements ApplicationListener{
 		
 		levelList[5].forges.add(new Weapon_Forge(-12,5,160));
 		levelList[5].forges.add(new Weapon_Forge(9,12,160));
-		levelList[5].forges.add(new Weapon_Forge(2,5,160));//this is very hidden should be cheaper
-		levelList[5].forges.add(new Armor_Forge(-7,12,160));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Weapon_Forge(2,5,130));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,150));//this is slightly hidden should be slightly cheaper
 		levelList[5].forges.add(new Armor_Forge(12,5,160));
 		
 		levelList[6].forges.add(new Armor_Forge(17,20,200));
