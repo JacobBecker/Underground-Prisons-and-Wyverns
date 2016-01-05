@@ -63,14 +63,16 @@ public class Character
 	
 	int gold = 0;
 	int exp = 0;
-	int nextLevel = 6;
+	int nextLevel = 5;
 	int level = 1;
 	
-	int hpNumOfDice = 2;
-	int hpDiceSides = 4;
+	int hpNumOfDice = 4;
+	int hpDiceSides = 2;
 	
 	int atkNumOfDice = 1;
 	int atkDiceSides = 6;
+	int atkBonus = 0;
+	
 	
 	//these is for displaying line under name
 	int nameLength;
