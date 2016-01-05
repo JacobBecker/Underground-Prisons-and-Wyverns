@@ -241,7 +241,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Bat(5,22,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(-1,23,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(1,23,-5,5,18,23));
-		//middle room
+		//middle room/ secret
 		levelList[5].enems.add(new MetalSlime(0,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(1,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(2,9,-2,2,5,9));
@@ -250,7 +250,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9));
 		levelList[5].enems.add(new Slime(1,5,-2,2,5,9));
 		levelList[5].enems.add(new Slime(2,6,-2,2,5,9));
-		//bat room
+		//bat room/ secret
 		levelList[5].enems.add(new Bat(16,0,15,17,0,2));
 		levelList[5].enems.add(new Bat(16,2,15,17,0,2));
 		levelList[5].enems.add(new Bat(17,0,15,17,0,2));
@@ -263,7 +263,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5));
 		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5));
 		levelList[5].enems.add(new BigSlime(8,-6,8,8,-6,-6));
-		//extra room
+		//extra room/ secret
 		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
 		
 		//first hall
