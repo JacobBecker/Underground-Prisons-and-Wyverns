@@ -326,11 +326,19 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].forges.add(new Weapon_Forge(1,-15,70));
 		levelList[3].forges.add(new Armor_Forge(-2,2,70));
 		
+<<<<<<< HEAD
 		levelList[5].forges.add(new Weapon_Forge(-12,5,250));
 		levelList[5].forges.add(new Weapon_Forge(9,12,250));
 		levelList[5].forges.add(new Weapon_Forge(2,5,220));//this is very hidden should be cheaper
 		levelList[5].forges.add(new Armor_Forge(-7,12,230));//this is slightly hidden should be slightly cheaper
 		levelList[5].forges.add(new Armor_Forge(12,5,250));
+=======
+		levelList[5].forges.add(new Weapon_Forge(-12,5,160));
+		levelList[5].forges.add(new Weapon_Forge(9,12,160));
+		levelList[5].forges.add(new Weapon_Forge(2,5,130));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,150));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Armor_Forge(12,5,160));
+>>>>>>> branch 'master' of https://github.com/JacobBecker/Underground-Prisons-and-Wyverns.git
 		
 		levelList[6].forges.add(new Armor_Forge(17,20,320));
 		levelList[6].forges.add(new Weapon_Forge(1,20,320));
