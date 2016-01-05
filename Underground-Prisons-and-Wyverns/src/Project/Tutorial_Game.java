@@ -317,6 +317,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[1].forges.add(new Armor_Forge(0,-1,5));
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,7));
+		levelList[2].forges.add(new Armor_Forge(0,5,7));
 		
 		levelList[4].forges.add(new Weapon_Forge(-7,4,45));
 		levelList[4].forges.add(new Armor_Forge(-7,6,45));
@@ -325,14 +326,14 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].forges.add(new Weapon_Forge(1,-15,70));
 		levelList[3].forges.add(new Armor_Forge(-2,2,70));
 		
-		levelList[5].forges.add(new Weapon_Forge(-12,5,160));
-		levelList[5].forges.add(new Weapon_Forge(9,12,160));
-		levelList[5].forges.add(new Weapon_Forge(2,5,160));//this is very hidden should be cheaper
-		levelList[5].forges.add(new Armor_Forge(-7,12,160));//this is slightly hidden should be slightly cheaper
-		levelList[5].forges.add(new Armor_Forge(12,5,160));
+		levelList[5].forges.add(new Weapon_Forge(-12,5,250));
+		levelList[5].forges.add(new Weapon_Forge(9,12,250));
+		levelList[5].forges.add(new Weapon_Forge(2,5,220));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,230));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Armor_Forge(12,5,250));
 		
-		levelList[6].forges.add(new Armor_Forge(17,20,200));
-		levelList[6].forges.add(new Weapon_Forge(1,20,200));
+		levelList[6].forges.add(new Armor_Forge(17,20,320));
+		levelList[6].forges.add(new Weapon_Forge(1,20,320));
 		
 		//fountains
 		levelList[1].fountains.add(new Fountain(-1, 0));
