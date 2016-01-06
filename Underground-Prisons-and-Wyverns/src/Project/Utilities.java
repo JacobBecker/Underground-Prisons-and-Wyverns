@@ -48,7 +48,7 @@ public class Utilities
 	public static void charDefend(Character character, Enemy enemy)
 	{
 		int atkRoll = Utilities.rollDice(1, 20);
-		int damage = Utilities.rollDice(enemy.numOfDice, enemy.diceSides);
+		int damage = Utilities.rollDice(enemy.numOfDice, enemy.diceSides) + enemy.atkBonus;
 		
 		if(atkRoll >= character.armor)
 		{

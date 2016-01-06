@@ -17,11 +17,13 @@ public class Snake extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 1); 
+		HP = Utilities.rollDice(1, 6) + 3; 
 		numOfDice = 1;
-		diceSides = 1;
-		armor = 6;
+		diceSides = 3;
+		armor = 8;
 		name = "Snake";
+		gold = 7;
+		exp  = 2;
 		pic = new Texture(Gdx.files.internal("assets/Snake.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/snakeDead.png"));
 

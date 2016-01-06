@@ -17,11 +17,13 @@ public class BlackSmoke extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 1); 
+		HP = Utilities.rollDice(1, 7) + 3; 
 		numOfDice = 1;
-		diceSides = 1;
-		armor = 6;
+		diceSides = 4;
+		armor = 9;
 		name = "BlackSmoke";
+		gold = 10;
+		exp  = 3;
 		pic = new Texture(Gdx.files.internal("assets/blackSmoke.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/smokeDead.png"));
 

@@ -17,11 +17,14 @@ public class Mushroom extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 1); 
-		numOfDice = 1;
-		diceSides = 1;
-		armor = 6;
-		name = "Mushroom";
+		HP = Utilities.rollDice(1, 8) + 6;
+	 	armor = 15;
+	 	numOfDice = 1;
+	 	diceSides = 4; 
+	 	atkBonus = 1;
+	 	name = "Mushroom";
+	 	gold = 20;
+	 	exp  = 10;
 		pic = new Texture(Gdx.files.internal("assets/Mushroom.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/mushroomDead.png"));
 

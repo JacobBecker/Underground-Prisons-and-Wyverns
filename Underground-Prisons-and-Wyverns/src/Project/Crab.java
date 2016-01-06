@@ -17,11 +17,15 @@ public class Crab extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 1); 
-		numOfDice = 1;
-		diceSides = 1;
-		armor = 6;
-		name = "Crab";
+		HP = Utilities.rollDice(1, 6) + 4;
+	 	armor = 12;
+	 	numOfDice = 1;
+	 	diceSides = 3; 
+	 	atkBonus = 1;
+	 	name = "Crab";
+	 	gold = 9;
+	 	exp  = Utilities.rollDice(1, 2) + 2;
+	 	
 		pic = new Texture(Gdx.files.internal("assets/Crab.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/CrabDead.png"));
 

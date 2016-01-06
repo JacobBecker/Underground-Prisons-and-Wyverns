@@ -15,13 +15,14 @@ public class MetalSlime extends Enemy {
 		 start_y = y;
 		 current_y=y;
 
-		 HP = Utilities.rollDice(1, 7);
-		 armor = 12;
-		 numOfDice = 1;
-		 diceSides = 3; //Deals 1 damage
-		 name = "Metal Slime";
-		 gold = 5;
-		 exp  = 25;
+		 HP = Utilities.rollDice(1, 10) + 6;
+		 	armor = 15;
+		 	numOfDice = 1;
+		 	diceSides = 6; 
+		 	atkBonus = 2;
+		 	name = "Metal Slime";
+		 	gold = 20;
+		 	exp  = 10;
 		 pic = new Texture(Gdx.files.internal("assets/metalSlime.png"));
 	   	 deadPic = new Texture(Gdx.files.internal("assets/can.png"));
 

@@ -157,14 +157,14 @@ public class Tutorial_Game implements ApplicationListener{
 		//x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
 		levelList[1].enems.add(new Bat(-7,13,-8,-2,11,14));
 		levelList[1].enems.add(new Bat(-4,14,-8,-2,11,14));
-		levelList[1].enems.add(new Goblin(4,12,3,5,11,13));
-		levelList[1].enems.add(new Goblin(-6,4,-7,-4,4,7));
+		levelList[1].enems.add(new Goblin(4,12,3,5,11,13,1));
+		levelList[1].enems.add(new Goblin(-6,4,-7,-4,4,7,1));
 		levelList[1].enems.add(new Bat(7,-1,7,15,-2,2));
-		levelList[1].enems.add(new Goblin (11,2,7,15,-2,2));
-		levelList[1].enems.add(new Goblin (13,0,7,15,-2,2));
+		levelList[1].enems.add(new Goblin (11,2,7,15,-2,2,1));
+		levelList[1].enems.add(new Goblin (13,0,7,15,-2,2,1));
 		
-		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
-		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
+		levelList[2].enems.add(new Slime(4,4,0,5,0,5, 2));
+		levelList[2].enems.add(new Slime(5,5,0,5,0,5, 2));
 		
 		levelList[3].enems.add(new Snake(-1,6,-2,3,5,8));//room above spawn
 		levelList[3].enems.add(new BlackSmoke(2,7,-2,3,5,8));
@@ -180,90 +180,90 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[3].enems.add(new Snake(17,-3,13,17,-3,1));
 		
 		//hallways
-		levelList[4].enems.add(new Slime(4,10,4,4,10,10));
-		levelList[4].enems.add(new Slime(-4,10,-4,-4,10,10));
+		levelList[4].enems.add(new Slime(4,10,4,4,10,10, 4));
+		levelList[4].enems.add(new Slime(-4,10,-4,-4,10,10,4 ));
 		//middle room
-		levelList[4].enems.add(new Slime(0,6,-1,1,4,6));
-		levelList[4].enems.add(new Goblin(0,5,-1,1,4,6));
+		levelList[4].enems.add(new Slime(0,6,-1,1,4,6,4));
+		levelList[4].enems.add(new Goblin(0,5,-1,1,4,6,4));
 		//left pocket
-		levelList[4].enems.add(new Goblin(-7,5,-7,-6,4,6));
-		levelList[4].enems.add(new Slime(-6,5,-7,-6,4,6));
+		levelList[4].enems.add(new Goblin(-7,5,-7,-6,4,6,4));
+		levelList[4].enems.add(new Slime(-6,5,-7,-6,4,6,4));
 		//right pocket
 		levelList[4].enems.add(new MetalSlime(8,5,7,8,4,6));
 		//bottom left
-		levelList[4].enems.add(new Goblin(-6,-1,-6,-4,-3,-1));
-		levelList[4].enems.add(new Bat(-5,-2,-6,-4,-3,-1));
+		levelList[4].enems.add(new Goblin(-6,-1,-6,-4,-3,-1,4));
+		levelList[4].enems.add(new Crab(-5,-2,-6,-4,-3,-1));
 		//bottom right
-		levelList[4].enems.add(new Goblin(6,-1,4,6,-3,-1));
-		levelList[4].enems.add(new Bat(5,-2,4,6,-3,-1));
+		levelList[4].enems.add(new Goblin(6,-1,4,6,-3,-1,4));
+		levelList[4].enems.add(new Crab(5,-2,4,6,-3,-1));
 		//bottom middle
-		levelList[4].enems.add(new Bat(-1,-3,-1,-1,-3,-3));
-		levelList[4].enems.add(new Bat(1,-3,1,1,-3,-3));
+		levelList[4].enems.add(new Crab(-1,-3,-1,-1,-3,-3));
+		levelList[4].enems.add(new Crab(1,-3,1,1,-3,-3));
 		
 		//first room
-		levelList[5].enems.add(new Bat(-2,0,-2,2,-2,2));
-		levelList[5].enems.add(new Bat(2,0,-2,2,-2,2));
-		levelList[5].enems.add(new Bat(0,2,-2,2,-2,2));
-		levelList[5].enems.add(new Bat(0,-2,-2,2,-2,2));
+		levelList[5].enems.add(new Hornet(-2,0,-2,2,-2,2));
+		levelList[5].enems.add(new Hornet(2,0,-2,2,-2,2));
+		levelList[5].enems.add(new Hornet(0,2,-2,2,-2,2));
+		levelList[5].enems.add(new Hornet(0,-2,-2,2,-2,2));
 		//left room
-		levelList[5].enems.add(new Goblin(-7,0,-9,-6,-1,1));
+		levelList[5].enems.add(new Goblin(-7,0,-9,-6,-1,1,5));
 		//left side room
-		levelList[5].enems.add(new Goblin(-11,5,-12,-10,4,6));
+		levelList[5].enems.add(new Goblin(-11,5,-12,-10,4,6,5));
 		//upper left room
-		levelList[5].enems.add(new Bat(-9,12,-9,-5,10,12));
-		levelList[5].enems.add(new Bat(-5,12,-9,-5,10,12));
+		levelList[5].enems.add(new Hornet(-9,12,-9,-5,10,12));
+		levelList[5].enems.add(new Hornet(-5,12,-9,-5,10,12));
 		levelList[5].enems.add(new GiantFerret(-8,11,-9,-5,10,12));
 		levelList[5].enems.add(new GiantFerret(-6,11,-9,-5,10,12));
 		//right room
-		levelList[5].enems.add(new Goblin(7,0,6,9,-1,1));
-		levelList[5].enems.add(new Slime(9,0,9,9,0,0));
+		levelList[5].enems.add(new Goblin(7,0,6,9,-1,1,5));
+		levelList[5].enems.add(new Slime(9,0,9,9,0,0,5));
 		//right side room
-		levelList[5].enems.add(new Bat(10,4,10,12,4,6));
-		levelList[5].enems.add(new Bat(10,6,10,12,4,6));
-		levelList[5].enems.add(new Bat(11,5,10,12,4,6));
+		levelList[5].enems.add(new Hornet(10,4,10,12,4,6));
+		levelList[5].enems.add(new Hornet(10,6,10,12,4,6));
+		levelList[5].enems.add(new Hornet(11,5,10,12,4,6));
 		//upper right room
 		levelList[5].enems.add(new GiantFerret(7,11,5,9,10,12));
 		//top room
-		levelList[5].enems.add(new Goblin(-1,18,-5,5,18,23));
-		levelList[5].enems.add(new Goblin(1,18,-5,5,18,23));
-		levelList[5].enems.add(new Bat(-5,20,-5,5,18,23));
-		levelList[5].enems.add(new Bat(-5,21,-5,5,18,23));
-		levelList[5].enems.add(new Bat(-5,22,-5,5,18,23));
-		levelList[5].enems.add(new Bat(5,20,-5,5,18,23));
-		levelList[5].enems.add(new Bat(5,21,-5,5,18,23));
-		levelList[5].enems.add(new Bat(5,22,-5,5,18,23));
+		levelList[5].enems.add(new Goblin(-1,18,-5,5,18,23,5));
+		levelList[5].enems.add(new Goblin(1,18,-5,5,18,23,5));
+		levelList[5].enems.add(new Hornet(-5,20,-5,5,18,23));
+		levelList[5].enems.add(new Hornet(-5,21,-5,5,18,23));
+		levelList[5].enems.add(new Hornet(-5,22,-5,5,18,23));
+		levelList[5].enems.add(new Hornet(5,20,-5,5,18,23));
+		levelList[5].enems.add(new Hornet(5,21,-5,5,18,23));
+		levelList[5].enems.add(new Hornet(5,22,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(-1,23,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(1,23,-5,5,18,23));
 		//middle room/ secret
 		levelList[5].enems.add(new MetalSlime(0,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(1,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(2,9,-2,2,5,9));
-		levelList[5].enems.add(new Goblin(0,5,-2,2,5,9));
-		levelList[5].enems.add(new Goblin(1,6,-2,2,5,9));
-		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9));
-		levelList[5].enems.add(new Slime(1,5,-2,2,5,9));
-		levelList[5].enems.add(new Slime(2,6,-2,2,5,9));
+		levelList[5].enems.add(new Goblin(0,5,-2,2,5,9,5));
+		levelList[5].enems.add(new Goblin(1,6,-2,2,5,9,5));
+		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9,5));
+		levelList[5].enems.add(new Slime(1,5,-2,2,5,9,5));
+		levelList[5].enems.add(new Slime(2,6,-2,2,5,9,5));
 		//bat room/ secret
-		levelList[5].enems.add(new Bat(16,0,15,17,0,2));
-		levelList[5].enems.add(new Bat(16,2,15,17,0,2));
-		levelList[5].enems.add(new Bat(17,0,15,17,0,2));
-		levelList[5].enems.add(new Bat(17,1,15,17,0,2));
-		levelList[5].enems.add(new Bat(17,2,15,17,0,2));
+		levelList[5].enems.add(new Hornet(16,0,15,17,0,2));
+		levelList[5].enems.add(new Hornet(16,2,15,17,0,2));
+		levelList[5].enems.add(new Hornet(17,0,15,17,0,2));
+		levelList[5].enems.add(new Hornet(17,1,15,17,0,2));
+		levelList[5].enems.add(new Hornet(17,2,15,17,0,2));
 		//slime room
-		levelList[5].enems.add(new Slime(8,-4,7,9,-7,-4));
-		levelList[5].enems.add(new Slime(7,-5,7,9,-7,-5));
-		levelList[5].enems.add(new Slime(9,-5,7,9,-7,-5));
-		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5));
-		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5));
+		levelList[5].enems.add(new Slime(8,-4,7,9,-7,-4,5));
+		levelList[5].enems.add(new Slime(7,-5,7,9,-7,-5,5));
+		levelList[5].enems.add(new Slime(9,-5,7,9,-7,-5,5));
+		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5,5));
+		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5,5));
 		levelList[5].enems.add(new BigSlime(8,-6,8,8,-6,-6));
 		//extra room/ secret
 		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
 		
 		//first hall
 		levelList[6].enems.add(new Snake(9,3,6,9,3,3));
-		levelList[6].enems.add(new Bat(14,3,10,14,3,3));
+		levelList[6].enems.add(new Mushroom(14,3,10,14,3,3));
 		//second hall
-		levelList[6].enems.add(new Slime(18,5,18,18,3,7));
+		levelList[6].enems.add(new Slime(18,5,18,18,3,7,6));
 		//third hall
 		levelList[6].enems.add(new BigSlime(15,7,15,17,7,7));
 		levelList[6].enems.add(new MetalSlime(11,7,11,14,7,7));
@@ -272,37 +272,37 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[6].enems.add(new BlackSmoke(3,13,3,3,8,13));
 		levelList[6].enems.add(new Snake(3,17,3,3,14,17));
 		//fifth hall
-		levelList[6].enems.add(new Bat(5,22,3,5,22,22));
-		levelList[6].enems.add(new Bat(9,22,6,9,22,22));
-		levelList[6].enems.add(new Bat(13,22,10,13,22,22));
-		//Bat Cave
-		levelList[6].enems.add(new Bat(4,29,3,5,29,30));
-		levelList[6].enems.add(new Bat(7,29,6,8,29,30));
-		levelList[6].enems.add(new Bat(5,31,3,5,30,31));
-		levelList[6].enems.add(new Bat(6,31,6,8,30,31));
-		levelList[6].enems.add(new Bat(3,32,3,5,31,32));
-		levelList[6].enems.add(new Bat(8,32,6,8,31,32));
+		levelList[6].enems.add(new Mushroom(5,22,3,5,22,22));
+		levelList[6].enems.add(new Mushroom(9,22,6,9,22,22));
+		levelList[6].enems.add(new Mushroom(13,22,10,13,22,22));
+		//Mushroom Cave
+		levelList[6].enems.add(new Mushroom(4,29,3,5,29,30));
+		levelList[6].enems.add(new Mushroom(7,29,6,8,29,30));
+		levelList[6].enems.add(new Mushroom(5,31,3,5,30,31));
+		levelList[6].enems.add(new Mushroom(6,31,6,8,30,31));
+		levelList[6].enems.add(new Mushroom(3,32,3,5,31,32));
+		levelList[6].enems.add(new Mushroom(8,32,6,8,31,32));
 		//Snakes and Slime room
-		levelList[6].enems.add(new Slime(15,24,15,15,22,24));
-		levelList[6].enems.add(new Slime(19,24,16,19,24,24));
-		levelList[6].enems.add(new Slime(23,25,22,24,24,26));
-		levelList[6].enems.add(new Slime(25,25,24,26,24,26));
-		levelList[6].enems.add(new Slime(28,25,27,29,24,26));
+		levelList[6].enems.add(new Slime(15,24,15,15,22,24,6));
+		levelList[6].enems.add(new Slime(19,24,16,19,24,24,6));
+		levelList[6].enems.add(new Slime(23,25,22,24,24,26,6));
+		levelList[6].enems.add(new Slime(25,25,24,26,24,26,6));
+		levelList[6].enems.add(new Slime(28,25,27,29,24,26,6));
 		levelList[6].enems.add(new MetalSlime(25,27,22,29,24,30));
 		levelList[6].enems.add(new BigSlime(23,29,22,24,28,30));
-		levelList[6].enems.add(new Slime(25,29,24,26,28,30));
+		levelList[6].enems.add(new Slime(25,29,24,26,28,30,6));
 		levelList[6].enems.add(new BigSlime(28,29,27,29,28,30));
 		//sixth hall
-		levelList[6].enems.add(new Slime(16,15,16,16,15,18));
+		levelList[6].enems.add(new Slime(16,15,16,16,15,18,6));
 		//seventh hall
 		levelList[6].enems.add(new Snake(14,11,14,16,11,11));
 		levelList[6].enems.add(new Snake(10,11,10,13,11,11));
 		//eighth hall
 		levelList[6].enems.add(new BlackSmoke(7,14,7,7,11,14));
 		//final hall
-		levelList[6].enems.add(new Bat(8,18,7,8,18,18));
+		levelList[6].enems.add(new Mushroom(8,18,7,8,18,18));
 		levelList[6].enems.add(new Snake(9,18,9,9,18,18));
-		levelList[6].enems.add(new Slime(10,18,10,10,18,18));
+		levelList[6].enems.add(new Slime(10,18,10,10,18,18,6));
 		
 		//forges
 		levelList[1].forges.add(new Weapon_Forge(0,1,5));

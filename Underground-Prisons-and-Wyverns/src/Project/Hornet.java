@@ -17,11 +17,15 @@ public class Hornet extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 1); 
-		numOfDice = 1;
-		diceSides = 1;
-		armor = 6;
+		HP = Utilities.rollDice(1, 6) + 6;
+	 	armor = 15;
+	 	numOfDice = 1;
+	 	diceSides = 4; 
+	 	atkBonus = 1;
 		name = "Hornet";
+		gold = 16;
+	 	exp  = 6;
+	 	
 		pic = new Texture(Gdx.files.internal("assets/hornet.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/hornetDead.png"));
 

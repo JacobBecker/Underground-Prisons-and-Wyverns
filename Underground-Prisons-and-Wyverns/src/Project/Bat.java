@@ -16,13 +16,13 @@ public class Bat extends Enemy
 		 start_y = y;
 		 current_y=y;
 
-		 HP = Utilities.rollDice(2, 1); //2HP
+		 HP = Utilities.rollDice(1 , 2) + 1; //2HP
 		 armor = 6;
 		 numOfDice = 1;
 		 diceSides = 1; //Deals 1 damage
 		 name = "Bat";
-		 gold = 10;
-		 exp =4;
+		 gold = 3;
+		 exp = 1;
 		 pic = new Texture(Gdx.files.internal("assets/Batman.png"));
 	   	 deadPic = new Texture(Gdx.files.internal("assets/Dead Batman.png"));
 

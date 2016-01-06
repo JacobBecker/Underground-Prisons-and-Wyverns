@@ -23,6 +23,7 @@ public class Enemy
 	String name;
 	boolean isLiving = true;
 	boolean looted = false;
+	int atkBonus = 0;
 	
 	Texture pic;
 	Texture deadPic;

@@ -24,16 +24,14 @@ public class GiantFerret extends Enemy
 		start_y = y;
 		current_y=y;
 		
-		HP = Utilities.rollDice(2, 8); 
-		//damage = Utilities.rollDice(2, 4); 
-		armor = 5;
+		HP = Utilities.rollDice(1, 6) + 6;
+	 	armor = 15;
+	 	numOfDice = 1;
+	 	diceSides = 4; 
+	 	atkBonus = 1;
+		gold = 17;
+		exp  = 7;
 		name = "GiantFerret"; 
-		numOfDice = 2;
-		diceSides = 4;
-		armor = 9;
-		gold = 15;
-		 exp  = 9;
-		name = "Ferret";
 		pic = new Texture(Gdx.files.internal("assets/ferret2.png"));
 		deadPic = new Texture(Gdx.files.internal("assets/coat.png"));
 
