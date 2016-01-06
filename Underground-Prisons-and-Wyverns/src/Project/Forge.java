@@ -7,8 +7,7 @@ public abstract class Forge {
 	int x;
 	int y;
 	int cost;
-	int benefit;
-	int variance;
+	int benefit = 1;
 	Texture image;
 	abstract boolean shop();
 }

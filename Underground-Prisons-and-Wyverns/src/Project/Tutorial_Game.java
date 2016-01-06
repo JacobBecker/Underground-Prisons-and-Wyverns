@@ -93,7 +93,7 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 15, 14, "Jacob");
+		character = new Character(15, 15, 14, "Jacob", "Thief");
 		
         
 		/*try {
@@ -234,7 +234,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Bat(5,22,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(-1,23,-5,5,18,23));
 		levelList[5].enems.add(new GiantFerret(1,23,-5,5,18,23));
-		//middle room
+		//middle room/ secret
 		levelList[5].enems.add(new MetalSlime(0,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(1,9,-2,2,5,9));
 		levelList[5].enems.add(new MetalSlime(2,9,-2,2,5,9));
@@ -243,7 +243,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Goblin(2,7,-2,2,5,9));
 		levelList[5].enems.add(new Slime(1,5,-2,2,5,9));
 		levelList[5].enems.add(new Slime(2,6,-2,2,5,9));
-		//bat room
+		//bat room/ secret
 		levelList[5].enems.add(new Bat(16,0,15,17,0,2));
 		levelList[5].enems.add(new Bat(16,2,15,17,0,2));
 		levelList[5].enems.add(new Bat(17,0,15,17,0,2));
@@ -256,7 +256,7 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[5].enems.add(new Slime(7,-7,7,9,-7,-5));
 		levelList[5].enems.add(new Slime(9,-7,7,9,-7,-5));
 		levelList[5].enems.add(new BigSlime(8,-6,8,8,-6,-6));
-		//extra room
+		//extra room/ secret
 		levelList[5].enems.add(new MetalSlime(7,-12,6,8,-12,-10));
 		
 		//first hall
@@ -304,43 +304,37 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[6].enems.add(new Snake(9,18,9,9,18,18));
 		levelList[6].enems.add(new Slime(10,18,10,10,18,18));
 		
+		//forges
+		levelList[1].forges.add(new Weapon_Forge(0,1,5));
+		levelList[1].forges.add(new Armor_Forge(0,-1,5));
 		
-		//Armor Forges
-		levelList[1].forges.add(new Armor_Forge(0,-1,1,2));
+		levelList[2].forges.add(new Weapon_Forge(0,4,7));
+		levelList[2].forges.add(new Armor_Forge(0,5,7));
 		
-		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
+		levelList[3].forges.add(new Weapon_Forge(2,-2,70));
+		levelList[3].forges.add(new Weapon_Forge(1,-15,70));
+		levelList[3].forges.add(new Armor_Forge(-2,2,70));
 		
-		levelList[4].forges.add(new Armor_Forge(-7,6,3,5));
+		levelList[4].forges.add(new Weapon_Forge(-7,4,45));
+		levelList[4].forges.add(new Armor_Forge(-7,6,45));
+
 		
-		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
-		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
+		levelList[5].forges.add(new Weapon_Forge(-12,5,250));
+		levelList[5].forges.add(new Weapon_Forge(9,12,250));
+		levelList[5].forges.add(new Weapon_Forge(2,5,220));//this is very hidden should be cheaper
+		levelList[5].forges.add(new Armor_Forge(-7,12,230));//this is slightly hidden should be slightly cheaper
+		levelList[5].forges.add(new Armor_Forge(12,5,250));
 		
-		levelList[6].forges.add(new Weapon_Forge(1,20,3,6));
-		
-		//Weapon Forges
-		levelList[1].forges.add(new Weapon_Forge(0,1,1,2));
-		
-		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
-		
-		levelList[3].forges.add(new Weapon_Forge(2,-2,3,10));
-		levelList[3].forges.add(new Weapon_Forge(1,-15,3,10));
-		
-		levelList[4].forges.add(new Weapon_Forge(-7,4,3,5));
-		
-		levelList[5].forges.add(new Weapon_Forge(-12,5,2,5));
-		levelList[5].forges.add(new Weapon_Forge(9,12,2,5));
-		levelList[5].forges.add(new Weapon_Forge(2,5,5,30));
-		
-		levelList[6].forges.add(new Armor_Forge(17,20,3,6));
-		
+		levelList[6].forges.add(new Armor_Forge(17,20,320));
+		levelList[6].forges.add(new Weapon_Forge(1,20,320));
 		
 		//fountains
-		Fountain a = new Fountain(-1, 0);
-		levelList[1].fountains.add(a);
+		levelList[1].fountains.add(new Fountain(-1, 0));
+		
+		
+		levelList[3].fountains.add(new Fountain(1,-14));
 		
 		levelList[4].fountains.add(new Fountain(0,1));
-
-		levelList[3].fountains.add(new Fountain(1,-14));
 		
 		levelList[5].fountains.add(new Fountain(-9,0));
 		levelList[5].fountains.add(new Fountain(-2,8));
@@ -593,10 +587,14 @@ public class Tutorial_Game implements ApplicationListener{
 			sb.draw(scroll, (int)(WIDTH-(TILE_WIDTH*1.5)), (int)(HEIGHT/2-(TILE_HEIGHT *2)), (int)(TILE_WIDTH * 1.5), TILE_HEIGHT*4);
 			font.draw(sb, character.name, 410, 300);
 			font.draw(sb,character.line, 410, 299);
-			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nDef:"+ character.defence +"\nGold: "+ character.gold + "\nExp: " + character.exp + "\nStr: " + character.strength + "\nDef: " + character.defence,410, 270);
+			font.draw(sb, character.chosenclass + "\nLevel: " + character.level + "\nHP: " + character.liveHP + "/" + character.maxHP + "\nGold: "+ character.gold + "\nExp: " + character.exp + "\nDmg: " + character.atkDiceSides + "\nDef: " + character.defence,410, 270);
 			
 			sb.end();
 			
+			if(Gdx.input.isKeyJustPressed(Input.Keys.Q))
+			{
+				character.showHelp();
+			}
 			if(!cameraMode)//if you haven't pressed c (camera is based on character)
 			{
 				if(Gdx.input.isKeyJustPressed(Input.Keys.X))

@@ -17,7 +17,7 @@ public class Utilities
 	public static void charAttack(Character character, Enemy enemy)
 	{
 		int atkRoll = Utilities.rollDice(1,  20) + character.strBonus;
-		int damage = Utilities.rollDice(character.atkNumOfDice, character.atkDiceSides);
+		int damage = Utilities.rollDice(character.atkNumOfDice, character.atkDiceSides) + character.atkBonus;
 		
 		if(atkRoll >= enemy.armor)
 		{
@@ -47,7 +47,7 @@ public class Utilities
 	
 	public static void charDefend(Character character, Enemy enemy)
 	{
-		int atkRoll = Utilities.rollDice(1,  20);
+		int atkRoll = Utilities.rollDice(1, 20);
 		int damage = Utilities.rollDice(enemy.numOfDice, enemy.diceSides);
 		
 		if(atkRoll >= character.armor)
@@ -70,8 +70,32 @@ public class Utilities
 	public static void levelup(Character character)
 	{
 		character.maxHP += rollDice(character.hpNumOfDice, character.hpDiceSides) + character.conBonus;
-		character.heal();//restores character to full health.
-		character.nextLevel += 6;
+
+		if (character.level == 1)
+		{
+			character.nextLevel = 10;
+		}
+		else if (character.level == 2)
+		{
+			character.nextLevel = 40;
+		}		
+		else if (character.level == 3)
+		{
+			character.nextLevel = 90;
+		}		
+		else if (character.level == 4)
+		{
+			character.nextLevel = 200;
+		}		
+		else if (character.level == 5)
+		{
+			character.nextLevel = 500;
+		}		
+		else if (character.level == 6)
+		{
+			character.nextLevel = 1000;
+		}
+				
 		character.level++;
 	}
 	
