@@ -154,25 +154,31 @@ public class Tutorial_Game implements ApplicationListener{
 		//Don't worry about it
 		
 		//enemies
-		Enemy temp = new Bat(-7,13,-8,-2,11,14); //x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
-		levelList[1].enems.add(temp);
-		Enemy temp2 = new Bat(-4,14,-8,-2,11,14);
-		levelList[1].enems.add(temp2);
-		Enemy temp3 = new Goblin(4,12,3,5,11,13);
-		levelList[1].enems.add(temp3);
-		Enemy temp4 = new Goblin(-6,4,-7,-4,4,7);
-		levelList[1].enems.add(temp4);
-		Enemy temp5 = new Bat(7,-1,7,15,-2,2);
-		levelList[1].enems.add(temp5);
-		Enemy temp6 = new Goblin (11,2,7,15,-2,2);
-		levelList[1].enems.add(temp6);
-		Enemy temp7 = new Goblin (13,0,7,15,-2,2);
-		levelList[1].enems.add(temp7);
+		//x_spawn, y_spawn, bot_left_x, top_right_x, bot_left_y, top_right_y
+		levelList[1].enems.add(new Bat(-7,13,-8,-2,11,14));
+		levelList[1].enems.add(new Bat(-4,14,-8,-2,11,14));
+		levelList[1].enems.add(new Goblin(4,12,3,5,11,13));
+		levelList[1].enems.add(new Goblin(-6,4,-7,-4,4,7));
+		levelList[1].enems.add(new Bat(7,-1,7,15,-2,2));
+		levelList[1].enems.add(new Goblin (11,2,7,15,-2,2));
+		levelList[1].enems.add(new Goblin (13,0,7,15,-2,2));
 		
 		levelList[2].enems.add(new Slime(4,4,0,5,0,5));
 		levelList[2].enems.add(new Slime(5,5,0,5,0,5));
 		
-
+		levelList[3].enems.add(new Snake(-1,6,-2,3,5,8));//room above spawn
+		levelList[3].enems.add(new BlackSmoke(2,7,-2,3,5,8));
+		levelList[3].enems.add(new Snake(-8,8,-11,-8,8,12));//most left room
+		levelList[3].enems.add(new Snake(-11,11,-11,-8,8,12));
+		levelList[3].enems.add(new BlackSmoke(12,9,10,12,5,9));//top right room
+		levelList[3].enems.add(new BlackSmoke(6,1,5,9,-2,2));//room right of spawn
+		levelList[3].enems.add(new Snake(1,7,-2,2,-9,-6));//room below spawn
+		levelList[3].enems.add(new BlackSmoke(-1,-8,-2,2,-9,-6));
+		levelList[3].enems.add(new Snake(1,-9,-2,2,-9,-6));
+		levelList[3].enems.add(new Snake(14,0,13,17,-3,1));//portal room
+		levelList[3].enems.add(new Snake(17,1,13,17,-3,1));
+		levelList[3].enems.add(new Snake(17,-3,13,17,-3,1));
+		
 		//hallways
 		levelList[4].enems.add(new Slime(4,10,4,4,10,10));
 		levelList[4].enems.add(new Slime(-4,10,-4,-4,10,10));
@@ -193,19 +199,6 @@ public class Tutorial_Game implements ApplicationListener{
 		//bottom middle
 		levelList[4].enems.add(new Bat(-1,-3,-1,-1,-3,-3));
 		levelList[4].enems.add(new Bat(1,-3,1,1,-3,-3));
-
-		levelList[3].enems.add(new Snake(-1,6,-2,3,5,8));//room above spawn
-		levelList[3].enems.add(new BlackSmoke(2,7,-2,3,5,8));
-		levelList[3].enems.add(new Snake(-8,8,-11,-8,8,12));//most left room
-		levelList[3].enems.add(new Snake(-11,11,-11,-8,8,12));
-		levelList[3].enems.add(new BlackSmoke(12,9,10,12,5,9));//top right room
-		levelList[3].enems.add(new BlackSmoke(6,1,5,9,-2,2));//room right of spawn
-		levelList[3].enems.add(new Snake(1,7,-2,2,-9,-6));//room below spawn
-		levelList[3].enems.add(new BlackSmoke(-1,-8,-2,2,-9,-6));
-		levelList[3].enems.add(new Snake(1,-9,-2,2,-9,-6));
-		levelList[3].enems.add(new Snake(14,0,13,17,-3,1));//portal room
-		levelList[3].enems.add(new Snake(17,1,13,17,-3,1));
-		levelList[3].enems.add(new Snake(17,-3,13,17,-3,1));
 		
 		//first room
 		levelList[5].enems.add(new Bat(-2,0,-2,2,-2,2));
@@ -312,29 +305,34 @@ public class Tutorial_Game implements ApplicationListener{
 		levelList[6].enems.add(new Slime(10,18,10,10,18,18));
 		
 		
-		//forges
-		Forge f = new Weapon_Forge(0,1,1,2);
-		levelList[1].forges.add(f);
-		Forge f2 = new Armor_Forge(0,-1,1,2);
-		levelList[1].forges.add(f2);
+		//Armor Forges
+		levelList[1].forges.add(new Armor_Forge(0,-1,1,2));
+		
+		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
+		
+		levelList[4].forges.add(new Armor_Forge(-7,6,3,5));
+		
+		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
+		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
+		
+		levelList[6].forges.add(new Weapon_Forge(1,20,3,6));
+		
+		//Weapon Forges
+		levelList[1].forges.add(new Weapon_Forge(0,1,1,2));
 		
 		levelList[2].forges.add(new Weapon_Forge(0,4,3,10));
 		
-		levelList[4].forges.add(new Weapon_Forge(-7,4,3,5));
-		levelList[4].forges.add(new Armor_Forge(-7,6,3,5));
-
 		levelList[3].forges.add(new Weapon_Forge(2,-2,3,10));
 		levelList[3].forges.add(new Weapon_Forge(1,-15,3,10));
-		levelList[3].forges.add(new Armor_Forge(-2,2,3,10));
+		
+		levelList[4].forges.add(new Weapon_Forge(-7,4,3,5));
 		
 		levelList[5].forges.add(new Weapon_Forge(-12,5,2,5));
 		levelList[5].forges.add(new Weapon_Forge(9,12,2,5));
 		levelList[5].forges.add(new Weapon_Forge(2,5,5,30));
-		levelList[5].forges.add(new Armor_Forge(-7,12,3,7));
-		levelList[5].forges.add(new Armor_Forge(12,5,2,5));
 		
 		levelList[6].forges.add(new Armor_Forge(17,20,3,6));
-		levelList[6].forges.add(new Weapon_Forge(1,20,3,6));
+		
 		
 		//fountains
 		Fountain a = new Fountain(-1, 0);

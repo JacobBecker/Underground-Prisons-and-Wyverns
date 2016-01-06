@@ -23,17 +23,11 @@
  * NOTE: DAMAGE & ARMOR CALCUATIONS WILL 
  * 		CHANGE IF WE IMPLIMENT EQUIPTMENT
  * 	
- * STRENGTH & CONSITUTION
+ * STAT BONUSES
  * 9-12: No bonus
  * 13-15: +1
  * 16-17: +2
- * 18: +3
- * 
- * ARMOR
- * 9-12: No bonus
- * 13-15: +2
- * 16-17: +4
- * 18: +6 			
+ * 18: +3		
  * 
  * 
  */
@@ -66,8 +60,8 @@ public class Character
 	int nextLevel = 6;
 	int level = 1;
 	
-	int hpNumOfDice = 2;
-	int hpDiceSides = 4;
+	int hpNumOfDice = 4;
+	int hpDiceSides = 2;
 	
 	int atkNumOfDice = 1;
 	int atkDiceSides = 6;
@@ -213,7 +207,7 @@ public class Character
 		
 		strength = postScores[0];
 		constitution = postScores[1];
-		defence = postScores[2];
+		armor = postScores[2];
 		
 		//Assigning str bonus
 		//Assigning str bonus
@@ -253,21 +247,21 @@ public class Character
 		}
 		
 		//Assigning armor bonus
-		if(defence <13)
+		if(armor <13)
 		{
 			armorBonus = 0;
 		}
-		else if(defence < 15)
+		else if(armor < 15)
+		{
+			armorBonus = 1;
+		}
+		else if(armor < 18)
 		{
 			armorBonus = 2;
 		}
-		else if(defence < 18)
-		{
-			armorBonus = 4;
-		}
 		else
 		{
-			armorBonus = 6;
+			armorBonus = 3;
 		}
 		
 		//class bonus
@@ -290,8 +284,6 @@ public class Character
 		
 		//Armor
 		defence = 10 + armorBonus;
-		
-		strength = strength + strBonus;
 	}
 	
 	void heal()
