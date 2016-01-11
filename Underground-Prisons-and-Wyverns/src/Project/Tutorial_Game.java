@@ -93,15 +93,15 @@ public class Tutorial_Game implements ApplicationListener{
         font = new BitmapFont();
         font.setColor(Color.RED);
         	
-		character = new Character(15, 15, 14, "Jacob", "Thief");
+		//character = new Character(15, 15, 14, "Jacob", "Thief");
 		
         
-		/*try {
+		try {
 			character = new Character();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		
 		box = new Texture(Gdx.files.internal("assets/White Box.JPG"));
@@ -112,10 +112,28 @@ public class Tutorial_Game implements ApplicationListener{
 		terrain = new Texture(Gdx.files.internal("assets/tile2.jpg"));
 		attack = new Texture(Gdx.files.internal("assets/melee 2.png"));
 		hit = new Texture(Gdx.files.internal("assets/hit.png"));
-		right = new Texture(Gdx.files.internal("assets/character0.png"));
-		up = new Texture(Gdx.files.internal("assets/character1.png"));
-		left = new Texture(Gdx.files.internal("assets/character2.png"));
-		down = new Texture(Gdx.files.internal("assets/character3.png"));
+		
+		if(character.chosenclass.equals("Thief"))
+		{
+			right = new Texture(Gdx.files.internal("assets/thief0.png"));
+			up = new Texture(Gdx.files.internal("assets/thief1.png"));
+			left = new Texture(Gdx.files.internal("assets/thief2.png"));
+			down = new Texture(Gdx.files.internal("assets/thief3.png"));
+		}
+		else if(character.chosenclass.equals("Warrior"))
+		{
+			right = new Texture(Gdx.files.internal("assets/war0.png"));
+			up = new Texture(Gdx.files.internal("assets/war1.png"));
+			left = new Texture(Gdx.files.internal("assets/war2.png"));
+		    down = new Texture(Gdx.files.internal("assets/war3.png"));
+		}
+		else if(character.chosenclass.equals("Cleric"))
+		{
+			right = new Texture(Gdx.files.internal("assets/cleric0.png"));
+			up = new Texture(Gdx.files.internal("assets/cleric1.png"));
+			left = new Texture(Gdx.files.internal("assets/cleric2.png"));
+			down = new Texture(Gdx.files.internal("assets/cleric3.png"));
+		}
 
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
